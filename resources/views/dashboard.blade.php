@@ -593,59 +593,211 @@
             box-shadow: 0 4px 16px rgba(82, 63, 119, .04);
         }
 
-        .revision-item {
-            padding: 18px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: #FCFAFC;
+        .revision-group-card {
+            overflow: hidden;
+            margin-bottom: 18px;
+            border: 1px solid #EBD7E2;
+            border-radius: 16px;
+            background: var(--surface);
+            box-shadow: 0 4px 16px rgba(82, 63, 119, .05);
+        }
+
+        .revision-group-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .revision-group-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 22px;
+            border-bottom: 1px solid #F0E6EE;
+            background: linear-gradient(110deg, #FCF7FA, #F6F0FA);
+        }
+
+        .revision-group-title {
+            margin: 0 0 4px;
+            color: var(--purple-dark);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.5;
             overflow-wrap: anywhere;
         }
 
-        .revision-icon {
+        .revision-group-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .revision-group-meta i {
+            margin-right: 5px;
+            color: var(--berry);
+        }
+
+        .revision-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .revision-table {
+            width: 100%;
+            min-width: 780px;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        .revision-table thead th {
+            padding: 13px 16px;
+            background: #FAF6FC;
+            border-bottom: 1px solid var(--border);
+            color: var(--purple-dark);
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .revision-table tbody td {
+            padding: 15px 16px;
+            border-bottom: 1px solid #F3EEF6;
+            color: var(--text-primary);
+            font-size: 13px;
+            line-height: 1.7;
+            vertical-align: middle;
+        }
+
+        .revision-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .revision-doc-type {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+
+        .revision-doc-file {
+            margin-top: 3px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .revision-note-preview {
+            max-width: 310px;
+            padding: 10px 12px;
+            border: 1px solid #EECAD6;
+            border-left: 3px solid var(--berry);
+            border-radius: 9px;
+            background: #FFF4F8;
+            color: #7D334D;
+            font-size: 12px;
+            line-height: 1.65;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+        }
+
+        .revision-date-text {
+            color: var(--text-secondary);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .revision-refresh-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .revision-sync-text {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .btn-refresh-soft {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 12px;
+            border: 1px solid #DCCEE8;
+            border-radius: 9px;
+            background: #FFFFFF;
+            color: var(--purple-dark);
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            transition: .2s ease;
+        }
+
+        .btn-refresh-soft:hover {
+            border-color: var(--purple-medium);
+            background: #F4EFFA;
+        }
+
+        .revision-empty-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 24px;
+            border: 1px solid #CFE3D5;
+            border-left: 5px solid var(--success);
+            border-radius: 15px;
+            background: #EFF7F2;
+            color: #2E6446;
+        }
+
+        .revision-empty-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 51px;
-            height: 51px;
+            width: 48px;
+            height: 48px;
             flex-shrink: 0;
             border-radius: 13px;
-            background: #FCEBF1;
-            color: var(--berry);
-            font-size: 22px;
+            background: #FFFFFF;
+            color: var(--success);
+            font-size: 23px;
         }
 
         .revision-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 12px;
+            padding: 7px 12px;
             border-radius: 20px;
             background: #FCEBF1;
             color: #963F66;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .btn-outline-berry {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            min-height: 42px;
-            padding: 10px 15px;
+            gap: 7px;
+            min-height: 38px;
+            padding: 8px 13px;
             border: 1px solid var(--berry);
             border-radius: 9px;
-            background: white;
-            color: var(--berry);
-            font-size: 13px;
+            background: linear-gradient(120deg, #B35A8A, #934272);
+            color: #FFFFFF;
+            font-size: 12px;
             font-weight: 600;
             text-decoration: none;
+            white-space: nowrap;
             transition: all .2s ease;
         }
 
         .btn-outline-berry:hover {
-            background: var(--berry);
-            color: white;
+            border-color: var(--purple-dark);
+            background: linear-gradient(120deg, #523F77, #67538A);
+            color: #FFFFFF;
         }
 
         .status-count {
@@ -947,89 +1099,164 @@
 
             @endif
 
-            @if (auth()->user()->role?->slug === 'penglat' && ($revisionDocumentsCount ?? 0) > 0)
+            @if (auth()->user()->role?->slug === 'penglat')
 
-                <section class="revision-card p-4 mb-5">
-                    <div class="d-flex align-items-start gap-3">
-                        <div class="revision-icon">
-                            <i class="bi bi-bell-fill"></i>
+                <section class="mb-5" id="penglatRevisionSection" data-summary-url="{{ route('dashboard.revision-summary') }}">
+                    <div class="section-heading flex-wrap">
+                        <div>
+                            <h5 class="section-title">
+                                <i class="bi bi-exclamation-diamond section-icon"></i>
+                                Dokumen Memerlukan Perbaikan
+                            </h5>
+                            <p class="section-description">
+                                Pantau dokumen unggahanmu yang diminta revisi oleh Dalmut, dikelompokkan berdasarkan kegiatan pelatihan.
+                            </p>
                         </div>
 
-                        <div class="flex-grow-1">
-                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
-                                <h5 class="fw-bold mb-0" style="color: var(--purple-dark); font-size: 19px;">
-                                    Notifikasi Revisi Dokumen
-                                </h5>
-                                <span class="revision-badge">
-                                    <i class="bi bi-exclamation-circle"></i>
-                                    {{ $revisionDocumentsCount }} dokumen
-                                </span>
+                        <div class="revision-refresh-bar">
+                            <span class="revision-sync-text">
+                                <i class="bi bi-arrow-repeat me-1"></i>
+                                Diperbarui <span id="revisionUpdatedAt">{{ $revisionUpdatedAt ?? now()->format('d/m/Y H:i:s') }}</span>
+                            </span>
+
+                            <button type="button" class="btn-refresh-soft" id="refreshRevisionBtn">
+                                <i class="bi bi-arrow-clockwise"></i>
+                                Perbarui
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-md-6">
+                            <div class="stats-card pink">
+                                <div class="stats-card-top">
+                                    <div class="stats-icon">
+                                        <i class="bi bi-file-earmark-exclamation"></i>
+                                    </div>
+                                    <i class="bi bi-arrow-repeat stats-indicator"></i>
+                                </div>
+                                <div class="stats-label">Total Dokumen Perlu Direvisi</div>
+                                <div class="stats-value" id="revisionDocumentsCountValue">
+                                    {{ $revisionDocumentsCount ?? 0 }}
+                                </div>
+                                <div class="stats-note">Jumlah file dokumen aktif yang diminta perbaikan oleh Dalmut.</div>
                             </div>
+                        </div>
 
-                            <p class="section-description mb-3">
-                                Dokumen berikut perlu diperbaiki berdasarkan hasil pemeriksaan Dalmut.
-                            </p>
-
-                            @foreach ($revisionDocuments as $document)
-                                <div class="revision-item mb-3">
-                                    <div class="activity-name mb-2">
-                                        {{ $document->training?->training_name ?? 'Kegiatan tidak ditemukan' }}
+                        <div class="col-12 col-md-6">
+                            <div class="stats-card lavender">
+                                <div class="stats-card-top">
+                                    <div class="stats-icon">
+                                        <i class="bi bi-calendar2-event"></i>
                                     </div>
+                                    <i class="bi bi-folder2-open stats-indicator"></i>
+                                </div>
+                                <div class="stats-label">Kegiatan Memiliki Dokumen Revisi</div>
+                                <div class="stats-value" id="revisionTrainingsCountValue">
+                                    {{ $revisionTrainingsCount ?? 0 }}
+                                </div>
+                                <div class="stats-note">Jumlah kegiatan pelatihan yang memiliki minimal satu dokumen perlu revisi.</div>
+                            </div>
+                        </div>
+                    </div>
 
-                                    <div class="activity-detail mb-2">
-                                        <strong>Jenis:</strong>
-                                        @switch($document->document_type)
-                                            @case('kak')
-                                                KAK
-                                                @break
-                                            @case('sk')
-                                                SK Penyelenggaraan
-                                                @break
-                                            @case('jadwal')
-                                                Jadwal Pelatihan
-                                                @break
-                                            @default
-                                                {{ $document->document_type }}
-                                        @endswitch
-                                    </div>
+                    <div id="revisionGroupsContainer">
+                        @if (($revisionGroups ?? collect())->count() > 0)
+                            @foreach ($revisionGroups as $group)
+                                <div class="revision-group-card">
+                                    <div class="revision-group-header">
+                                        <div>
+                                            <h6 class="revision-group-title">
+                                                <i class="bi bi-journal-bookmark me-1" style="color: var(--berry);"></i>
+                                                Kegiatan: {{ $group['training_name'] }}
+                                            </h6>
 
-                                    <div class="activity-detail mb-2">
-                                        <strong>Nama file:</strong>
-                                        {{ $document->original_name }}
-                                    </div>
-
-                                    <div class="activity-detail mb-3">
-                                        <strong>Catatan Dalmut:</strong>
-                                        <div class="mt-1">
-                                            {{ $document->verification_notes ?: 'Belum ada catatan revisi.' }}
+                                            <div class="revision-group-meta">
+                                                <span>
+                                                    <i class="bi bi-building"></i>
+                                                    {{ $group['organizer'] }}
+                                                </span>
+                                                <span>
+                                                    <i class="bi bi-calendar3"></i>
+                                                    {{ $group['date_range'] }}
+                                                </span>
+                                            </div>
                                         </div>
+
+                                        <span class="revision-badge">
+                                            <i class="bi bi-exclamation-circle-fill"></i>
+                                            Terdapat {{ $group['revision_count'] }} dokumen yang perlu diperbaiki
+                                        </span>
                                     </div>
 
-                                    @if ($document->training)
-                                        <a href="{{ route('trainings.documents.index', $document->training) }}"
-                                           class="btn-outline-berry">
-                                            <i class="bi bi-folder2-open"></i>
-                                            Buka Dokumen
-                                        </a>
-                                    @endif
+                                    <div class="revision-table-wrap">
+                                        <table class="table revision-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Dokumen &amp; Nama File</th>
+                                                    <th>Status</th>
+                                                    <th>Catatan Revisi Dalmut</th>
+                                                    <th>Tanggal Revisi</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($group['documents'] as $doc)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="revision-doc-type">{{ $doc['document_label'] }}</div>
+                                                            <div class="revision-doc-file">
+                                                                <i class="bi bi-file-earmark-text me-1"></i>
+                                                                {{ $doc['original_name'] }}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <span class="revision-badge">
+                                                                <i class="bi bi-arrow-repeat"></i>
+                                                                {{ $doc['status_label'] }}
+                                                            </span>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="revision-note-preview">{{ $doc['verification_notes'] }}</div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="revision-date-text">
+                                                                <i class="bi bi-clock me-1"></i>
+                                                                {{ $doc['requested_at'] }}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <a href="{{ $doc['action_url'] }}" class="btn-outline-berry">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                                Lihat dan Perbaiki
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             @endforeach
-                        </div>
+                        @else
+                            <div class="revision-empty-box">
+                                <div class="revision-empty-icon">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold" style="font-size: 15px;">Tidak Ada Dokumen yang Perlu Direvisi</div>
+                                    <div style="font-size: 13px; margin-top: 3px;">
+                                        Saat ini seluruh dokumen unggahanmu tidak memiliki permintaan revisi aktif dari Dalmut.
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </section>
-
-            @elseif (auth()->user()->role?->slug === 'penglat')
-
-                <div class="alert border-0 d-flex align-items-center gap-3 mb-5"
-                     style="background: #EAF3EE; color: #3C7656; border-radius: 13px; padding: 17px;">
-                    <i class="bi bi-check-circle-fill fs-4"></i>
-                    <div>
-                        <div class="fw-semibold" style="font-size: 15px;">Tidak Ada Revisi Dokumen</div>
-                        <div style="font-size: 14px;">
-                            Saat ini tidak ada dokumen unggahanmu yang perlu diperbaiki.
-                        </div>
-                    </div>
-                </div>
 
             @endif
 
@@ -1193,14 +1420,14 @@
                             <div class="menu-card purple">
                                 <div class="menu-card-top">
                                     <div class="menu-card-icon lavender">
-                                        <i class="bi bi-clipboard-data"></i>
+                                        <i class="bi bi-bar-chart-line"></i>
                                     </div>
                                     <i class="bi bi-arrow-up-right menu-card-arrow"></i>
                                 </div>
 
-                                <h6>Rekap Dokumen</h6>
+                                <h6>Rekap Kegiatan</h6>
                                 <p>
-                                    Lihat rekap kelengkapan dokumen dan hasil pemeriksaan kegiatan.
+                                    Lihat rekap kegiatan pelatihan tahunan, triwulan, dan bulanan lengkap dengan grafik serta export Excel dan PDF.
                                 </p>
                             </div>
                         </a>
@@ -1217,6 +1444,167 @@
 
         </main>
     </div>
+
+    @if (auth()->user()->role?->slug === 'penglat')
+        <script>
+            (function () {
+                const section = document.getElementById('penglatRevisionSection');
+                if (!section) {
+                    return;
+                }
+
+                const summaryUrl = section.dataset.summaryUrl;
+                const docsCountEl = document.getElementById('revisionDocumentsCountValue');
+                const trainingsCountEl = document.getElementById('revisionTrainingsCountValue');
+                const updatedAtEl = document.getElementById('revisionUpdatedAt');
+                const groupsContainer = document.getElementById('revisionGroupsContainer');
+                const refreshBtn = document.getElementById('refreshRevisionBtn');
+                let isFetching = false;
+
+                function escapeHtml(value) {
+                    return String(value ?? '')
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;')
+                        .replace(/"/g, '&quot;')
+                        .replace(/'/g, '&#039;');
+                }
+
+                function renderGroups(groups) {
+                    if (!Array.isArray(groups) || groups.length === 0) {
+                        groupsContainer.innerHTML =
+                            '<div class="revision-empty-box">' +
+                                '<div class="revision-empty-icon">' +
+                                    '<i class="bi bi-check-circle-fill"></i>' +
+                                '</div>' +
+                                '<div>' +
+                                    '<div class="fw-bold" style="font-size: 15px;">Tidak Ada Dokumen yang Perlu Direvisi</div>' +
+                                    '<div style="font-size: 13px; margin-top: 3px;">Saat ini seluruh dokumen unggahanmu tidak memiliki permintaan revisi aktif dari Dalmut.</div>' +
+                                '</div>' +
+                            '</div>';
+                        return;
+                    }
+
+                    groupsContainer.innerHTML = groups.map(function (group) {
+                        const rowsHtml = (group.documents || []).map(function (doc) {
+                            return '<tr>' +
+                                '<td>' +
+                                    '<div class="revision-doc-type">' + escapeHtml(doc.document_label) + '</div>' +
+                                    '<div class="revision-doc-file">' +
+                                        '<i class="bi bi-file-earmark-text me-1"></i>' +
+                                        escapeHtml(doc.original_name) +
+                                    '</div>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<span class="revision-badge">' +
+                                        '<i class="bi bi-arrow-repeat"></i>' +
+                                        escapeHtml(doc.status_label) +
+                                    '</span>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<div class="revision-note-preview">' + escapeHtml(doc.verification_notes) + '</div>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<div class="revision-date-text">' +
+                                        '<i class="bi bi-clock me-1"></i>' +
+                                        escapeHtml(doc.requested_at) +
+                                    '</div>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<a href="' + escapeHtml(doc.action_url) + '" class="btn-outline-berry">' +
+                                        '<i class="bi bi-pencil-square"></i>' +
+                                        'Lihat dan Perbaiki' +
+                                    '</a>' +
+                                '</td>' +
+                            '</tr>';
+                        }).join('');
+
+                        return '<div class="revision-group-card">' +
+                            '<div class="revision-group-header">' +
+                                '<div>' +
+                                    '<h6 class="revision-group-title">' +
+                                        '<i class="bi bi-journal-bookmark me-1" style="color: var(--berry);"></i>' +
+                                        'Kegiatan: ' + escapeHtml(group.training_name) +
+                                    '</h6>' +
+                                    '<div class="revision-group-meta">' +
+                                        '<span><i class="bi bi-building"></i>' + escapeHtml(group.organizer) + '</span>' +
+                                        '<span><i class="bi bi-calendar3"></i>' + escapeHtml(group.date_range) + '</span>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<span class="revision-badge">' +
+                                    '<i class="bi bi-exclamation-circle-fill"></i>' +
+                                    'Terdapat ' + escapeHtml(group.revision_count) + ' dokumen yang perlu diperbaiki' +
+                                '</span>' +
+                            '</div>' +
+                            '<div class="revision-table-wrap">' +
+                                '<table class="table revision-table">' +
+                                    '<thead>' +
+                                        '<tr>' +
+                                            '<th>Dokumen &amp; Nama File</th>' +
+                                            '<th>Status</th>' +
+                                            '<th>Catatan Revisi Dalmut</th>' +
+                                            '<th>Tanggal Revisi</th>' +
+                                            '<th>Aksi</th>' +
+                                        '</tr>' +
+                                    '</thead>' +
+                                    '<tbody>' + rowsHtml + '</tbody>' +
+                                '</table>' +
+                            '</div>' +
+                        '</div>';
+                    }).join('');
+                }
+
+                async function fetchRevisionSummary() {
+                    if (isFetching) {
+                        return;
+                    }
+
+                    isFetching = true;
+
+                    try {
+                        const response = await fetch(summaryUrl, {
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            credentials: 'same-origin',
+                            cache: 'no-store'
+                        });
+
+                        if (!response.ok) {
+                            return;
+                        }
+
+                        const data = await response.json();
+                        docsCountEl.textContent = data.total_revision_documents ?? 0;
+                        trainingsCountEl.textContent = data.total_revision_trainings ?? 0;
+                        updatedAtEl.textContent = data.updated_at || '';
+                        renderGroups(data.groups || []);
+                    } catch (error) {
+                    } finally {
+                        isFetching = false;
+                    }
+                }
+
+                if (refreshBtn) {
+                    refreshBtn.addEventListener('click', fetchRevisionSummary);
+                }
+
+                document.addEventListener('visibilitychange', function () {
+                    if (document.visibilityState === 'visible') {
+                        fetchRevisionSummary();
+                    }
+                });
+
+                window.setInterval(function () {
+                    if (document.visibilityState === 'visible') {
+                        fetchRevisionSummary();
+                    }
+                }, 30000);
+            })();
+        </script>
+    @endif
 
 </body>
 </html>

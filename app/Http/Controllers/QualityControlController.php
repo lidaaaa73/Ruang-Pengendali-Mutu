@@ -24,7 +24,7 @@ class QualityControlController extends Controller
                 $query->whereIn('document_type', [
                     'laporan_penyelenggara',
                     'evaluasi_penyelenggaraan',
-                ]);
+                ])->with(['uploader', 'verifier']);
             },
         ])
             ->where('execution_status', 'selesai')

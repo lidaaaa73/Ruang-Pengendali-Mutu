@@ -10,7 +10,6 @@
         --sidebar-text: #F7F3FA;
         --sidebar-muted: #D4C9E3;
     }
-
     .app-sidebar {
         position: fixed;
         inset: 0 auto 0 0;
@@ -327,8 +326,8 @@
 
         <a href="{{ route('recap.index') }}"
             class="sidebar-link {{ ($active ?? '') === 'recap' ? 'active' : '' }}">
-            <i class="bi bi-clipboard-data"></i>
-            <span>Rekap Dokumen</span>
+            <i class="bi bi-bar-chart-line"></i>
+            <span>Rekap Kegiatan</span>
         </a>
     </nav>
 

@@ -421,6 +421,18 @@
             background: #FCF9FD;
         }
 
+        .document-table tbody tr.row-revision {
+            background: #FFF7FA;
+        }
+
+        .document-table tbody tr.row-revision:hover {
+            background: #FDF1F6;
+        }
+
+        .document-table tbody tr.row-revision td:first-child {
+            box-shadow: inset 4px 0 0 var(--berry);
+        }
+
         .document-number {
             display: flex;
             align-items: center;
@@ -478,9 +490,16 @@
         }
 
         .uploader-name {
-            min-width: 135px;
+            min-width: 155px;
             color: var(--text-primary);
             font-size: 14px;
+            font-weight: 500;
+        }
+
+        .uploader-time {
+            margin-top: 4px;
+            color: var(--text-secondary);
+            font-size: 12px;
         }
 
         .status-badge {
@@ -510,13 +529,75 @@
         }
 
         .verification-note {
-            min-width: 175px;
-            max-width: 260px;
+            min-width: 195px;
+            max-width: 280px;
             color: var(--text-secondary);
             font-size: 13px;
             line-height: 1.8;
             white-space: pre-line;
             overflow-wrap: anywhere;
+        }
+
+        .revision-note-box {
+            min-width: 220px;
+            max-width: 300px;
+            padding: 12px 14px;
+            border: 1px solid #EECAD6;
+            border-left: 4px solid var(--berry);
+            border-radius: 10px;
+            background: #FFF3F7;
+            color: #7D334D;
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .revision-note-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 5px;
+            color: #963F5A;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .revision-note-text {
+            white-space: pre-line;
+        }
+
+        .revision-note-meta {
+            margin-top: 6px;
+            color: #9B6478;
+            font-size: 11px;
+        }
+
+        .action-reupload {
+            background: linear-gradient(120deg, #B35A8A, #8E4474);
+            border-color: #9E497A;
+            color: #fff;
+        }
+
+        .action-reupload:hover {
+            background: linear-gradient(120deg, #523F77, #67538A);
+            border-color: var(--purple-dark);
+            color: #fff;
+        }
+
+        .modal-revision-box {
+            padding: 14px;
+            background: #FFF3F7;
+            border: 1px solid #EECAD6;
+            border-left: 4px solid var(--berry);
+            border-radius: 10px;
+            color: #7D334D;
+            font-size: 13px;
+            line-height: 1.75;
+            overflow-wrap: anywhere;
+        }
+
+        .modal-revision-text {
+            white-space: pre-line;
         }
 
         .action-group {
@@ -868,6 +949,19 @@
         $canReviewDocuments = in_array($role, ['admin', 'dalmut'], true);
         $preparationDocumentTypes = ['kak', 'sk', 'jadwal'];
         $preparationDocuments = $documents->whereIn('document_type', $preparationDocumentTypes);
+        $documentLabels = [
+            'kak' => 'KAK',
+            'sk' => 'SK Penyelenggaraan',
+            'jadwal' => 'Jadwal Pelatihan',
+        ];
+        $verifiedDocumentTypes = $preparationDocuments
+            ->where('verification_status', 'verified')
+            ->pluck('document_type')
+            ->all();
+        $revisionDocumentTypes = $preparationDocuments
+            ->where('verification_status', 'revision')
+            ->pluck('document_type')
+            ->all();
     @endphp
 
     @include('layouts.sidebar', [
@@ -920,6 +1014,14 @@
             <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
                 <i class="bi bi-check-circle-fill me-2"></i>
                 {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                <i class="bi bi-exclamation-circle-fill me-2"></i>
+                {{ session('error') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
@@ -996,9 +1098,19 @@
 
                                 <select name="document_type" id="document_type" class="form-select" required>
                                     <option value="">Pilih jenis dokumen</option>
-                                    <option value="kak" @selected(old('document_type') === 'kak')>KAK</option>
-                                    <option value="sk" @selected(old('document_type') === 'sk')>SK Penyelenggaraan</option>
-                                    <option value="jadwal" @selected(old('document_type') === 'jadwal')>Jadwal Pelatihan</option>
+                                    @foreach ($documentLabels as $typeKey => $typeLabel)
+                                        @php
+                                            $isVerifiedType = in_array($typeKey, $verifiedDocumentTypes, true);
+                                            $isRevisionType = in_array($typeKey, $revisionDocumentTypes, true);
+                                        @endphp
+                                        <option
+                                            value="{{ $typeKey }}"
+                                            @selected(old('document_type') === $typeKey && !$isVerifiedType && !$isRevisionType)
+                                            @disabled($isVerifiedType || $isRevisionType)
+                                        >
+                                            {{ $typeLabel }}@if ($isVerifiedType) (Sudah Terverifikasi)@elseif ($isRevisionType) (Perlu Revisi - gunakan tombol Unggah Ulang)@endif
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -1088,7 +1200,11 @@
 
                     <tbody>
                         @forelse ($preparationDocuments as $document)
-                            <tr>
+                            @php
+                                $documentTypeLabel = $documentLabels[$document->document_type] ?? $document->document_type;
+                                $uploadedAt = $document->updated_at ?? $document->created_at;
+                            @endphp
+                            <tr class="{{ $document->verification_status === 'revision' ? 'row-revision' : '' }}">
                                 <td>
                                     <span class="document-number">
                                         {{ $loop->iteration }}
@@ -1097,19 +1213,7 @@
 
                                 <td>
                                     <div class="document-type">
-                                        @switch($document->document_type)
-                                            @case('kak')
-                                                KAK
-                                                @break
-                                            @case('sk')
-                                                SK Penyelenggaraan
-                                                @break
-                                            @case('jadwal')
-                                                Jadwal Pelatihan
-                                                @break
-                                            @default
-                                                {{ $document->document_type }}
-                                        @endswitch
+                                        {{ $documentTypeLabel }}
                                     </div>
                                 </td>
 
@@ -1136,6 +1240,10 @@
                                         <i class="bi bi-person-circle me-1" style="color: var(--purple-medium);"></i>
                                         {{ $document->uploader?->name ?? '-' }}
                                     </div>
+                                    <div class="uploader-time">
+                                        <i class="bi bi-clock me-1"></i>
+                                        {{ $uploadedAt?->format('d/m/Y H:i') ?? '-' }}
+                                    </div>
                                 </td>
 
                                 <td>
@@ -1158,9 +1266,24 @@
                                 </td>
 
                                 <td>
-                                    <div class="verification-note">
-                                        {{ $document->verification_notes ?: '-' }}
-                                    </div>
+                                    @if ($document->verification_status === 'revision')
+                                        <div class="revision-note-box">
+                                            <div class="revision-note-header">
+                                                <i class="bi bi-exclamation-circle-fill"></i>
+                                                Catatan Revisi Dalmut
+                                            </div>
+                                            <div class="revision-note-text">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
+                                            @if ($document->verifier || $document->verified_at)
+                                                <div class="revision-note-meta">
+                                                    {{ $document->verifier?->name ?? 'Dalmut' }}@if ($document->verified_at) · {{ $document->verified_at->format('d/m/Y H:i') }}@endif
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <div class="verification-note">
+                                            {{ $document->verification_notes ?: '-' }}
+                                        </div>
+                                    @endif
                                 </td>
 
                                 <td>
@@ -1177,8 +1300,23 @@
                                         </a>
 
                                         @if (
-                                            in_array($role, ['admin', 'penglat'], true)
-                                            && $document->verification_status !== 'verified'
+                                            $canUploadDocuments
+                                            && $document->verification_status === 'revision'
+                                        )
+                                            <button
+                                                type="button"
+                                                class="action-btn action-reupload"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#reuploadDocument{{ $document->id }}"
+                                            >
+                                                <i class="bi bi-cloud-arrow-up"></i>
+                                                Unggah Ulang
+                                            </button>
+                                        @endif
+
+                                        @if (
+                                            $canUploadDocuments
+                                            && $document->verification_status === 'pending'
                                         )
                                             <button
                                                 type="button"
@@ -1203,7 +1341,7 @@
 
                                         @if (
                                             $canReviewDocuments
-                                            && $document->verification_status !== 'verified'
+                                            && $document->verification_status === 'pending'
                                         )
                                             <button
                                                 type="button"
@@ -1257,9 +1395,101 @@
     </main>
 
     @foreach ($preparationDocuments as $document)
+        @php
+            $documentTypeLabel = $documentLabels[$document->document_type] ?? $document->document_type;
+        @endphp
+
         @if (
-            in_array($role, ['admin', 'penglat'], true)
-            && $document->verification_status !== 'verified'
+            $canUploadDocuments
+            && $document->verification_status === 'revision'
+        )
+            <div
+                class="modal fade"
+                id="reuploadDocument{{ $document->id }}"
+                tabindex="-1"
+                aria-labelledby="reuploadDocumentLabel{{ $document->id }}"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <form
+                            action="{{ route('training-documents.reupload', $document) }}"
+                            method="POST"
+                            enctype="multipart/form-data"
+                        >
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="reuploadDocumentLabel{{ $document->id }}">
+                                    <i class="bi bi-cloud-arrow-up me-2"></i>
+                                    Unggah Ulang Dokumen
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Jenis Dokumen</label>
+                                    <div class="modal-file-box fw-semibold">
+                                        {{ $documentTypeLabel }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">File Sebelumnya</label>
+                                    <div class="modal-file-box">
+                                        <i class="bi bi-file-earmark-text me-2"></i>
+                                        {{ $document->original_name }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Catatan Revisi dari Dalmut</label>
+                                    <div class="modal-revision-box">
+                                        <div class="modal-revision-text">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2">
+                                    <label for="reupload_file_{{ $document->id }}" class="form-label">
+                                        Pilih File Pengganti <span class="text-danger">*</span>
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        name="document_file"
+                                        id="reupload_file_{{ $document->id }}"
+                                        class="form-control"
+                                        accept=".pdf,.doc,.docx"
+                                        required
+                                    >
+
+                                    <small class="file-hint">
+                                        File baru akan menggantikan dokumen lama dan status otomatis kembali menjadi Menunggu Pemeriksaan. Format: PDF, DOC, atau DOCX (maksimal 10 MB).
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-modal-cancel" data-bs-dismiss="modal">
+                                    Batal
+                                </button>
+
+                                <button type="submit" class="btn btn-modal-primary">
+                                    <i class="bi bi-cloud-arrow-up me-1"></i>
+                                    Unggah Ulang
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        @if (
+            $canUploadDocuments
+            && $document->verification_status === 'pending'
         )
             <div
                 class="modal fade"
@@ -1288,20 +1518,10 @@
 
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="document_type_{{ $document->id }}" class="form-label">
-                                        Jenis Dokumen
-                                    </label>
-
-                                    <select
-                                        name="document_type"
-                                        id="document_type_{{ $document->id }}"
-                                        class="form-select"
-                                        required
-                                    >
-                                        <option value="kak" @selected($document->document_type === 'kak')>KAK</option>
-                                        <option value="sk" @selected($document->document_type === 'sk')>SK Penyelenggaraan</option>
-                                        <option value="jadwal" @selected($document->document_type === 'jadwal')>Jadwal Pelatihan</option>
-                                    </select>
+                                    <label class="form-label">Jenis Dokumen</label>
+                                    <div class="modal-file-box fw-semibold">
+                                        {{ $documentTypeLabel }}
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
@@ -1314,7 +1534,7 @@
 
                                 <div class="mb-3">
                                     <label for="document_file_{{ $document->id }}" class="form-label">
-                                        Ganti File
+                                        Ganti File <span class="text-danger">*</span>
                                     </label>
 
                                     <input
@@ -1323,10 +1543,11 @@
                                         id="document_file_{{ $document->id }}"
                                         class="form-control"
                                         accept=".pdf,.doc,.docx"
+                                        required
                                     >
 
                                     <small class="file-hint">
-                                        Kosongkan jika tidak ingin mengganti file. Maksimal 10 MB.
+                                        Format yang diperbolehkan: PDF, DOC, atau DOCX. Maksimal 10 MB.
                                     </small>
                                 </div>
                             </div>
@@ -1416,7 +1637,7 @@
 
     @if ($canReviewDocuments)
         @foreach ($preparationDocuments as $document)
-            @if ($document->verification_status !== 'verified')
+            @if ($document->verification_status === 'pending')
                 <div
                     class="modal fade"
                     id="verifyDocument{{ $document->id }}"

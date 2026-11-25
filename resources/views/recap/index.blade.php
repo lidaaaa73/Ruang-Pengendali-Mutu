@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekap Kelengkapan Dokumen | Ruang Pengendalian Mutu Bapelkes</title>
+    <title>Rekap Kegiatan Pelatihan | Ruang Pengendalian Mutu Bapelkes</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
         }
 
         .breadcrumb {
-            margin-bottom: 23px;
+            margin-bottom: 20px;
             font-size: 13px;
         }
 
@@ -77,6 +77,15 @@
             color: var(--text-secondary);
         }
 
+        .page-header-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
         .page-title {
             margin-bottom: 8px;
             color: var(--purple-dark);
@@ -86,10 +95,34 @@
         }
 
         .page-description {
-            margin-bottom: 27px;
+            margin: 0;
             color: var(--text-secondary);
             font-size: 14px;
             line-height: 1.8;
+        }
+
+        .period-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: 1px solid #DFD3EC;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #F4EFFA, #FCEFF5);
+            color: var(--purple-dark);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .period-pill i {
+            color: var(--berry);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .summary-card {
@@ -99,12 +132,12 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
-            min-height: 190px;
-            padding: 24px;
+            min-height: 168px;
+            padding: 20px;
             overflow: hidden;
             border: 1px solid var(--border);
-            border-radius: 17px;
-            box-shadow: 0 5px 18px rgba(82,63,119,.06);
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(82, 63, 119, .06);
             transition: transform .2s ease, box-shadow .2s ease;
         }
 
@@ -115,24 +148,24 @@
 
         .summary-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(82,63,119,.11);
+            box-shadow: 0 10px 25px rgba(82, 63, 119, .11);
         }
 
         .summary-card::after {
             position: absolute;
             z-index: 0;
-            top: -47px;
-            right: -32px;
-            width: 145px;
-            height: 145px;
+            top: -42px;
+            right: -30px;
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
-            background: rgba(255,255,255,.29);
+            background: rgba(255, 255, 255, .28);
             content: "";
         }
 
         .summary-card.pink {
             background:
-                radial-gradient(circle at 100% 0%, rgba(255,255,255,.65), transparent 38%),
+                radial-gradient(circle at 100% 0%, rgba(255, 255, 255, .65), transparent 38%),
                 linear-gradient(135deg, #F9DCE9, #E9AFCB 60%, #DFA1C0);
             border-color: #E8B5CC;
             border-left: 5px solid var(--berry);
@@ -140,15 +173,23 @@
 
         .summary-card.lavender {
             background:
-                radial-gradient(circle at 100% 0%, rgba(255,255,255,.7), transparent 38%),
+                radial-gradient(circle at 100% 0%, rgba(255, 255, 255, .7), transparent 38%),
                 linear-gradient(135deg, #E9DDF5, #C9B5E1 60%, #B6A0D0);
             border-color: #CDBCE0;
             border-left: 5px solid var(--purple-medium);
         }
 
+        .summary-card.mint {
+            background:
+                radial-gradient(circle at 100% 0%, rgba(255, 255, 255, .7), transparent 38%),
+                linear-gradient(135deg, #E3F3EA, #C1E2D0 60%, #AED8C1);
+            border-color: #BEDCC9;
+            border-left: 5px solid var(--success);
+        }
+
         .summary-card.blue {
             background:
-                radial-gradient(circle at 100% 0%, rgba(255,255,255,.7), transparent 38%),
+                radial-gradient(circle at 100% 0%, rgba(255, 255, 255, .7), transparent 38%),
                 linear-gradient(135deg, #E2ECF8, #B7CEE8 60%, #9FB9DB);
             border-color: #BED1E4;
             border-left: 5px solid var(--periwinkle);
@@ -156,68 +197,66 @@
 
         .summary-card.rose {
             background:
-                radial-gradient(circle at 100% 0%, rgba(255,255,255,.65), transparent 38%),
-                linear-gradient(135deg, #F9DDEB, #EDB5D0 60%, #E5A1C2);
-            border-color: #E7BBD0;
-            border-left: 5px solid var(--berry);
+                radial-gradient(circle at 100% 0%, rgba(255, 255, 255, .65), transparent 38%),
+                linear-gradient(135deg, #F5E7F8, #DEC2E8 60%, #CEACDC);
+            border-color: #DAC2E5;
+            border-left: 5px solid var(--purple-dark);
         }
 
         .summary-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .summary-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 52px;
-            height: 52px;
-            border: 1px solid rgba(255,255,255,.65);
-            border-radius: 14px;
-            background: rgba(255,255,255,.75);
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, .65);
+            border-radius: 13px;
+            background: rgba(255, 255, 255, .78);
             color: var(--purple-dark);
-            font-size: 24px;
-            box-shadow: 0 3px 10px rgba(82,63,119,.05);
+            font-size: 21px;
+            box-shadow: 0 3px 10px rgba(82, 63, 119, .05);
         }
 
-        .pink .summary-icon,
-        .rose .summary-icon {
+        .pink .summary-icon {
             color: var(--berry);
         }
 
-        .blue .summary-icon {
-            color: #557A9B;
+        .mint .summary-icon {
+            color: var(--success);
         }
 
-        .summary-indicator {
-            color: var(--purple-dark);
-            font-size: 19px;
-            opacity: .75;
+        .blue .summary-icon {
+            color: #4A6A8C;
         }
 
         .summary-label {
-            margin-top: 20px;
+            margin-top: 15px;
             margin-bottom: 4px;
-            color: #51445D;
-            font-size: 15px;
+            color: #4D3F5A;
+            font-size: 13px;
             font-weight: 600;
+            line-height: 1.45;
         }
 
         .summary-value {
             color: var(--text-primary);
-            font-size: 35px;
+            font-size: 30px;
             font-weight: 700;
-            line-height: 1.35;
+            line-height: 1.25;
         }
 
         .summary-note {
             margin-top: 4px;
-            color: #62566C;
-            font-size: 13px;
-            line-height: 1.7;
+            color: #5F536A;
+            font-size: 11px;
+            line-height: 1.55;
         }
 
         .content-card {
@@ -226,28 +265,28 @@
             border: 1px solid var(--border);
             border-radius: 17px;
             background: var(--surface);
-            box-shadow: 0 5px 20px rgba(82,63,119,.045);
+            box-shadow: 0 5px 20px rgba(82, 63, 119, .045);
         }
 
         .section-heading {
             display: flex;
             align-items: center;
             gap: 13px;
-            margin-bottom: 23px;
+            margin-bottom: 22px;
         }
 
         .section-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 47px;
-            height: 47px;
+            width: 46px;
+            height: 46px;
             flex-shrink: 0;
             border: 1px solid #E8D7E8;
             border-radius: 13px;
             background: linear-gradient(135deg, #F9DCE9, #E9C9DC);
             color: var(--berry);
-            font-size: 21px;
+            font-size: 20px;
         }
 
         .section-icon.lavender {
@@ -256,10 +295,16 @@
             color: var(--purple-medium);
         }
 
+        .section-icon.blue {
+            border-color: #C7D7EA;
+            background: linear-gradient(135deg, #E2ECF8, #C4D8EE);
+            color: var(--periwinkle);
+        }
+
         .section-title {
-            margin: 0 0 5px;
+            margin: 0 0 4px;
             color: var(--purple-dark);
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
         }
 
@@ -270,17 +315,62 @@
             line-height: 1.7;
         }
 
+        .filter-card {
+            background:
+                radial-gradient(circle at 100% 0%, rgba(246, 183, 199, .10), transparent 35%),
+                linear-gradient(135deg, #FFFFFF, #FCF9FD);
+        }
+
+        .period-tabs {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+            padding: 6px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #F6F2FA;
+        }
+
+        .period-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border: 0;
+            border-radius: 9px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .2s ease;
+            cursor: pointer;
+        }
+
+        .period-tab:hover {
+            color: var(--purple-dark);
+            background: rgba(255, 255, 255, .7);
+        }
+
+        .period-tab.active {
+            background: linear-gradient(120deg, #523F77, #67538A);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(82, 63, 119, .18);
+        }
+
         .form-label {
-            margin-bottom: 9px;
+            margin-bottom: 8px;
             color: var(--text-primary);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
         }
 
         .form-control,
         .form-select {
-            min-height: 47px;
-            padding: 10px 13px;
+            min-height: 45px;
+            padding: 9px 13px;
             border: 1px solid #DCD2E7;
             border-radius: 10px;
             background: #FCFAFD;
@@ -292,18 +382,20 @@
         .form-control:focus,
         .form-select:focus {
             border-color: var(--berry);
-            background: #fff;
-            box-shadow: 0 0 0 .2rem rgba(179,90,138,.12);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 .2rem rgba(179, 90, 138, .12);
         }
 
-        .btn-green,
-        .btn-outline-green {
+        .btn-primary-soft,
+        .btn-outline-soft,
+        .btn-export-excel,
+        .btn-export-pdf {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 43px;
-            padding: 10px 16px;
+            min-height: 42px;
+            padding: 9px 16px;
             border-radius: 9px;
             font-family: inherit;
             font-size: 13px;
@@ -313,73 +405,128 @@
             transition: .2s ease;
         }
 
-        .btn-green {
+        .btn-primary-soft {
             border: 1px solid var(--purple-dark);
             background: linear-gradient(120deg, #523F77, #67538A);
-            color: #fff;
+            color: #FFFFFF;
         }
 
-        .btn-green:hover {
+        .btn-primary-soft:hover {
             border-color: var(--berry);
             background: linear-gradient(120deg, #67538A, #B35A8A);
-            color: #fff;
+            color: #FFFFFF;
             transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(82,63,119,.12);
+            box-shadow: 0 5px 12px rgba(82, 63, 119, .12);
         }
 
-        .btn-outline-green {
+        .btn-outline-soft {
             border: 1px solid #D9CDE6;
             background: #F5F0FA;
             color: var(--purple-dark);
         }
 
-        .btn-outline-green:hover {
+        .btn-outline-soft:hover {
             border-color: var(--purple-medium);
             background: var(--purple-medium);
-            color: #fff;
+            color: #FFFFFF;
         }
 
-        .export-button {
-            border-color: #CFE4D6;
-            background: linear-gradient(120deg, #EAF3ED, #DCEFE3);
-            color: #356B4B;
+        .btn-export-excel {
+            border: 1px solid #C2DFCA;
+            background: linear-gradient(120deg, #EAF4ED, #D8EDE0);
+            color: #2E6645;
         }
 
-        .export-button:hover {
-            border-color: #356B4B;
-            background: #356B4B;
-            color: #fff;
+        .btn-export-excel:hover {
+            border-color: #2E6645;
+            background: #2E6645;
+            color: #FFFFFF;
+            transform: translateY(-1px);
         }
 
-        .filter-card {
-            background:
-                radial-gradient(circle at 100% 0%, rgba(246,183,199,.10), transparent 35%),
-                linear-gradient(135deg, #FFFFFF, #FCF9FD);
+        .btn-export-pdf {
+            border: 1px solid #EBC4D4;
+            background: linear-gradient(120deg, #FCEBF1, #F6D8E4);
+            color: #963F5A;
+        }
+
+        .btn-export-pdf:hover {
+            border-color: #963F5A;
+            background: #963F5A;
+            color: #FFFFFF;
+            transform: translateY(-1px);
         }
 
         .filter-actions {
             display: flex;
             flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .filter-btn-group {
+            display: flex;
+            flex-wrap: wrap;
             gap: 10px;
         }
 
-        .filter-hint {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 17px;
-            padding: 12px 14px;
-            border: 1px solid #E6DBEF;
-            border-radius: 9px;
-            background: #F8F4FA;
-            color: var(--text-secondary);
-            font-size: 12px;
-            line-height: 1.7;
+        .chart-box {
+            position: relative;
+            height: 310px;
+            width: 100%;
         }
 
-        .filter-hint i {
-            color: var(--purple-medium);
-            font-size: 16px;
+        .breakdown-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid #F0EBF3;
+        }
+
+        .breakdown-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 11px;
+            border: 1px solid #E6DBEF;
+            border-radius: 20px;
+            background: #FAF7FC;
+            color: var(--text-primary);
+            font-size: 12px;
+        }
+
+        .breakdown-chip strong {
+            color: var(--berry);
+        }
+
+        .status-legend-list {
+            display: grid;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #F0EBF3;
+        }
+
+        .status-legend-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 7px;
+            border-radius: 50%;
         }
 
         .recap-table-wrapper {
@@ -391,16 +538,13 @@
 
         .recap-table {
             width: 100%;
-            min-width: 1750px;
+            min-width: 1180px;
             margin-bottom: 0;
             vertical-align: middle;
         }
 
         .recap-table thead th {
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            padding: 17px 14px;
+            padding: 16px 14px;
             background: linear-gradient(110deg, #F0EAF7, #F8EAF0);
             color: var(--purple-dark);
             border-bottom: 1px solid #E3D9ED;
@@ -410,16 +554,12 @@
         }
 
         .recap-table tbody td {
-            padding: 18px 14px;
+            padding: 16px 14px;
             color: var(--text-primary);
             border-color: #F0EBF3;
             font-size: 13px;
             line-height: 1.7;
             vertical-align: middle;
-        }
-
-        .recap-table tbody tr {
-            transition: background .2s ease;
         }
 
         .recap-table.table-hover tbody tr:hover {
@@ -430,114 +570,70 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 33px;
-            height: 33px;
+            width: 32px;
+            height: 32px;
             border-radius: 9px;
             background: #F1ECF7;
             color: var(--purple-dark);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
         }
 
-        .training-name {
-            min-width: 210px;
-            max-width: 290px;
-            color: var(--text-primary);
-            font-size: 14px;
+        .training-link {
+            color: var(--purple-dark);
             font-weight: 700;
-            line-height: 1.7;
+            text-decoration: none;
             overflow-wrap: anywhere;
         }
 
-        .training-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 6px;
-            color: var(--text-secondary);
-            font-size: 12px;
+        .training-link:hover {
+            color: var(--berry);
+            text-decoration: underline;
         }
 
-        .date-text {
-            min-width: 115px;
+        .date-cell {
+            white-space: nowrap;
             font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .date-subtext {
-            margin-top: 4px;
-            color: var(--text-secondary);
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        .organizer-text {
-            min-width: 140px;
-            line-height: 1.7;
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 6px;
-            padding: 8px 11px;
+            padding: 7px 11px;
             border-radius: 30px;
             font-size: 11px;
             font-weight: 700;
-            line-height: 1.5;
             white-space: nowrap;
         }
 
-        .badge-complete {
+        .badge-approved,
+        .badge-selesai {
             background: #E6F2EA;
             color: #356B4B;
         }
 
-        .badge-pending {
+        .badge-revision,
+        .badge-ditunda {
             background: #F9EED8;
             color: #805A16;
         }
 
-        .badge-revision {
+        .badge-rejected,
+        .badge-dibatalkan {
             background: #FCEBF0;
             color: #963F5A;
         }
 
-        .badge-missing {
-            background: #F0EDF3;
-            color: #71697B;
+        .badge-draft,
+        .badge-akan {
+            background: #F0EAF7;
+            color: #523F77;
         }
 
-        .completion-cell {
-            min-width: 150px;
-        }
-
-        .completion-text {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 9px;
-            color: var(--text-secondary);
-            font-size: 12px;
-        }
-
-        .completion-text strong {
-            color: var(--purple-dark);
-            font-size: 13px;
-        }
-
-        .progress {
-            height: 9px;
-            overflow: hidden;
-            border-radius: 20px;
-            background: #EEE9F2;
-        }
-
-        .progress-bar {
-            border-radius: 20px;
-            background: linear-gradient(90deg, #67538A, #B35A8A);
+        .badge-ongoing {
+            background: #E2ECF8;
+            color: #466485;
         }
 
         .empty-state {
@@ -550,25 +646,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 18px;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 16px;
             border: 1px solid var(--border);
             border-radius: 20px;
             background: linear-gradient(135deg, #F0EAF7, #F8EAF0);
             color: var(--purple-medium);
-            font-size: 31px;
+            font-size: 30px;
         }
 
         .empty-state h6 {
-            margin-bottom: 9px;
+            margin-bottom: 8px;
             color: var(--purple-dark);
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
         }
 
         .empty-state p {
-            max-width: 470px;
+            max-width: 460px;
             margin: auto;
             font-size: 13px;
             line-height: 1.8;
@@ -579,41 +675,22 @@
             font-size: 13px;
         }
 
-        .table-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 17px;
-        }
-
-        .alert {
-            border-radius: 11px;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .alert-success {
-            background: #EAF3ED;
-            border-color: #CFE3D5;
-            color: #356B4B;
-        }
-
         .footer-text {
-            padding: 30px 0 5px;
+            padding: 25px 0 5px;
             color: var(--text-secondary);
             font-size: 12px;
             text-align: center;
         }
 
+        @media (max-width: 1399px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
         @media (max-width: 1199px) {
             .main-content {
                 padding: 28px 23px 38px;
-            }
-
-            .content-card {
-                padding: 22px;
             }
         }
 
@@ -627,17 +704,18 @@
                 font-size: 23px;
             }
 
-            .page-description {
-                font-size: 13px;
+            .stats-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
             }
 
             .summary-card {
-                min-height: 170px;
-                padding: 19px;
+                min-height: 145px;
+                padding: 16px;
             }
 
             .summary-value {
-                font-size: 30px;
+                font-size: 25px;
             }
 
             .content-card {
@@ -645,31 +723,18 @@
                 border-radius: 14px;
             }
 
-            .section-heading {
-                align-items: flex-start;
-            }
-
-            .filter-actions .btn-green,
-            .filter-actions .btn-outline-green {
-                flex: 1;
-            }
-
-            .filter-actions form {
-                display: flex;
-                flex: 1;
-            }
-
-            .filter-actions form button {
+            .filter-btn-group {
                 width: 100%;
             }
 
-            .filter-actions a {
+            .filter-btn-group > * {
                 flex: 1;
             }
+        }
 
-            .table-footer {
-                align-items: flex-start;
-                flex-direction: column;
+        @media (max-width: 460px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -692,476 +757,433 @@
                     <a href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Rekap Kelengkapan Dokumen
+                    Rekap Kegiatan Pelatihan
                 </li>
             </ol>
         </nav>
 
-        <div class="mb-4">
-            <div class="page-eyebrow">
-                <i class="bi bi-clipboard-data"></i>
-                PENGELOLAAN MUTU BAPELKES
+        <div class="page-header-row">
+            <div>
+                <div class="page-eyebrow">
+                    <i class="bi bi-bar-chart-line"></i>
+                    ANALISIS & PELAPORAN BAPELKES
+                </div>
+
+                <h1 class="page-title">Rekap Kegiatan Pelatihan</h1>
+
+                <p class="page-description">
+                    Analisis perkembangan dan daftar kegiatan pelatihan berdasarkan periode tahunan, triwulan, dan bulanan.
+                </p>
             </div>
 
-            <h1 class="page-title">Rekap Kelengkapan Dokumen</h1>
-
-            <p class="page-description">
-                Pantau kelengkapan, status pemeriksaan, dan hasil verifikasi dokumen kegiatan pelatihan.
-            </p>
+            <span class="period-pill">
+                <i class="bi bi-calendar3"></i>
+                {{ $periodLabel }}
+            </span>
         </div>
 
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-                <i class="bi bi-check-circle-fill me-2"></i>
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <section class="stats-grid">
+            <div class="summary-card pink">
+                <div class="summary-top">
+                    <div class="summary-icon">
+                        <i class="bi bi-calendar2-check"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="summary-label">Total Kegiatan Pelatihan</div>
+                    <div class="summary-value">{{ number_format($stats['total_trainings'], 0, ',', '.') }}</div>
+                    <div class="summary-note">Sesuai periode dan filter aktif.</div>
+                </div>
             </div>
-        @endif
 
-        <section class="mb-4">
-            <div class="row g-4">
-
-                <div class="col-12 col-md-6">
-                    <div class="summary-card pink">
-                        <div class="summary-top">
-                            <div class="summary-icon">
-                                <i class="bi bi-calendar2-check"></i>
-                            </div>
-                            <i class="bi bi-graph-up-arrow summary-indicator"></i>
-                        </div>
-
-                        <div>
-                            <div class="summary-label">Total Kegiatan</div>
-                            <div class="summary-value">{{ $totalTrainings }}</div>
-                            <div class="summary-note">Jumlah kegiatan yang terdaftar dalam sistem.</div>
-                        </div>
+            <div class="summary-card lavender">
+                <div class="summary-top">
+                    <div class="summary-icon">
+                        <i class="bi bi-people-fill"></i>
                     </div>
                 </div>
+                <div>
+                    <div class="summary-label">Total Peserta Pelatihan</div>
+                    <div class="summary-value">{{ number_format($stats['total_participants'], 0, ',', '.') }}</div>
+                    <div class="summary-note">Akumulasi peserta pada periode terpilih.</div>
+                </div>
+            </div>
 
-                <div class="col-12 col-md-6">
-                    <div class="summary-card lavender">
-                        <div class="summary-top">
-                            <div class="summary-icon">
-                                <i class="bi bi-patch-check"></i>
-                            </div>
-                            <i class="bi bi-check2-circle summary-indicator"></i>
-                        </div>
-
-                        <div>
-                            <div class="summary-label">Dokumen Lengkap</div>
-                            <div class="summary-value">{{ $completeTrainings }}</div>
-                            <div class="summary-note">Kegiatan dengan seluruh dokumen terverifikasi.</div>
-                        </div>
+            <div class="summary-card mint">
+                <div class="summary-top">
+                    <div class="summary-icon">
+                        <i class="bi bi-check-circle-fill"></i>
                     </div>
                 </div>
+                <div>
+                    <div class="summary-label">Kegiatan Selesai</div>
+                    <div class="summary-value">{{ number_format($stats['completed_count'], 0, ',', '.') }}</div>
+                    <div class="summary-note">Kegiatan yang telah tuntas dilaksanakan.</div>
+                </div>
+            </div>
 
-                <div class="col-12 col-md-6">
-                    <div class="summary-card blue">
-                        <div class="summary-top">
-                            <div class="summary-icon">
-                                <i class="bi bi-hourglass-split"></i>
-                            </div>
-                            <i class="bi bi-clock-history summary-indicator"></i>
-                        </div>
-
-                        <div>
-                            <div class="summary-label">Menunggu Pemeriksaan</div>
-                            <div class="summary-value">{{ $totalPending }}</div>
-                            <div class="summary-note">Jumlah dokumen yang belum diperiksa.</div>
-                        </div>
+            <div class="summary-card blue">
+                <div class="summary-top">
+                    <div class="summary-icon">
+                        <i class="bi bi-play-circle-fill"></i>
                     </div>
                 </div>
+                <div>
+                    <div class="summary-label">Sedang Berlangsung</div>
+                    <div class="summary-value">{{ number_format($stats['ongoing_count'], 0, ',', '.') }}</div>
+                    <div class="summary-note">Kegiatan yang sedang aktif berjalan.</div>
+                </div>
+            </div>
 
-                <div class="col-12 col-md-6">
-                    <div class="summary-card rose">
-                        <div class="summary-top">
-                            <div class="summary-icon">
-                                <i class="bi bi-arrow-repeat"></i>
-                            </div>
-                            <i class="bi bi-exclamation-circle summary-indicator"></i>
-                        </div>
-
-                        <div>
-                            <div class="summary-label">Perlu Revisi</div>
-                            <div class="summary-value">{{ $totalRevisions }}</div>
-                            <div class="summary-note">Jumlah dokumen yang harus diperbaiki.</div>
-                        </div>
+            <div class="summary-card rose">
+                <div class="summary-top">
+                    <div class="summary-icon">
+                        <i class="bi bi-calendar-event"></i>
                     </div>
                 </div>
-
+                <div>
+                    <div class="summary-label">Akan Dilaksanakan</div>
+                    <div class="summary-value">{{ number_format($stats['upcoming_count'], 0, ',', '.') }}</div>
+                    <div class="summary-note">Kegiatan yang dijadwalkan mendatang.</div>
+                </div>
             </div>
         </section>
 
         <section class="content-card filter-card">
-
             <div class="section-heading">
                 <div class="section-icon">
                     <i class="bi bi-funnel"></i>
                 </div>
 
                 <div>
-                    <h5 class="section-title">Filter Rekap</h5>
+                    <h5 class="section-title">Filter Periode & Kriteria Rekap</h5>
                     <p class="section-description">
-                        Pilih kriteria untuk menampilkan data rekap kegiatan yang dibutuhkan.
+                        Pengelompokan periode menggunakan tanggal mulai pelaksanaan (start date) dan terpisah dari tahun anggaran.
                     </p>
                 </div>
             </div>
 
-            <form action="{{ route('recap.index') }}" method="GET">
+            <div class="period-tabs">
+                <button type="button" class="period-tab {{ $filters['period_type'] === 'yearly' ? 'active' : '' }}" data-period="yearly">
+                    <i class="bi bi-calendar-range"></i>
+                    Rekap Tahunan
+                </button>
+                <button type="button" class="period-tab {{ $filters['period_type'] === 'quarterly' ? 'active' : '' }}" data-period="quarterly">
+                    <i class="bi bi-grid-3x3-gap"></i>
+                    Rekap Triwulan
+                </button>
+                <button type="button" class="period-tab {{ $filters['period_type'] === 'monthly' ? 'active' : '' }}" data-period="monthly">
+                    <i class="bi bi-calendar-month"></i>
+                    Rekap Bulanan
+                </button>
+            </div>
+
+            <form action="{{ route('recap.index') }}" method="GET" id="recapFilterForm">
                 <div class="row g-3 align-items-end">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <label for="period_type" class="form-label">Jenis Periode Rekap</label>
+                        <select name="period_type" id="period_type" class="form-select">
+                            <option value="yearly" @selected($filters['period_type'] === 'yearly')>Rekap Tahunan</option>
+                            <option value="quarterly" @selected($filters['period_type'] === 'quarterly')>Rekap Triwulan</option>
+                            <option value="monthly" @selected($filters['period_type'] === 'monthly')>Rekap Bulanan</option>
+                        </select>
+                    </div>
 
-                    <div class="col-12 col-md-4">
-                        <label for="budget_year" class="form-label">Tahun Anggaran</label>
-
-                        <select name="budget_year" id="budget_year" class="form-select">
-                            <option value="">Semua Tahun</option>
-
-                            @foreach ($years as $year)
-                                <option
-                                    value="{{ $year }}"
-                                    @selected(request('budget_year') == $year)
-                                >
-                                    {{ $year }}
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <label for="year" class="form-label">Tahun Pelaksanaan</label>
+                        <select name="year" id="year" class="form-select">
+                            <option value="" id="allYearsOption" @selected($filters['year'] === null)>
+                                Semua Tahun
+                            </option>
+                            @foreach ($availableYears as $yearOption)
+                                <option value="{{ $yearOption }}" @selected((int) $filters['year'] === (int) $yearOption)>
+                                    {{ $yearOption }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-4">
-                        <label for="execution_status" class="form-label">Status Kegiatan</label>
-
-                        <select name="execution_status" id="execution_status" class="form-select">
-                            <option value="">Semua Status</option>
-
-                            <option value="akan_dilaksanakan" @selected(request('execution_status') === 'akan_dilaksanakan')>
-                                Akan Dilaksanakan
-                            </option>
-
-                            <option value="sedang_berlangsung" @selected(request('execution_status') === 'sedang_berlangsung')>
-                                Sedang Berlangsung
-                            </option>
-
-                            <option value="selesai" @selected(request('execution_status') === 'selesai')>
-                                Selesai
-                            </option>
-
-                            <option value="ditunda" @selected(request('execution_status') === 'ditunda')>
-                                Ditunda
-                            </option>
-
-                            <option value="dibatalkan" @selected(request('execution_status') === 'dibatalkan')>
-                                Dibatalkan
-                            </option>
+                    <div class="col-12 col-md-4 col-lg-3 {{ $filters['period_type'] === 'quarterly' ? '' : 'd-none' }}" id="quarterFieldGroup">
+                        <label for="quarter" class="form-label">Triwulan</label>
+                        <select name="quarter" id="quarter" class="form-select">
+                            <option value="">Semua Triwulan (I–IV)</option>
+                            @foreach ($quarters as $quarterKey => $quarterMeta)
+                                <option value="{{ $quarterKey }}" @selected((int) $filters['quarter'] === (int) $quarterKey)>
+                                    {{ $quarterMeta['label'] }} ({{ $quarterMeta['range'] }})
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-4">
-                        <label for="organizer" class="form-label">Penyelenggara</label>
+                    <div class="col-12 col-md-4 col-lg-3 {{ $filters['period_type'] === 'monthly' ? '' : 'd-none' }}" id="monthFieldGroup">
+                        <label for="month" class="form-label">Bulan</label>
+                        <select name="month" id="month" class="form-select">
+                            <option value="">Semua Bulan (Jan–Des)</option>
+                            @foreach ($months as $monthKey => $monthName)
+                                <option value="{{ $monthKey }}" @selected((int) $filters['month'] === (int) $monthKey)>
+                                    {{ $monthName }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <label for="organizer" class="form-label">Penyelenggara</label>
                         <select name="organizer" id="organizer" class="form-select">
                             <option value="">Semua Penyelenggara</option>
-
-                            @foreach ($organizers as $organizer)
-                                <option
-                                    value="{{ $organizer }}"
-                                    @selected(request('organizer') === $organizer)
-                                >
-                                    {{ $organizer }}
+                            @foreach ($organizers as $organizerOption)
+                                <option value="{{ $organizerOption }}" @selected($filters['organizer'] === $organizerOption)>
+                                    {{ $organizerOption }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="col-12">
-                        <div class="filter-actions">
-                            <button type="submit" class="btn-green">
-                                <i class="bi bi-search"></i>
-                                Terapkan Filter
-                            </button>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <label for="approval_status" class="form-label">Status Persetujuan</label>
+                        <select name="approval_status" id="approval_status" class="form-select">
+                            <option value="">Semua Status Persetujuan</option>
+                            @foreach ($approvalStatuses as $statusKey => $statusLabel)
+                                <option value="{{ $statusKey }}" @selected($filters['approval_status'] === $statusKey)>
+                                    {{ $statusLabel }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                            <a href="{{ route('recap.index') }}" class="btn-outline-green">
-                                <i class="bi bi-arrow-counterclockwise"></i>
-                                Reset Filter
-                            </a>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <label for="execution_status" class="form-label">Status Pelaksanaan</label>
+                        <select name="execution_status" id="execution_status" class="form-select">
+                            <option value="">Semua Status Pelaksanaan</option>
+                            @foreach ($executionStatuses as $statusKey => $statusLabel)
+                                <option value="{{ $statusKey }}" @selected($filters['execution_status'] === $statusKey)>
+                                    {{ $statusLabel }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <div class="filter-btn-group">
+                        <button type="submit" class="btn-primary-soft">
+                            <i class="bi bi-search"></i>
+                            Terapkan Filter
+                        </button>
+
+                        <a href="{{ route('recap.index') }}" class="btn-outline-soft">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                            Reset Filter
+                        </a>
+                    </div>
+
+                    <div class="filter-btn-group">
+                        <a href="{{ route('recap.export.excel', request()->query()) }}" class="btn-export-excel">
+                            <i class="bi bi-file-earmark-excel"></i>
+                            Export Excel (.xlsx)
+                        </a>
+
+                        <a href="{{ route('recap.export.pdf', request()->query()) }}" class="btn-export-pdf">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            Export PDF (.pdf)
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="row g-4 mb-4">
+            <div class="col-12 col-xl-8">
+                <div class="content-card h-100 mb-0">
+                    <div class="section-heading">
+                        <div class="section-icon lavender">
+                            <i class="bi bi-bar-chart-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5 class="section-title">{{ $periodBreakdown['chart_title'] }}</h5>
+                            <p class="section-description">{{ $periodBreakdown['chart_subtitle'] }}</p>
                         </div>
                     </div>
 
-                </div>
-            </form>
+                    <div class="chart-box">
+                        <canvas id="periodChart"></canvas>
+                    </div>
 
-            <div class="filter-hint">
-                <i class="bi bi-info-circle"></i>
-                <span>Gunakan filter untuk mempersempit data rekap berdasarkan tahun anggaran, status kegiatan, atau penyelenggara.</span>
+                    @if (count($periodBreakdown['rows']) > 0)
+                        <div class="breakdown-list">
+                            @foreach ($periodBreakdown['rows'] as $row)
+                                <span class="breakdown-chip">
+                                    <span>{{ $row['label'] }}:</span>
+                                    <strong>{{ $row['count'] }}</strong>
+                                    <span class="text-secondary">({{ number_format($row['participants'], 0, ',', '.') }} peserta)</span>
+                                </span>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </div>
 
+            <div class="col-12 col-xl-4">
+                <div class="content-card h-100 mb-0">
+                    <div class="section-heading">
+                        <div class="section-icon blue">
+                            <i class="bi bi-pie-chart-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5 class="section-title">Distribusi Status Kegiatan</h5>
+                            <p class="section-description">Proporsi status pelaksanaan pada filter aktif.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-box">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+
+                    <div class="status-legend-list">
+                        <div class="status-legend-row">
+                            <span><span class="status-dot" style="background: #49866A;"></span>Selesai</span>
+                            <strong>{{ $stats['completed_count'] }}</strong>
+                        </div>
+                        <div class="status-legend-row">
+                            <span><span class="status-dot" style="background: #7880AE;"></span>Sedang Berlangsung</span>
+                            <strong>{{ $stats['ongoing_count'] }}</strong>
+                        </div>
+                        <div class="status-legend-row">
+                            <span><span class="status-dot" style="background: #B35A8A;"></span>Akan Dilaksanakan</span>
+                            <strong>{{ $stats['upcoming_count'] }}</strong>
+                        </div>
+                        <div class="status-legend-row">
+                            <span><span class="status-dot" style="background: #C9924A;"></span>Ditunda</span>
+                            <strong>{{ $stats['delayed_count'] }}</strong>
+                        </div>
+                        <div class="status-legend-row">
+                            <span><span class="status-dot" style="background: #B65367;"></span>Dibatalkan</span>
+                            <strong>{{ $stats['cancelled_count'] }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="content-card">
-
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-
                 <div class="section-heading mb-0">
-                    <div class="section-icon lavender">
-                        <i class="bi bi-file-earmark-check"></i>
+                    <div class="section-icon">
+                        <i class="bi bi-table"></i>
                     </div>
 
                     <div>
-                        <h5 class="section-title">Data Kelengkapan Dokumen</h5>
+                        <h5 class="section-title">Daftar Kegiatan Pelatihan</h5>
                         <p class="section-description">
-                            Rekap lima jenis dokumen kegiatan dan hasil pemeriksaannya.
+                            Data kegiatan sesuai periode <strong>{{ $periodLabel }}</strong> ({{ $activeFilterSummary }}).
                         </p>
                     </div>
                 </div>
 
-                <div class="d-flex flex-wrap align-items-center gap-3">
-                    <span class="result-count">
-                        <i class="bi bi-list-ul me-1"></i>
-                        {{ $recaps->count() }} kegiatan ditemukan
-                    </span>
-
-                    <a
-                        href="{{ route('recap.export', request()->query()) }}"
-                        class="btn-green export-button"
-                    >
-                        <i class="bi bi-file-earmark-excel"></i>
-                        Export Excel
-                    </a>
-                </div>
-
+                <span class="result-count">
+                    <i class="bi bi-list-ul me-1"></i>
+                    {{ number_format($trainings->count(), 0, ',', '.') }} kegiatan ditemukan
+                </span>
             </div>
 
             <div class="recap-table-wrapper">
                 <table class="table table-hover recap-table">
-
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Nama Kegiatan</th>
-                            <th>Tanggal Pelaksanaan</th>
+                            <th>Nama Kegiatan Pelatihan</th>
                             <th>Penyelenggara</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
+                            <th>Jumlah Peserta</th>
                             <th>Tahun Anggaran</th>
-                            <th>Kelengkapan Dokumen</th>
-                            <th>Menunggu</th>
-                            <th>Perlu Revisi</th>
-                            <th>Laporan Penyelenggara</th>
-                            <th>Evaluasi Penyelenggaraan</th>
-                            <th>Progres Verifikasi</th>
-                            <th>Aksi</th>
+                            <th>Status Persetujuan</th>
+                            <th>Status Pelaksanaan</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @forelse ($recaps as $recap)
-
+                        @forelse ($trainings as $training)
                             @php
-                                $training = $recap['training'];
-                                $statusLaporan = $recap['document_statuses']['laporan_penyelenggara'] ?? 'Belum diunggah';
-                                $statusEvaluasi = $recap['document_statuses']['evaluasi_penyelenggaraan'] ?? 'Belum diunggah';
+                                $approvalKey = array_key_exists($training->approval_status ?? '', $approvalStatuses)
+                                    ? $training->approval_status
+                                    : 'draft';
+                                $approvalLabel = $approvalStatuses[$approvalKey] ?? 'Menunggu Persetujuan';
+
+                                $executionKey = $training->execution_status ?? '';
+                                $executionLabel = $executionStatuses[$executionKey] ?? '-';
+
+                                $executionBadgeClass = match ($executionKey) {
+                                    'selesai' => 'badge-selesai',
+                                    'sedang_berlangsung' => 'badge-ongoing',
+                                    'ditunda' => 'badge-ditunda',
+                                    'dibatalkan' => 'badge-dibatalkan',
+                                    default => 'badge-akan',
+                                };
                             @endphp
 
                             <tr>
                                 <td>
-                                    <span class="number-badge">
-                                        {{ $loop->iteration }}
+                                    <span class="number-badge">{{ $loop->iteration }}</span>
+                                </td>
+
+                                <td>
+                                    <a href="{{ route('trainings.show', $training) }}" class="training-link">
+                                        {{ $training->training_name }}
+                                    </a>
+                                </td>
+
+                                <td>{{ $training->organizer ?: '-' }}</td>
+
+                                <td class="date-cell">
+                                    {{ $training->start_date?->format('d/m/Y') ?? '-' }}
+                                </td>
+
+                                <td class="date-cell">
+                                    {{ $training->end_date?->format('d/m/Y') ?? '-' }}
+                                </td>
+
+                                <td class="fw-semibold">
+                                    {{ number_format((int) ($training->participant_count ?? 0), 0, ',', '.') }} orang
+                                </td>
+
+                                <td>{{ $training->budget_year ?: '-' }}</td>
+
+                                <td>
+                                    <span class="status-badge badge-{{ $approvalKey }}">
+                                        {{ $approvalLabel }}
                                     </span>
                                 </td>
 
                                 <td>
-                                    <div class="training-name">
-                                        {{ $training->training_name }}
-                                    </div>
-
-                                    <div class="training-status">
-                                        <i class="bi bi-circle-fill" style="font-size: 7px;"></i>
-                                        {{ $training->execution_status
-                                            ? ucwords(str_replace('_', ' ', $training->execution_status))
-                                            : 'Status belum diisi' }}
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class="date-text">
-                                        {{ $training->start_date?->format('d/m/Y') ?? '-' }}
-                                    </div>
-
-                                    @if ($training->end_date)
-                                        <div class="date-subtext">
-                                            s.d. {{ $training->end_date->format('d/m/Y') }}
-                                        </div>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    <div class="organizer-text">
-                                        {{ $training->organizer ?: '-' }}
-                                    </div>
-                                </td>
-
-                                <td>
-                                    {{ $training->budget_year ?: '-' }}
-                                </td>
-
-                                <td>
-                                    <div class="fw-semibold mb-2">
-                                        {{ $recap['verified_count'] }}/5 terverifikasi
-                                    </div>
-
-                                    @if ($recap['missing_count'] > 0)
-                                        <span class="status-badge badge-missing">
-                                            <i class="bi bi-file-earmark-minus"></i>
-                                            {{ $recap['missing_count'] }} belum diunggah
-                                        </span>
-                                    @elseif ($recap['verified_count'] === 5)
-                                        <span class="status-badge badge-complete">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                            Lengkap
-                                        </span>
-                                    @else
-                                        <span class="status-badge badge-pending">
-                                            Belum lengkap
-                                        </span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    @if ($recap['pending_count'] > 0)
-                                        <span class="status-badge badge-pending">
-                                            <i class="bi bi-clock"></i>
-                                            {{ $recap['pending_count'] }} dokumen
-                                        </span>
-                                    @else
-                                        <span class="text-secondary">0</span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    @if ($recap['revision_count'] > 0)
-                                        <span class="status-badge badge-revision">
-                                            <i class="bi bi-arrow-repeat"></i>
-                                            {{ $recap['revision_count'] }} dokumen
-                                        </span>
-                                    @else
-                                        <span class="text-secondary">0</span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    @if ($statusLaporan === 'Terverifikasi')
-                                        <span class="status-badge badge-complete">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                            {{ $statusLaporan }}
-                                        </span>
-                                    @elseif ($statusLaporan === 'Perlu Revisi')
-                                        <span class="status-badge badge-revision">
-                                            <i class="bi bi-arrow-repeat"></i>
-                                            {{ $statusLaporan }}
-                                        </span>
-                                    @elseif ($statusLaporan === 'Menunggu Pemeriksaan')
-                                        <span class="status-badge badge-pending">
-                                            <i class="bi bi-clock"></i>
-                                            {{ $statusLaporan }}
-                                        </span>
-                                    @else
-                                        <span class="status-badge badge-missing">
-                                            <i class="bi bi-file-earmark-minus"></i>
-                                            {{ $statusLaporan }}
-                                        </span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    @if ($statusEvaluasi === 'Terverifikasi')
-                                        <span class="status-badge badge-complete">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                            {{ $statusEvaluasi }}
-                                        </span>
-                                    @elseif ($statusEvaluasi === 'Perlu Revisi')
-                                        <span class="status-badge badge-revision">
-                                            <i class="bi bi-arrow-repeat"></i>
-                                            {{ $statusEvaluasi }}
-                                        </span>
-                                    @elseif ($statusEvaluasi === 'Menunggu Pemeriksaan')
-                                        <span class="status-badge badge-pending">
-                                            <i class="bi bi-clock"></i>
-                                            {{ $statusEvaluasi }}
-                                        </span>
-                                    @else
-                                        <span class="status-badge badge-missing">
-                                            <i class="bi bi-file-earmark-minus"></i>
-                                            {{ $statusEvaluasi }}
-                                        </span>
-                                    @endif
-                                </td>
-
-                                <td class="completion-cell">
-                                    <div class="completion-text">
-                                        <span>Verifikasi</span>
-                                        <strong>{{ $recap['completion_percentage'] }}%</strong>
-                                    </div>
-
-                                    <div class="progress">
-                                        <div
-                                            class="progress-bar"
-                                            role="progressbar"
-                                            style="width: {{ $recap['completion_percentage'] }}%;"
-                                            aria-valuenow="{{ $recap['completion_percentage'] }}"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <a
-                                        href="{{ route('trainings.documents.index', $training) }}"
-                                        class="btn-outline-green"
-                                    >
-                                        <i class="bi bi-folder2-open"></i>
-                                        Dokumen
-                                    </a>
+                                    <span class="status-badge {{ $executionBadgeClass }}">
+                                        {{ $executionLabel }}
+                                    </span>
                                 </td>
                             </tr>
-
                         @empty
-
                             <tr>
-                                <td colspan="12">
+                                <td colspan="9">
                                     <div class="empty-state">
                                         <div class="empty-state-icon">
-                                            <i class="bi bi-folder2-open"></i>
+                                            <i class="bi bi-calendar-x"></i>
                                         </div>
 
-                                        <h6>Belum Ada Data Rekap</h6>
+                                        <h6>Belum Ada Kegiatan pada Periode Ini</h6>
 
                                         <p>
-                                            Data kegiatan akan muncul setelah kegiatan pelatihan tersedia.
-                                            Coba ubah filter atau tambahkan kegiatan terlebih dahulu.
+                                            Tidak ditemukan kegiatan pelatihan yang sesuai dengan periode dan filter aktif.
+                                            Silakan ubah pilihan filter atau tekan tombol Reset Filter.
                                         </p>
                                     </div>
                                 </td>
                             </tr>
-
                         @endforelse
                     </tbody>
-
                 </table>
             </div>
-
-            <div class="table-footer">
-                <span class="result-count">
-                    <i class="bi bi-info-circle me-1"></i>
-                    Gunakan scroll horizontal untuk melihat seluruh kolom rekap.
-                </span>
-
-                <a
-                    href="{{ route('recap.export', request()->query()) }}"
-                    class="btn-green export-button"
-                >
-                    <i class="bi bi-download"></i>
-                    Unduh Rekap Excel
-                </a>
-            </div>
-
         </section>
 
         <footer class="footer-text">
@@ -1173,5 +1195,159 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+    <script>
+        (function () {
+            const periodSelect = document.getElementById('period_type');
+            const yearSelect = document.getElementById('year');
+            const allYearsOption = document.getElementById('allYearsOption');
+            const quarterGroup = document.getElementById('quarterFieldGroup');
+            const monthGroup = document.getElementById('monthFieldGroup');
+            const quarterSelect = document.getElementById('quarter');
+            const monthSelect = document.getElementById('month');
+            const periodTabs = document.querySelectorAll('.period-tab');
+            const filterForm = document.getElementById('recapFilterForm');
+
+            function syncPeriodControls(periodType) {
+                const isYearly = periodType === 'yearly';
+                const isQuarterly = periodType === 'quarterly';
+                const isMonthly = periodType === 'monthly';
+
+                quarterGroup.classList.toggle('d-none', !isQuarterly);
+                monthGroup.classList.toggle('d-none', !isMonthly);
+
+                if (!isQuarterly) {
+                    quarterSelect.value = '';
+                }
+
+                if (!isMonthly) {
+                    monthSelect.value = '';
+                }
+
+                allYearsOption.hidden = !isYearly;
+                allYearsOption.disabled = !isYearly;
+
+                if (!isYearly && !yearSelect.value && yearSelect.options.length > 1) {
+                    yearSelect.value = yearSelect.options[1].value;
+                }
+
+                periodTabs.forEach(function (tab) {
+                    tab.classList.toggle('active', tab.dataset.period === periodType);
+                });
+            }
+
+            periodSelect.addEventListener('change', function () {
+                syncPeriodControls(this.value);
+            });
+
+            periodTabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    const chosen = this.dataset.period;
+                    periodSelect.value = chosen;
+                    syncPeriodControls(chosen);
+                    filterForm.submit();
+                });
+            });
+
+            syncPeriodControls(periodSelect.value);
+
+            const periodLabels = @json($periodBreakdown['labels']);
+            const periodCounts = @json($periodBreakdown['counts']);
+            const statusLabels = @json($statusChart['labels']);
+            const statusCounts = @json($statusChart['counts']);
+
+            const periodCanvas = document.getElementById('periodChart');
+            if (periodCanvas) {
+                new Chart(periodCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: periodLabels,
+                        datasets: [
+                            {
+                                label: 'Jumlah Kegiatan',
+                                data: periodCounts,
+                                backgroundColor: 'rgba(179, 90, 138, 0.78)',
+                                borderColor: '#523F77',
+                                borderWidth: 1.5,
+                                borderRadius: 8,
+                                maxBarThickness: 46
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    precision: 0,
+                                    color: '#71697B',
+                                    font: {
+                                        family: 'Poppins'
+                                    }
+                                },
+                                grid: {
+                                    color: '#EFEAF4'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#51445D',
+                                    font: {
+                                        family: 'Poppins',
+                                        size: 11
+                                    }
+                                },
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const statusCanvas = document.getElementById('statusChart');
+            if (statusCanvas) {
+                const totalStatus = statusCounts.reduce(function (sum, value) {
+                    return sum + value;
+                }, 0);
+
+                new Chart(statusCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: totalStatus > 0 ? statusLabels : ['Belum Ada Data'],
+                        datasets: [
+                            {
+                                data: totalStatus > 0 ? statusCounts : [1],
+                                backgroundColor: totalStatus > 0
+                                    ? ['#49866A', '#7880AE', '#B35A8A', '#C9924A', '#B65367']
+                                    : ['#E9E3EF'],
+                                borderColor: '#FFFFFF',
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '62%',
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
 </body>
 </html>

@@ -279,7 +279,13 @@
             border-radius: 17px;
             background: #FFFFFF;
             box-shadow: 0 5px 20px rgba(82,63,119,.045);
-            transition: box-shadow .2s ease, transform .2s ease;
+            scroll-margin-top: 24px;
+            transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+        }
+
+        .activity-card:target {
+            border-color: var(--berry);
+            box-shadow: 0 0 0 3px rgba(179,90,138,.18), 0 10px 26px rgba(82,63,119,.1);
         }
 
         .activity-card:hover {
@@ -385,6 +391,11 @@
 
         .document-card.evaluation {
             border-top: 4px solid var(--purple-medium);
+        }
+
+        .document-card.needs-revision {
+            border-color: #EBC3D4;
+            background: #FFF9FB;
         }
 
         .document-heading {
@@ -500,11 +511,45 @@
 
         .verification-note {
             margin-top: 12px;
-            padding: 12px;
-            border: 1px solid #F0DFCB;
-            border-radius: 9px;
-            background: #FFF5E9;
-            color: #845B25;
+            padding: 13px 14px;
+            border: 1px solid #EECAD6;
+            border-left: 4px solid var(--berry);
+            border-radius: 10px;
+            background: #FFF2F6;
+            color: #7D334D;
+            font-size: 11px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .verification-note-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #963F5A;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .verification-note-text {
+            margin-top: 5px;
+            white-space: pre-line;
+        }
+
+        .verification-note-meta {
+            margin-top: 6px;
+            color: #9B6478;
+            font-size: 10px;
+        }
+
+        .verified-note {
+            margin-top: 12px;
+            padding: 12px 14px;
+            border: 1px solid #CFE3D5;
+            border-left: 4px solid var(--success);
+            border-radius: 10px;
+            background: #F1F8F3;
+            color: #356B4B;
             font-size: 11px;
             line-height: 1.8;
             overflow-wrap: anywhere;
@@ -520,6 +565,44 @@
             border: 1.5px dashed #D8C7E5;
             border-radius: 11px;
             background: linear-gradient(135deg, #FBF8FD, #F5EFF9);
+        }
+
+        .upload-inner.reupload-inner {
+            border-color: #DCA7BF;
+            background: linear-gradient(135deg, #FFF5F8, #F9EAF1);
+        }
+
+        .reupload-hint {
+            margin-bottom: 10px;
+            color: #7D334D;
+            font-size: 11px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .btn-reupload {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            min-height: 43px;
+            margin-top: 13px;
+            border: 1px solid #9E497A;
+            border-radius: 9px;
+            background: linear-gradient(110deg, #B35A8A, #8E4474);
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            transition: .2s ease;
+        }
+
+        .btn-reupload:hover {
+            border-color: var(--purple-dark);
+            background: linear-gradient(110deg, #67538A, #523F77);
+            color: #FFFFFF;
+            transform: translateY(-1px);
         }
 
         .upload-area label {
@@ -968,6 +1051,7 @@
                 @foreach ($trainings as $index => $training)
 
                     <section
+                        id="training-{{ $training->id }}"
                         class="activity-card"
                         data-search="{{ strtolower($training->training_name . ' ' . $training->organizer . ' ' . $training->venue) }}"
                     >
@@ -1042,15 +1126,16 @@
                                 ] as $item)
 
                                     @php
-                                        $document = $training->documents->firstWhere(
-                                            'document_type',
-                                            $item['type']
-                                        );
+                                        $document = $training->documents
+                                            ->where('document_type', $item['type'])
+                                            ->sortByDesc('updated_at')
+                                            ->first();
 
                                         $status = $document?->verification_status;
+                                        $uploadedAt = $document?->updated_at ?? $document?->created_at;
                                     @endphp
 
-                                    <article class="document-card {{ $item['style'] }}">
+                                    <article class="document-card {{ $item['style'] }} {{ $status === 'revision' ? 'needs-revision' : '' }}">
 
                                         <div class="document-heading">
 
@@ -1104,7 +1189,7 @@
 
                                             <div class="file-information">
 
-                                                <i class="bi bi-file-earmark-pdf"></i>
+                                                <i class="bi bi-file-earmark-text"></i>
 
                                                 <div class="file-content">
 
@@ -1113,14 +1198,18 @@
                                                     </div>
 
                                                     <div class="file-size">
-                                                        {{ number_format(($document->file_size ?? 0) / 1024, 1) }} KB
+                                                        {{ number_format(($document->file_size ?? 0) / 1024, 1, ',', '.') }} KB
                                                         <span class="mx-1">·</span>
-                                                        Diunggah {{ $document->created_at?->format('d/m/Y H:i') }}
+                                                        Oleh {{ $document->uploader?->name ?? '-' }}
+                                                        <span class="mx-1">·</span>
+                                                        {{ $uploadedAt?->format('d/m/Y H:i') ?? '-' }}
                                                     </div>
 
                                                     <a
                                                         href="{{ route('training-documents.download', $document) }}"
                                                         class="btn-download"
+                                                        target="_blank"
+                                                        rel="noopener"
                                                     >
                                                         <i class="bi bi-download"></i>
                                                         Unduh Dokumen
@@ -1130,21 +1219,39 @@
 
                                             </div>
 
-                                            @if ($status === 'revision' && $document->verification_notes)
+                                            @if ($status === 'revision')
 
                                                 <div class="verification-note">
-                                                    <strong>Catatan pemeriksaan:</strong>
-
-                                                    <div class="mt-1">
-                                                        {{ $document->verification_notes }}
+                                                    <div class="verification-note-title">
+                                                        <i class="bi bi-exclamation-circle-fill"></i>
+                                                        Catatan Revisi dari Dalmut
                                                     </div>
+
+                                                    <div class="verification-note-text">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
+
+                                                    @if ($document->verifier || $document->verified_at)
+                                                        <div class="verification-note-meta">
+                                                            {{ $document->verifier?->name ?? 'Dalmut' }}@if ($document->verified_at) · {{ $document->verified_at->format('d/m/Y H:i') }}@endif
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                            @elseif ($status === 'verified' && $document->verification_notes)
+
+                                                <div class="verified-note">
+                                                    <div class="fw-bold">
+                                                        <i class="bi bi-check-circle-fill me-1"></i>
+                                                        Catatan Verifikasi
+                                                    </div>
+
+                                                    <div class="verification-note-text">{{ $document->verification_notes }}</div>
                                                 </div>
 
                                             @endif
 
                                         @endif
 
-                                        @if ($canUpload && (!$document || $status === 'revision'))
+                                        @if ($canUpload && !$document)
 
                                             <div class="upload-area">
                                                 <div class="upload-inner">
@@ -1164,7 +1271,7 @@
 
                                                         <label>
                                                             <i class="bi bi-cloud-arrow-up me-1"></i>
-                                                            {{ $document ? 'Unggah Ulang Dokumen' : 'Pilih File Dokumen' }}
+                                                            Pilih File Dokumen
                                                         </label>
 
                                                         <input
@@ -1181,7 +1288,51 @@
 
                                                         <button type="submit" class="btn-upload">
                                                             <i class="bi bi-cloud-arrow-up"></i>
-                                                            {{ $document ? 'Kirim Ulang Dokumen' : 'Unggah Dokumen' }}
+                                                            Unggah Dokumen
+                                                        </button>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+
+                                        @elseif ($canUpload && $document && $status === 'revision')
+
+                                            <div class="upload-area">
+                                                <div class="upload-inner reupload-inner">
+
+                                                    <form
+                                                        action="{{ route('training-documents.reupload', $document) }}"
+                                                        method="POST"
+                                                        enctype="multipart/form-data"
+                                                    >
+                                                        @csrf
+                                                        @method('PATCH')
+
+                                                        <label>
+                                                            <i class="bi bi-arrow-repeat me-1"></i>
+                                                            Unggah Ulang {{ $item['title'] }}
+                                                        </label>
+
+                                                        <div class="reupload-hint">
+                                                            Pilih file perbaikan untuk menggantikan <strong>{{ $document->original_name }}</strong>.
+                                                        </div>
+
+                                                        <input
+                                                            type="file"
+                                                            name="document_file"
+                                                            class="form-control"
+                                                            accept=".pdf,.doc,.docx"
+                                                            required
+                                                        >
+
+                                                        <div class="form-text mt-2">
+                                                            Format PDF, DOC, DOCX. Maksimal 10 MB. Status otomatis kembali menjadi Menunggu Pemeriksaan.
+                                                        </div>
+
+                                                        <button type="submit" class="btn-reupload">
+                                                            <i class="bi bi-cloud-arrow-up"></i>
+                                                            Unggah Ulang
                                                         </button>
 
                                                     </form>

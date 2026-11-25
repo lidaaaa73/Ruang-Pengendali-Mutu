@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserApprovalController;
 use App\Http\Controllers\TrainingController;
@@ -9,9 +10,6 @@ use App\Http\Controllers\RecapController;
 use App\Http\Controllers\QualityControlController;
 use App\Http\Controllers\GoogleDriveOAuthController;
 use App\Http\Controllers\GoogleDriveSettingsController;
-use App\Models\User;
-use App\Models\Training;
-use App\Models\TrainingDocument;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,62 +31,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        $pendingUsersCount = 0;
-        $revisionDocumentsCount = 0;
-        $revisionDocuments = collect();
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-        $totalTrainings = 0;
-        $totalDocuments = 0;
-        $pendingApprovalTrainingsCount = 0;
-
-        $upcomingTrainings = Training::with('documents')
-            ->where('approval_status', 'approved')
-            ->where('execution_status', 'akan_dilaksanakan')
-            ->whereDate('start_date', '>=', today())
-            ->orderBy('start_date')
-            ->get();
-
-        if (auth()->user()->role?->slug === 'admin') {
-            $pendingUsersCount = User::where(
-                'account_status',
-                'pending'
-            )->count();
-
-            $totalTrainings = Training::count();
-
-            $totalDocuments = TrainingDocument::count();
-
-            $pendingApprovalTrainingsCount = Training::where(function ($query) {
-                $query->whereNull('approval_status')
-                    ->orWhereNotIn('approval_status', [
-                        'approved',
-                        'revision',
-                        'rejected'
-                    ]);
-            })->count();
-        }
-
-        if (auth()->user()->role?->slug === 'penglat') {
-            $revisionDocuments = TrainingDocument::with('training')
-                ->where('uploaded_by', auth()->id())
-                ->where('verification_status', 'revision')
-                ->latest()
-                ->get();
-
-            $revisionDocumentsCount = $revisionDocuments->count();
-        }
-
-        return view('dashboard', compact(
-            'pendingUsersCount',
-            'revisionDocumentsCount',
-            'revisionDocuments',
-            'upcomingTrainings',
-            'totalTrainings',
-            'totalDocuments',
-            'pendingApprovalTrainingsCount'
-        ));
-    })->name('dashboard');
+    Route::get('/dashboard/revision-summary', [DashboardController::class, 'revisionSummary'])
+        ->name('dashboard.revision-summary');
 
     Route::resource('trainings', TrainingController::class);
 
@@ -107,8 +54,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/recap', [RecapController::class, 'index'])
         ->name('recap.index');
 
-    Route::get('/recap/export', [RecapController::class, 'export'])
+    Route::get('/recap/export', [RecapController::class, 'exportExcel'])
         ->name('recap.export');
+
+    Route::get('/recap/export/excel', [RecapController::class, 'exportExcel'])
+        ->name('recap.export.excel');
+
+    Route::get('/recap/export/pdf', [RecapController::class, 'exportPdf'])
+        ->name('recap.export.pdf');
 
     Route::get('/trainings/{training}/documents', [TrainingDocumentController::class, 'index'])
         ->name('trainings.documents.index');
@@ -124,6 +77,9 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/training-documents/{document}', [TrainingDocumentController::class, 'update'])
         ->name('training-documents.update');
+
+    Route::patch('/training-documents/{document}/reupload', [TrainingDocumentController::class, 'reupload'])
+        ->name('training-documents.reupload');
 
     Route::patch('/training-documents/{document}/verify', [TrainingDocumentController::class, 'verify'])
         ->name('training-documents.verify');
