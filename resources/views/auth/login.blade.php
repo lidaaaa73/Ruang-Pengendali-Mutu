@@ -25,7 +25,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 32px 16px;
+            padding: 24px 16px;
         }
 
         .auth-screen::before {
@@ -58,8 +58,8 @@
 
         .auth-glass-card {
             width: 100%;
-            max-width: 456px;
-            padding: 36px 34px 30px;
+            max-width: 560px;
+            padding: 28px 36px 24px;
             border: 1px solid rgba(255, 255, 255, 0.24);
             border-top: 3px solid rgba(246, 183, 199, 0.72);
             border-radius: 20px;
@@ -78,7 +78,7 @@
 
         .auth-identity {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 18px;
         }
 
         .auth-badge {
@@ -86,8 +86,8 @@
             align-items: center;
             justify-content: center;
             gap: 7px;
-            margin-bottom: 12px;
-            padding: 5px 14px;
+            margin-bottom: 8px;
+            padding: 4px 13px;
             border: 1px solid rgba(246, 183, 199, 0.38);
             border-radius: 999px;
             background: rgba(179, 90, 138, 0.22);
@@ -104,37 +104,42 @@
         }
 
         .auth-identity h1 {
-            margin: 0 0 8px;
+            margin: 0 0 6px;
             color: #FFFFFF;
-            font-size: 23px;
+            font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.01em;
-            line-height: 1.3;
+            line-height: 1.28;
         }
 
         .auth-identity p {
             margin: 0 auto;
-            max-width: 360px;
+            max-width: 480px;
             color: #E7DFF3;
             font-size: 13px;
-            line-height: 1.65;
+            line-height: 1.55;
+        }
+
+        .auth-field {
+            margin-bottom: 14px;
         }
 
         .auth-glass-card .app-form-label {
             color: #F4EFFA;
             font-size: 13px;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .auth-glass-card .form-control {
-            min-height: 44px;
+            width: 100%;
+            min-height: 43px;
             border: 1px solid rgba(255, 255, 255, 0.28);
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.94);
             color: var(--text-primary);
             font-size: 13.5px;
-            padding: 10px 14px;
+            padding: 9px 14px;
         }
 
         .auth-glass-card .form-control::placeholder {
@@ -147,7 +152,12 @@
             box-shadow: 0 0 0 3px rgba(246, 183, 199, 0.28);
         }
 
+        .auth-glass-card .input-group {
+            width: 100%;
+        }
+
         .auth-glass-card .input-group .form-control {
+            width: 1%;
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
@@ -173,7 +183,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .auth-remember-check .form-check-input {
@@ -199,7 +209,7 @@
         }
 
         .auth-submit-btn {
-            min-height: 46px;
+            min-height: 44px;
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 10px;
             background: linear-gradient(135deg, #B35A8A 0%, #984673 100%);
@@ -220,7 +230,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin: 22px 0 16px;
+            margin: 18px 0 14px;
             color: #D8CCE9;
             font-size: 12px;
             font-weight: 500;
@@ -235,7 +245,7 @@
         }
 
         .auth-register-box {
-            padding: 16px;
+            padding: 14px 18px;
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.08);
@@ -243,14 +253,14 @@
         }
 
         .auth-register-box p {
-            margin: 0 0 12px;
+            margin: 0 0 10px;
             color: #EDE6F7;
             font-size: 12.5px;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .auth-register-btn {
-            min-height: 42px;
+            min-height: 40px;
             border: 1px solid rgba(255, 255, 255, 0.38);
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.12);
@@ -266,27 +276,34 @@
         }
 
         .auth-register-note {
-            margin-top: 10px;
+            margin-top: 8px;
             color: #D5C8E8;
             font-size: 12px;
-            line-height: 1.55;
+            line-height: 1.45;
         }
 
         .auth-copyright {
-            margin-top: 20px;
+            margin-top: 14px;
             color: rgba(242, 236, 249, 0.88);
             font-size: 12px;
             text-align: center;
             text-shadow: 0 1px 6px rgba(24, 14, 42, 0.45);
         }
 
+        @media (max-width: 767.98px) {
+            .auth-glass-card {
+                max-width: 500px;
+                padding: 26px 26px 22px;
+            }
+        }
+
         @media (max-width: 575.98px) {
             .auth-screen {
-                padding: 20px 14px;
+                padding: 18px 14px;
             }
 
             .auth-glass-card {
-                padding: 28px 20px 24px;
+                padding: 24px 18px 20px;
                 border-radius: 16px;
             }
 
@@ -329,7 +346,7 @@
             <form action="{{ route('login.process') }}" method="POST">
                 @csrf
 
-                <div class="mb-3">
+                <div class="auth-field">
                     <label for="email" class="app-form-label">Email</label>
                     <input
                         type="email"
@@ -344,7 +361,7 @@
                     >
                 </div>
 
-                <div class="mb-3">
+                <div class="auth-field">
                     <label for="password" class="app-form-label">Kata Sandi</label>
                     <div class="input-group">
                         <input
