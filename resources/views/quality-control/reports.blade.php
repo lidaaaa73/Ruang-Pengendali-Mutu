@@ -7,342 +7,108 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/bapelkes-theme.css') }}" rel="stylesheet">
 
     <style>
-        :root {
-            --purple-dark: #523F77;
-            --purple-medium: #67538A;
-            --berry: #B35A8A;
-            --pink: #F6B7C7;
-            --lavender: #B6A5CE;
-            --periwinkle: #7880AE;
-            --background: #F8F6FA;
-            --surface: #FFFFFF;
-            --border: #E9E3EF;
-            --text-primary: #352D40;
-            --text-secondary: #71697B;
-            --success: #3C7656;
-            --warning: #8A650B;
-            --danger: #A34D1C;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: var(--background);
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-        }
-
-        .main-content {
-            width: calc(100% - 260px);
-            margin-left: 260px;
-            min-height: 100vh;
-            padding: 34px 35px 45px;
-        }
-
-        .page-header {
+        .search-toolbar {
             display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 28px;
-        }
-
-        .page-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 9px;
-            color: var(--berry);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: .5px;
-        }
-
-        .page-title {
-            margin: 0 0 9px;
-            color: var(--purple-dark);
-            font-size: 27px;
-            font-weight: 700;
-            letter-spacing: -.5px;
-        }
-
-        .page-description {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 20px;
-            margin-bottom: 22px;
-        }
-
-        .summary-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            min-height: 180px;
-            padding: 23px;
-            overflow: hidden;
-            border: 1px solid #E8B5CC;
-            border-left: 5px solid var(--berry);
-            border-radius: 17px;
-            background:
-                radial-gradient(circle at 100% 0%, rgba(255,255,255,.65), transparent 38%),
-                linear-gradient(120deg, #F9DCE9, #E9B5CF 60%, #DFA1C0);
-            box-shadow: 0 5px 18px rgba(82,63,119,.06);
-        }
-
-        .summary-card.lavender {
-            border-color: #CDBCE0;
-            border-left-color: var(--purple-medium);
-            background:
-                radial-gradient(circle at 100% 0%, rgba(255,255,255,.7), transparent 38%),
-                linear-gradient(120deg, #E9DDF5, #C9B5E1 60%, #B6A0D0);
-        }
-
-        .summary-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 48px;
-            width: 48px;
-            height: 48px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,.7);
-            border-radius: 13px;
-            background: rgba(255,255,255,.8);
-            color: var(--berry);
-            font-size: 22px;
-        }
-
-        .summary-icon .bi,
-        .info-icon .bi {
-            display: inline-block;
-            font-family: "bootstrap-icons" !important;
-            font-style: normal;
-            line-height: 1;
-        }
-
-        .summary-card.lavender .summary-icon {
-            color: var(--purple-medium);
-        }
-
-        .summary-label {
-            color: #75405F;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .summary-card.lavender .summary-label {
-            color: var(--purple-dark);
-        }
-
-        .summary-value {
-            margin-top: 3px;
-            color: #52334A;
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .summary-card.lavender .summary-value {
-            color: var(--purple-dark);
-        }
-
-        .summary-note {
-            margin-top: 5px;
-            color: #75546B;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .info-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding: 19px 21px;
-            border: 1px solid #D9CBEA;
-            border-radius: 14px;
-            background: linear-gradient(120deg, #F1EAF8, #E7DDF3);
-        }
-
-        .info-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 44px;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(255,255,255,.85);
-            color: var(--purple-medium);
-            font-size: 21px;
-        }
-
-        .info-title {
-            margin-bottom: 5px;
-            color: var(--purple-dark);
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .info-description {
-            margin: 0;
-            color: #71627F;
-            font-size: 12px;
-            line-height: 1.8;
-        }
-
-        .filter-card {
-            display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 18px;
-            margin-bottom: 22px;
-            padding: 19px 22px;
+            gap: 14px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
             border: 1px solid var(--border);
-            border-radius: 14px;
-            background: #FFFFFF;
-            box-shadow: 0 4px 15px rgba(82,63,119,.035);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: var(--shadow-xs);
         }
 
-        .filter-title {
-            margin-bottom: 4px;
-            color: var(--purple-dark);
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .filter-description {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: 11px;
-        }
-
-        .search-wrapper {
+        .search-box {
             position: relative;
             width: 100%;
             max-width: 340px;
         }
 
-        .search-wrapper i {
+        .search-box > i {
             position: absolute;
             top: 50%;
-            left: 14px;
+            left: 12px;
             transform: translateY(-50%);
-            color: var(--purple-medium);
-            font-size: 16px;
+            color: var(--text-muted);
+            font-size: 15px;
         }
 
-        .search-input {
-            width: 100%;
-            min-height: 43px;
-            padding: 10px 13px 10px 41px;
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            background: #FCFAFD;
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 12px;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--berry);
-            box-shadow: 0 0 0 3px rgba(179,90,138,.12);
-        }
-
-        .activity-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 21px;
+        .search-box .form-control {
+            min-height: 38px;
+            padding-left: 36px;
+            font-size: 13px;
         }
 
         .activity-card {
-            min-width: 0;
-            overflow: hidden;
+            margin-bottom: 20px;
             border: 1px solid var(--border);
-            border-radius: 17px;
-            background: #FFFFFF;
-            box-shadow: 0 5px 20px rgba(82,63,119,.045);
-            scroll-margin-top: 24px;
-            transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: var(--shadow-xs);
+            overflow: hidden;
+            scroll-margin-top: 84px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .activity-card:target {
             border-color: var(--berry);
-            box-shadow: 0 0 0 3px rgba(179,90,138,.18), 0 10px 26px rgba(82,63,119,.1);
-        }
-
-        .activity-card:hover {
-            box-shadow: 0 9px 24px rgba(82,63,119,.08);
+            box-shadow: 0 0 0 3px rgba(179, 90, 138, 0.16), var(--shadow-sm);
         }
 
         .activity-header {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 18px;
-            padding: 22px 25px;
+            gap: 14px;
+            padding: 16px 20px;
             border-bottom: 1px solid var(--border);
-            background: linear-gradient(110deg, #FCF9FD, #F7F2FA);
+            background: var(--surface-subtle);
         }
 
         .activity-heading {
             display: flex;
             align-items: flex-start;
-            gap: 14px;
+            gap: 12px;
             min-width: 0;
         }
 
         .activity-number {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            flex: 0 0 43px;
-            width: 43px;
-            height: 43px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--purple-medium), var(--berry));
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            border-radius: 9px;
+            background: var(--purple-dark);
             color: #FFFFFF;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
-        }
-
-        .activity-heading-content {
-            min-width: 0;
         }
 
         .activity-title {
-            margin: 0 0 8px;
-            overflow-wrap: anywhere;
+            margin: 0 0 4px;
             color: var(--purple-dark);
-            font-size: 16px;
+            font-size: 15.5px;
             font-weight: 700;
-            line-height: 1.6;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
         }
 
         .activity-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 9px 17px;
+            gap: 5px 16px;
             color: var(--text-secondary);
-            font-size: 11px;
-            line-height: 1.7;
+            font-size: 12.5px;
         }
 
         .activity-meta i {
@@ -350,554 +116,186 @@
             color: var(--berry);
         }
 
-        .completed-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            flex-shrink: 0;
-            padding: 8px 12px;
-            border-radius: 30px;
-            background: #EAF3EE;
-            color: #3C7656;
-            font-size: 11px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
         .activity-body {
-            padding: 23px 25px 26px;
+            padding: 20px;
         }
 
         .documents-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 19px;
+            gap: 18px;
         }
 
-        .document-card {
+        .report-doc-card {
             display: flex;
             flex-direction: column;
             min-width: 0;
             height: 100%;
-            padding: 20px;
+            padding: 18px;
             border: 1px solid var(--border);
-            border-radius: 14px;
-            background: #FCFAFD;
+            border-top: 3px solid var(--berry);
+            border-radius: var(--radius-md);
+            background: var(--surface);
         }
 
-        .document-card.report {
-            border-top: 4px solid var(--berry);
+        .report-doc-card.evaluation {
+            border-top-color: var(--purple-medium);
         }
 
-        .document-card.evaluation {
-            border-top: 4px solid var(--purple-medium);
+        .report-doc-card.needs-revision {
+            border-color: #EBC5D5;
+            background: #FFFAFC;
         }
 
-        .document-card.needs-revision {
-            border-color: #EBC3D4;
-            background: #FFF9FB;
-        }
-
-        .document-heading {
+        .report-doc-head {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 17px;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
-        .document-icon {
+        .report-doc-title-wrap {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 46px;
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            background: #FCEBF1;
-            color: var(--berry);
-            font-size: 21px;
-        }
-
-        .document-card.evaluation .document-icon {
-            background: #F0EAF7;
-            color: var(--purple-medium);
-        }
-
-        .document-heading-content {
+            align-items: flex-start;
+            gap: 11px;
             min-width: 0;
         }
 
-        .document-title {
-            margin-bottom: 5px;
+        .report-doc-title {
+            margin: 0 0 2px;
             color: var(--purple-dark);
-            font-size: 14px;
+            font-size: 14.5px;
             font-weight: 700;
-            line-height: 1.6;
         }
 
-        .document-subtitle {
+        .report-doc-subtitle {
             color: var(--text-secondary);
-            font-size: 11px;
-            line-height: 1.7;
+            font-size: 12.5px;
+            line-height: 1.5;
         }
 
-        .document-status {
-            display: inline-flex;
-            align-items: center;
-            align-self: flex-start;
-            gap: 6px;
-            padding: 7px 11px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .status-pending {
-            background: #FFF4D9;
-            color: #8A650B;
-        }
-
-        .status-verified {
-            background: #EAF3EE;
-            color: #3C7656;
-        }
-
-        .status-revision {
-            background: #FCE9DF;
-            color: #A34D1C;
-        }
-
-        .status-missing {
-            background: #F0EDF3;
-            color: #71697B;
-        }
-
-        .file-information {
+        .file-box {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            margin-top: 15px;
-            padding: 12px;
+            gap: 11px;
+            padding: 12px 14px;
             border: 1px solid var(--border);
-            border-radius: 10px;
-            background: #FFFFFF;
+            border-radius: var(--radius-md);
+            background: var(--surface-subtle);
+            margin-bottom: 12px;
         }
 
-        .file-information > i {
-            flex: 0 0 auto;
+        .file-box > i {
+            flex-shrink: 0;
             margin-top: 2px;
             color: var(--purple-medium);
-            font-size: 20px;
+            font-size: 18px;
         }
 
-        .file-content {
-            min-width: 0;
-        }
-
-        .file-name {
-            overflow-wrap: anywhere;
+        .file-box-name {
             color: var(--text-primary);
-            font-size: 11px;
+            font-size: 13.5px;
             font-weight: 600;
-            line-height: 1.7;
-        }
-
-        .file-size {
-            margin-top: 3px;
-            color: var(--text-secondary);
-            font-size: 10px;
-            line-height: 1.7;
-        }
-
-        .verification-note {
-            margin-top: 12px;
-            padding: 13px 14px;
-            border: 1px solid #EECAD6;
-            border-left: 4px solid var(--berry);
-            border-radius: 10px;
-            background: #FFF2F6;
-            color: #7D334D;
-            font-size: 11px;
-            line-height: 1.8;
+            line-height: 1.45;
             overflow-wrap: anywhere;
         }
 
-        .verification-note-title {
+        .file-box-meta {
+            margin-top: 2px;
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .revision-note-panel {
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            border: 1px solid #F1C9D8;
+            border-left: 3.5px solid var(--berry);
+            border-radius: var(--radius-md);
+            background: #FDF2F6;
+            color: #7D2F4C;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .revision-note-title {
             display: flex;
             align-items: center;
             gap: 6px;
-            color: #963F5A;
-            font-size: 11px;
+            margin-bottom: 4px;
+            color: #9A3B62;
+            font-size: 12.5px;
             font-weight: 700;
         }
 
-        .verification-note-text {
-            margin-top: 5px;
-            white-space: pre-line;
-        }
-
-        .verification-note-meta {
+        .revision-note-meta {
             margin-top: 6px;
             color: #9B6478;
-            font-size: 10px;
-        }
-
-        .verified-note {
-            margin-top: 12px;
-            padding: 12px 14px;
-            border: 1px solid #CFE3D5;
-            border-left: 4px solid var(--success);
-            border-radius: 10px;
-            background: #F1F8F3;
-            color: #356B4B;
-            font-size: 11px;
-            line-height: 1.8;
-            overflow-wrap: anywhere;
-        }
-
-        .upload-area {
-            margin-top: auto;
-            padding-top: 17px;
-        }
-
-        .upload-inner {
-            padding: 16px;
-            border: 1.5px dashed #D8C7E5;
-            border-radius: 11px;
-            background: linear-gradient(135deg, #FBF8FD, #F5EFF9);
-        }
-
-        .upload-inner.reupload-inner {
-            border-color: #DCA7BF;
-            background: linear-gradient(135deg, #FFF5F8, #F9EAF1);
-        }
-
-        .reupload-hint {
-            margin-bottom: 10px;
-            color: #7D334D;
-            font-size: 11px;
-            line-height: 1.7;
-            overflow-wrap: anywhere;
-        }
-
-        .btn-reupload {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            min-height: 43px;
-            margin-top: 13px;
-            border: 1px solid #9E497A;
-            border-radius: 9px;
-            background: linear-gradient(110deg, #B35A8A, #8E4474);
-            color: #FFFFFF;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            transition: .2s ease;
-        }
-
-        .btn-reupload:hover {
-            border-color: var(--purple-dark);
-            background: linear-gradient(110deg, #67538A, #523F77);
-            color: #FFFFFF;
-            transform: translateY(-1px);
-        }
-
-        .upload-area label {
-            display: block;
-            margin-bottom: 9px;
-            color: var(--purple-dark);
             font-size: 12px;
-            font-weight: 600;
         }
 
-        .form-control {
-            min-height: 43px;
-            border: 1px solid #DDD4E7;
-            border-radius: 9px;
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
+        .verified-note-panel {
+            padding: 11px 14px;
+            margin-bottom: 12px;
+            border: 1px solid #CBE5D4;
+            border-left: 3.5px solid #2E6F4D;
+            border-radius: var(--radius-md);
+            background: #EFF8F2;
+            color: #23573B;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
         }
 
-        .form-control:focus {
-            border-color: var(--purple-medium);
-            box-shadow: 0 0 0 3px rgba(103,83,138,.12);
+        .upload-panel {
+            margin-top: auto;
+            padding: 14px;
+            border: 1px dashed var(--border-strong);
+            border-radius: var(--radius-md);
+            background: var(--surface-subtle);
         }
 
-        .form-text {
-            color: var(--text-secondary);
-            font-size: 10px;
-            line-height: 1.7;
+        .upload-panel.reupload-panel {
+            border-color: #DCA7BF;
+            background: #FDF5F8;
         }
 
-        .btn-upload {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            min-height: 43px;
-            margin-top: 13px;
-            border: 1px solid var(--purple-dark);
-            border-radius: 9px;
-            background: linear-gradient(110deg, #67538A, #523F77);
-            color: #FFFFFF;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            transition: .2s ease;
-        }
-
-        .btn-upload:hover {
-            border-color: var(--berry);
-            background: linear-gradient(110deg, #B35A8A, #923D70);
-            color: #FFFFFF;
-            transform: translateY(-1px);
-        }
-
-        .btn-download {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            min-height: 37px;
-            margin-top: 11px;
-            padding: 7px 11px;
-            border: 1px solid #D6C9E5;
-            border-radius: 8px;
-            background: #F5F0FA;
-            color: var(--purple-dark);
-            font-size: 11px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: .2s ease;
-        }
-
-        .btn-download:hover {
-            border-color: var(--purple-medium);
-            background: var(--purple-medium);
-            color: #FFFFFF;
-        }
-
-        .review-area {
+        .review-panel {
             display: grid;
-            gap: 13px;
-            margin-top: 17px;
-            padding-top: 16px;
+            gap: 14px;
+            margin-top: 14px;
+            padding-top: 14px;
             border-top: 1px solid var(--border);
         }
 
-        .review-title {
+        .review-heading {
             color: var(--purple-dark);
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
-        }
-
-        .review-area textarea {
-            margin-top: 8px;
-            resize: vertical;
-        }
-
-        .btn-verify,
-        .btn-revision {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            width: 100%;
-            min-height: 39px;
-            margin-top: 9px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            transition: .2s ease;
-        }
-
-        .btn-verify {
-            border: 1px solid #49866A;
-            background: #49866A;
-            color: #FFFFFF;
-        }
-
-        .btn-verify:hover {
-            background: #367653;
-            color: #FFFFFF;
-        }
-
-        .btn-revision {
-            border: 1px solid #D49A54;
-            background: #FFF5E9;
-            color: #946020;
-        }
-
-        .btn-revision:hover {
-            background: #D49A54;
-            color: #FFFFFF;
-        }
-
-        .empty-state {
-            padding: 65px 20px;
-            text-align: center;
-        }
-
-        .empty-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 78px;
-            height: 78px;
-            margin: 0 auto 18px;
-            border: 1px solid #E6D9EF;
-            border-radius: 21px;
-            background: linear-gradient(135deg, #F1E9F8, #E5D9F1);
-            color: var(--purple-medium);
-            font-size: 34px;
-        }
-
-        .empty-title {
-            margin-bottom: 9px;
-            color: var(--purple-dark);
-            font-size: 17px;
-            font-weight: 700;
-        }
-
-        .empty-description {
-            max-width: 520px;
-            margin: 0 auto;
-            color: var(--text-secondary);
-            font-size: 12px;
-            line-height: 1.8;
         }
 
         .no-search-result {
             display: none;
-            padding: 35px 20px;
-            border: 1px dashed #D8C7E5;
-            border-radius: 13px;
-            background: #FFFFFF;
+            padding: 36px 20px;
+            border: 1px dashed var(--border-strong);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
             color: var(--text-secondary);
             text-align: center;
         }
 
-        .no-search-result i {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--lavender);
-            font-size: 28px;
-        }
-
-        .no-search-result strong {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--purple-dark);
-        }
-
-        .footer-text {
-            padding-top: 28px;
-            color: var(--text-secondary);
-            font-size: 11px;
-            text-align: center;
-        }
-
-        .alert {
-            border-radius: 12px;
-            font-size: 12px;
-            line-height: 1.8;
-        }
-
-        .alert-success {
-            background: #EAF3ED;
-            border-color: #CFE3D5;
-            color: #356B4B;
-        }
-
-        .alert-danger {
-            background: #FCEBF0;
-            border-color: #EECAD6;
-            color: #963F5A;
-        }
-
-        @media (max-width: 991px) {
-            .main-content {
-                padding: 27px 22px;
-            }
-
-            .activity-header {
-                padding: 20px;
-            }
-
-            .activity-body {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .main-content {
-                width: 100%;
-                margin-left: 0;
-                padding: 22px 15px 30px;
-            }
-
-            .page-title {
-                font-size: 23px;
-            }
-
-            .page-description {
-                font-size: 12px;
-            }
-
-            .summary-grid {
+        @media (max-width: 1099.98px) {
+            .documents-grid {
                 grid-template-columns: 1fr;
-                gap: 14px;
             }
+        }
 
-            .summary-card {
-                min-height: 155px;
-            }
-
-            .filter-card {
-                align-items: stretch;
-                flex-direction: column;
-                padding: 17px;
-            }
-
-            .search-wrapper {
+        @media (max-width: 767.98px) {
+            .search-box {
                 max-width: 100%;
-            }
-
-            .activity-header {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 14px;
-                padding: 18px;
-            }
-
-            .activity-body {
-                padding: 16px;
-            }
-
-            .documents-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
-            }
-
-            .document-card {
-                padding: 17px;
-            }
-
-            .info-card {
-                padding: 16px;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1050px) {
-            .documents-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -923,355 +321,270 @@
     @endphp
 
     @include('layouts.sidebar', [
-        'active' => 'reports',
-        'pendingUsersCount' => $role === 'admin'
-            ? \App\Models\User::where('account_status', 'pending')->count()
-            : 0
+        'active' => 'reports'
     ])
 
-    <main class="main-content">
+    <div class="app-shell">
 
-        <header class="page-header">
-            <div>
-                <div class="page-eyebrow">
-                    <i class="bi bi-clipboard-data"></i>
-                    PENGELOLAAN MUTU BAPELKES
-                </div>
+        @include('layouts.topbar', [
+            'breadcrumbs' => [
+                ['label' => 'Dashboard', 'url' => route('dashboard')],
+                ['label' => 'Laporan Kegiatan']
+            ]
+        ])
 
-                <h1 class="page-title">Laporan Kegiatan</h1>
+        <main class="app-page">
 
-                <p class="page-description">
-                    Kelola laporan penyelenggara dan evaluasi setiap kegiatan pelatihan yang telah selesai.
-                </p>
-            </div>
-        </header>
-
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-                <i class="bi bi-check-circle-fill me-2"></i>
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-                <i class="bi bi-exclamation-circle-fill me-2"></i>
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-                <div class="fw-semibold mb-2">Dokumen belum berhasil diproses.</div>
-
-                @foreach ($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                @endforeach
-
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        <section class="summary-grid">
-
-            <div class="summary-card">
-                <div class="summary-icon">
-                    <i class="bi bi-calendar2-check"></i>
-                </div>
-
-                <div class="summary-label">Kegiatan Selesai</div>
-
-                <div class="summary-value">{{ $trainings->count() }}</div>
-
-                <div class="summary-note">
-                    Total kegiatan yang telah memasuki tahap pelaporan.
+            <div class="app-page-header">
+                <div>
+                    <div class="app-eyebrow">
+                        <i class="bi bi-file-earmark-bar-graph"></i>
+                        Pelaporan Pascakegiatan
+                    </div>
+                    <h1 class="app-page-title">Laporan Kegiatan</h1>
+                    <p class="app-page-subtitle">
+                        Kelola pengunggahan, verifikasi, dan revisi Laporan Penyelenggara serta Evaluasi Penyelenggaraan untuk kegiatan yang telah selesai.
+                    </p>
                 </div>
             </div>
 
-            <div class="summary-card lavender">
-                <div class="summary-icon">
-                    <i class="bi bi-file-earmark-check"></i>
+            @if (session('success'))
+                <div class="alert app-alert app-alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle-fill mt-1"></i>
+                    <div>{{ session('success') }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert app-alert app-alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-circle-fill mt-1"></i>
+                    <div>{{ session('error') }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert app-alert app-alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-circle-fill mt-1"></i>
+                    <div>
+                        <strong>Dokumen belum berhasil diproses.</strong>
+                        <ul class="mb-0 mt-1 ps-3">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
+                </div>
+            @endif
+
+            <div class="row g-3 mb-4">
+                <div class="col-12 col-md-6">
+                    <div class="app-kpi-card accent-berry">
+                        <div class="app-kpi-top">
+                            <span class="app-kpi-label">Kegiatan Selesai</span>
+                            <span class="app-icon-box berry"><i class="bi bi-calendar2-check"></i></span>
+                        </div>
+                        <div class="app-kpi-value">{{ number_format($trainings->count(), 0, ',', '.') }}</div>
+                        <div class="app-kpi-note">Total kegiatan pelatihan yang telah memasuki tahap pelaporan.</div>
+                    </div>
                 </div>
 
-                <div class="summary-label">Laporan Telah Diunggah</div>
-
-                <div class="summary-value">{{ $totalUploadedDocuments }}</div>
-
-                <div class="summary-note">
-                    Total laporan penyelenggara dan evaluasi yang tersimpan.
+                <div class="col-12 col-md-6">
+                    <div class="app-kpi-card accent-lavender">
+                        <div class="app-kpi-top">
+                            <span class="app-kpi-label">Dokumen Laporan Terunggah</span>
+                            <span class="app-icon-box"><i class="bi bi-file-earmark-check"></i></span>
+                        </div>
+                        <div class="app-kpi-value">{{ number_format($totalUploadedDocuments, 0, ',', '.') }}</div>
+                        <div class="app-kpi-note">Akumulasi Laporan Penyelenggara dan Evaluasi Penyelenggaraan yang tersimpan.</div>
+                    </div>
                 </div>
             </div>
 
-        </section>
+            <div class="search-toolbar">
+                <div>
+                    <div class="fw-bold" style="color: var(--purple-dark); font-size: 14.5px;">Daftar Kegiatan Selesai</div>
+                    <div class="text-secondary" style="font-size: 12.5px;">
+                        Laporan Penyelenggara dan Evaluasi Penyelenggaraan dikelola dan diverifikasi secara terpisah per kegiatan.
+                    </div>
+                </div>
 
-        <section class="info-card">
-            <div class="info-icon">
-                <i class="bi bi-info-circle"></i>
-            </div>
-
-            <div>
-                <div class="info-title">Informasi Pengunggahan Laporan</div>
-
-                <p class="info-description">
-                    Setiap kegiatan memiliki bagian pengunggahan laporan tersendiri.
-                    Laporan Penyelenggara dan Evaluasi Penyelenggaraan dapat diunggah
-                    secara terpisah setelah kegiatan ditandai selesai.
-                    Pastikan dokumen yang diunggah sesuai dengan kegiatan yang dipilih.
-                </p>
-            </div>
-        </section>
-
-        <section class="filter-card">
-            <div>
-                <div class="filter-title">Daftar Kegiatan Selesai</div>
-                <p class="filter-description">
-                    Pilih kegiatan yang ingin dilengkapi dokumen laporannya.
-                </p>
-            </div>
-
-            <div class="search-wrapper">
-                <i class="bi bi-search"></i>
-
-                <input
-                    type="text"
-                    id="searchActivity"
-                    class="search-input"
-                    placeholder="Cari nama atau penyelenggara kegiatan..."
-                    autocomplete="off"
-                >
-            </div>
-        </section>
-
-        @if ($trainings->count() > 0)
-
-            <div class="activity-list" id="activityList">
-
-                @foreach ($trainings as $index => $training)
-
-                    <section
-                        id="training-{{ $training->id }}"
-                        class="activity-card"
-                        data-search="{{ strtolower($training->training_name . ' ' . $training->organizer . ' ' . $training->venue) }}"
+                <div class="search-box">
+                    <i class="bi bi-search"></i>
+                    <input
+                        type="text"
+                        id="searchActivity"
+                        class="form-control"
+                        placeholder="Cari nama atau penyelenggara kegiatan..."
+                        autocomplete="off"
                     >
+                </div>
+            </div>
 
-                        <div class="activity-header">
+            @if ($trainings->count() > 0)
+                <div id="activityList">
+                    @foreach ($trainings as $index => $training)
+                        <section
+                            id="training-{{ $training->id }}"
+                            class="activity-card"
+                            data-search="{{ strtolower($training->training_name . ' ' . $training->organizer . ' ' . $training->venue) }}"
+                        >
+                            <div class="activity-header">
+                                <div class="activity-heading">
+                                    <span class="activity-number">{{ $index + 1 }}</span>
 
-                            <div class="activity-heading">
-
-                                <div class="activity-number">
-                                    {{ $index + 1 }}
-                                </div>
-
-                                <div class="activity-heading-content">
-
-                                    <h5 class="activity-title">
-                                        {{ $training->training_name }}
-                                    </h5>
-
-                                    <div class="activity-meta">
-
-                                        <span>
-                                            <i class="bi bi-building"></i>
-                                            {{ $training->organizer ?: '-' }}
-                                        </span>
-
-                                        <span>
-                                            <i class="bi bi-calendar3"></i>
-                                            {{ $training->start_date?->format('d/m/Y') ?? '-' }}
-
-                                            @if ($training->end_date)
-                                                s.d. {{ $training->end_date->format('d/m/Y') }}
-                                            @endif
-                                        </span>
-
-                                        <span>
-                                            <i class="bi bi-geo-alt"></i>
-                                            {{ $training->venue ?: '-' }}
-                                        </span>
-
+                                    <div class="min-w-0">
+                                        <h5 class="activity-title">{{ $training->training_name }}</h5>
+                                        <div class="activity-meta">
+                                            <span><i class="bi bi-building"></i>{{ $training->organizer ?: '-' }}</span>
+                                            <span>
+                                                <i class="bi bi-calendar3"></i>
+                                                {{ $training->start_date?->format('d/m/Y') ?? '-' }}
+                                                @if ($training->end_date)
+                                                    s.d. {{ $training->end_date->format('d/m/Y') }}
+                                                @endif
+                                            </span>
+                                            <span><i class="bi bi-geo-alt"></i>{{ $training->venue ?: '-' }}</span>
+                                        </div>
                                     </div>
-
                                 </div>
 
+                                <span class="app-badge app-badge-success">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Kegiatan Selesai
+                                </span>
                             </div>
 
-                            <span class="completed-badge">
-                                <i class="bi bi-check-circle-fill"></i>
-                                Kegiatan Selesai
-                            </span>
+                            <div class="activity-body">
+                                <div class="documents-grid">
+                                    @foreach ([
+                                        [
+                                            'type' => 'laporan_penyelenggara',
+                                            'title' => 'Laporan Penyelenggara',
+                                            'subtitle' => 'Dokumen laporan pelaksanaan kegiatan pelatihan.',
+                                            'icon' => 'bi-file-earmark-text',
+                                            'style' => 'report',
+                                            'iconStyle' => 'berry'
+                                        ],
+                                        [
+                                            'type' => 'evaluasi_penyelenggaraan',
+                                            'title' => 'Evaluasi Penyelenggaraan',
+                                            'subtitle' => 'Dokumen hasil evaluasi penyelenggaraan kegiatan.',
+                                            'icon' => 'bi-clipboard-check',
+                                            'style' => 'evaluation',
+                                            'iconStyle' => ''
+                                        ]
+                                    ] as $item)
+                                        @php
+                                            $document = $training->documents
+                                                ->where('document_type', $item['type'])
+                                                ->sortByDesc('updated_at')
+                                                ->first();
 
-                        </div>
+                                            $status = $document?->verification_status;
+                                            $uploadedAt = $document?->updated_at ?? $document?->created_at;
+                                        @endphp
 
-                        <div class="activity-body">
-
-                            <div class="documents-grid">
-
-                                @foreach ([
-                                    [
-                                        'type' => 'laporan_penyelenggara',
-                                        'title' => 'Laporan Penyelenggara',
-                                        'subtitle' => 'Dokumen laporan pelaksanaan kegiatan pelatihan.',
-                                        'icon' => 'bi-file-earmark-text',
-                                        'style' => 'report'
-                                    ],
-                                    [
-                                        'type' => 'evaluasi_penyelenggaraan',
-                                        'title' => 'Evaluasi Penyelenggaraan',
-                                        'subtitle' => 'Dokumen hasil evaluasi penyelenggaraan kegiatan.',
-                                        'icon' => 'bi-clipboard-check',
-                                        'style' => 'evaluation'
-                                    ]
-                                ] as $item)
-
-                                    @php
-                                        $document = $training->documents
-                                            ->where('document_type', $item['type'])
-                                            ->sortByDesc('updated_at')
-                                            ->first();
-
-                                        $status = $document?->verification_status;
-                                        $uploadedAt = $document?->updated_at ?? $document?->created_at;
-                                    @endphp
-
-                                    <article class="document-card {{ $item['style'] }} {{ $status === 'revision' ? 'needs-revision' : '' }}">
-
-                                        <div class="document-heading">
-
-                                            <div class="document-icon">
-                                                <i class="bi {{ $item['icon'] }}"></i>
-                                            </div>
-
-                                            <div class="document-heading-content">
-                                                <div class="document-title">
-                                                    {{ $item['title'] }}
+                                        <article class="report-doc-card {{ $item['style'] }} {{ $status === 'revision' ? 'needs-revision' : '' }}">
+                                            <div class="report-doc-head">
+                                                <div class="report-doc-title-wrap">
+                                                    <span class="app-icon-box {{ $item['iconStyle'] }}">
+                                                        <i class="bi {{ $item['icon'] }}"></i>
+                                                    </span>
+                                                    <div class="min-w-0">
+                                                        <h6 class="report-doc-title">{{ $item['title'] }}</h6>
+                                                        <div class="report-doc-subtitle">{{ $item['subtitle'] }}</div>
+                                                    </div>
                                                 </div>
 
-                                                <div class="document-subtitle">
-                                                    {{ $item['subtitle'] }}
-                                                </div>
+                                                @if (!$document)
+                                                    <span class="app-badge app-badge-muted">
+                                                        <i class="bi bi-file-earmark-minus"></i>
+                                                        Belum Diunggah
+                                                    </span>
+                                                @elseif ($status === 'verified')
+                                                    <span class="app-badge app-badge-success">
+                                                        <i class="bi bi-check-circle-fill"></i>
+                                                        Terverifikasi
+                                                    </span>
+                                                @elseif ($status === 'revision')
+                                                    <span class="app-badge app-badge-revision">
+                                                        <i class="bi bi-arrow-repeat"></i>
+                                                        Perlu Revisi
+                                                    </span>
+                                                @else
+                                                    <span class="app-badge app-badge-warning">
+                                                        <i class="bi bi-clock-fill"></i>
+                                                        Menunggu Pemeriksaan
+                                                    </span>
+                                                @endif
                                             </div>
 
-                                        </div>
-
-                                        @if (!$document)
-
-                                            <span class="document-status status-missing">
-                                                <i class="bi bi-file-earmark-minus"></i>
-                                                Belum Diunggah
-                                            </span>
-
-                                        @elseif ($status === 'verified')
-
-                                            <span class="document-status status-verified">
-                                                <i class="bi bi-check-circle-fill"></i>
-                                                Terverifikasi
-                                            </span>
-
-                                        @elseif ($status === 'revision')
-
-                                            <span class="document-status status-revision">
-                                                <i class="bi bi-exclamation-circle-fill"></i>
-                                                Perlu Revisi
-                                            </span>
-
-                                        @else
-
-                                            <span class="document-status status-pending">
-                                                <i class="bi bi-clock-history"></i>
-                                                Menunggu Pemeriksaan
-                                            </span>
-
-                                        @endif
-
-                                        @if ($document)
-
-                                            <div class="file-information">
-
-                                                <i class="bi bi-file-earmark-text"></i>
-
-                                                <div class="file-content">
-
-                                                    <div class="file-name">
-                                                        {{ $document->original_name }}
-                                                    </div>
-
-                                                    <div class="file-size">
-                                                        {{ number_format(($document->file_size ?? 0) / 1024, 1, ',', '.') }} KB
-                                                        <span class="mx-1">·</span>
-                                                        Oleh {{ $document->uploader?->name ?? '-' }}
-                                                        <span class="mx-1">·</span>
-                                                        {{ $uploadedAt?->format('d/m/Y H:i') ?? '-' }}
-                                                    </div>
-
-                                                    <a
-                                                        href="{{ route('training-documents.download', $document) }}"
-                                                        class="btn-download"
-                                                        target="_blank"
-                                                        rel="noopener"
-                                                    >
-                                                        <i class="bi bi-download"></i>
-                                                        Unduh Dokumen
-                                                    </a>
-
-                                                </div>
-
-                                            </div>
-
-                                            @if ($status === 'revision')
-
-                                                <div class="verification-note">
-                                                    <div class="verification-note-title">
-                                                        <i class="bi bi-exclamation-circle-fill"></i>
-                                                        Catatan Revisi dari Dalmut
-                                                    </div>
-
-                                                    <div class="verification-note-text">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
-
-                                                    @if ($document->verifier || $document->verified_at)
-                                                        <div class="verification-note-meta">
-                                                            {{ $document->verifier?->name ?? 'Dalmut' }}@if ($document->verified_at) · {{ $document->verified_at->format('d/m/Y H:i') }}@endif
+                                            @if ($document)
+                                                <div class="file-box">
+                                                    <i class="bi bi-file-earmark-text"></i>
+                                                    <div class="min-w-0 flex-grow-1">
+                                                        <div class="file-box-name">{{ $document->original_name }}</div>
+                                                        <div class="file-box-meta">
+                                                            {{ number_format(($document->file_size ?? 0) / 1024, 1, ',', '.') }} KB
+                                                            <span class="mx-1">·</span>
+                                                            Oleh {{ $document->uploader?->name ?? '-' }}
+                                                            <span class="mx-1">·</span>
+                                                            {{ $uploadedAt?->format('d/m/Y H:i') ?? '-' }}
                                                         </div>
-                                                    @endif
-                                                </div>
-
-                                            @elseif ($status === 'verified' && $document->verification_notes)
-
-                                                <div class="verified-note">
-                                                    <div class="fw-bold">
-                                                        <i class="bi bi-check-circle-fill me-1"></i>
-                                                        Catatan Verifikasi
+                                                        <div class="mt-2">
+                                                            <a
+                                                                href="{{ route('training-documents.download', $document) }}"
+                                                                class="app-btn app-btn-soft-blue app-btn-sm"
+                                                                target="_blank"
+                                                                rel="noopener"
+                                                            >
+                                                                <i class="bi bi-download"></i>
+                                                                Unduh Dokumen
+                                                            </a>
+                                                        </div>
                                                     </div>
-
-                                                    <div class="verification-note-text">{{ $document->verification_notes }}</div>
                                                 </div>
 
+                                                @if ($status === 'revision')
+                                                    <div class="revision-note-panel">
+                                                        <div class="revision-note-title">
+                                                            <i class="bi bi-exclamation-circle-fill"></i>
+                                                            Catatan Revisi dari Dalmut
+                                                        </div>
+                                                        <div style="white-space: pre-line;">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
+                                                        @if ($document->verifier || $document->verified_at)
+                                                            <div class="revision-note-meta">
+                                                                {{ $document->verifier?->name ?? 'Dalmut' }}@if ($document->verified_at) · {{ $document->verified_at->format('d/m/Y H:i') }}@endif
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                @elseif ($status === 'verified' && $document->verification_notes)
+                                                    <div class="verified-note-panel">
+                                                        <div class="fw-bold mb-1" style="font-size: 12.5px;">
+                                                            <i class="bi bi-check-circle-fill me-1"></i>
+                                                            Catatan Verifikasi
+                                                        </div>
+                                                        <div style="white-space: pre-line;">{{ $document->verification_notes }}</div>
+                                                    </div>
+                                                @endif
                                             @endif
 
-                                        @endif
-
-                                        @if ($canUpload && !$document)
-
-                                            <div class="upload-area">
-                                                <div class="upload-inner">
-
+                                            @if ($canUpload && !$document)
+                                                <div class="upload-panel">
                                                     <form
                                                         action="{{ route('trainings.documents.store', $training) }}"
                                                         method="POST"
                                                         enctype="multipart/form-data"
                                                     >
                                                         @csrf
+                                                        <input type="hidden" name="document_type" value="{{ $item['type'] }}">
 
-                                                        <input
-                                                            type="hidden"
-                                                            name="document_type"
-                                                            value="{{ $item['type'] }}"
-                                                        >
-
-                                                        <label>
+                                                        <label class="app-form-label">
                                                             <i class="bi bi-cloud-arrow-up me-1"></i>
-                                                            Pilih File Dokumen
+                                                            Pilih File {{ $item['title'] }}
                                                         </label>
 
                                                         <input
@@ -1282,25 +595,16 @@
                                                             required
                                                         >
 
-                                                        <div class="form-text mt-2">
-                                                            Format PDF, DOC, DOCX. Maksimal 10 MB.
-                                                        </div>
+                                                        <small class="app-field-hint">Format PDF, DOC, atau DOCX (maksimal 10 MB).</small>
 
-                                                        <button type="submit" class="btn-upload">
+                                                        <button type="submit" class="app-btn app-btn-primary w-100 mt-3">
                                                             <i class="bi bi-cloud-arrow-up"></i>
                                                             Unggah Dokumen
                                                         </button>
-
                                                     </form>
-
                                                 </div>
-                                            </div>
-
-                                        @elseif ($canUpload && $document && $status === 'revision')
-
-                                            <div class="upload-area">
-                                                <div class="upload-inner reupload-inner">
-
+                                            @elseif ($canUpload && $document && $status === 'revision')
+                                                <div class="upload-panel reupload-panel">
                                                     <form
                                                         action="{{ route('training-documents.reupload', $document) }}"
                                                         method="POST"
@@ -1309,13 +613,13 @@
                                                         @csrf
                                                         @method('PATCH')
 
-                                                        <label>
+                                                        <label class="app-form-label" style="color: #9A3B62;">
                                                             <i class="bi bi-arrow-repeat me-1"></i>
                                                             Unggah Ulang {{ $item['title'] }}
                                                         </label>
 
-                                                        <div class="reupload-hint">
-                                                            Pilih file perbaikan untuk menggantikan <strong>{{ $document->original_name }}</strong>.
+                                                        <div class="text-secondary mb-2" style="font-size: 12.5px; overflow-wrap: anywhere;">
+                                                            File baru akan menggantikan <strong>{{ $document->original_name }}</strong>.
                                                         </div>
 
                                                         <input
@@ -1326,137 +630,101 @@
                                                             required
                                                         >
 
-                                                        <div class="form-text mt-2">
-                                                            Format PDF, DOC, DOCX. Maksimal 10 MB. Status otomatis kembali menjadi Menunggu Pemeriksaan.
-                                                        </div>
+                                                        <small class="app-field-hint">
+                                                            Format PDF, DOC, DOCX (maks. 10 MB). Status otomatis kembali menjadi Menunggu Pemeriksaan.
+                                                        </small>
 
-                                                        <button type="submit" class="btn-reupload">
+                                                        <button type="submit" class="app-btn app-btn-berry w-100 mt-3">
                                                             <i class="bi bi-cloud-arrow-up"></i>
                                                             Unggah Ulang
                                                         </button>
+                                                    </form>
+                                                </div>
+                                            @endif
 
+                                            @if ($canReview && $document && $status === 'pending')
+                                                <div class="review-panel">
+                                                    <div class="review-heading">
+                                                        <i class="bi bi-shield-check me-1" style="color: var(--berry);"></i>
+                                                        Pemeriksaan Dokumen oleh Dalmut
+                                                    </div>
+
+                                                    <form action="{{ route('training-documents.verify', $document) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+
+                                                        <label class="app-form-label">Catatan Verifikasi (Opsional)</label>
+                                                        <textarea
+                                                            name="verification_notes"
+                                                            class="form-control"
+                                                            rows="2"
+                                                            placeholder="Tambahkan catatan pemeriksaan jika diperlukan..."
+                                                        ></textarea>
+
+                                                        <button type="submit" class="app-btn app-btn-success w-100 mt-2">
+                                                            <i class="bi bi-check-circle"></i>
+                                                            Verifikasi Dokumen
+                                                        </button>
                                                     </form>
 
+                                                    <form action="{{ route('training-documents.request-revision', $document) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+
+                                                        <label class="app-form-label">
+                                                            Catatan Permintaan Revisi <span class="app-required">*</span>
+                                                        </label>
+                                                        <textarea
+                                                            name="verification_notes"
+                                                            class="form-control"
+                                                            rows="2"
+                                                            placeholder="Jelaskan bagian dokumen yang perlu diperbaiki..."
+                                                            required
+                                                        ></textarea>
+
+                                                        <button type="submit" class="app-btn app-btn-soft-warning w-100 mt-2">
+                                                            <i class="bi bi-arrow-repeat"></i>
+                                                            Minta Revisi
+                                                        </button>
+                                                    </form>
                                                 </div>
-                                            </div>
-
-                                        @endif
-
-                                        @if ($canReview && $document && $status === 'pending')
-
-                                            <div class="review-area">
-
-                                                <div class="review-title">
-                                                    <i class="bi bi-shield-check me-1"></i>
-                                                    Pemeriksaan Dokumen
-                                                </div>
-
-                                                <form
-                                                    action="{{ route('training-documents.verify', $document) }}"
-                                                    method="POST"
-                                                >
-                                                    @csrf
-                                                    @method('PATCH')
-
-                                                    <label class="form-label">
-                                                        Catatan verifikasi (opsional)
-                                                    </label>
-
-                                                    <textarea
-                                                        name="verification_notes"
-                                                        class="form-control"
-                                                        rows="2"
-                                                        placeholder="Tambahkan catatan jika diperlukan"
-                                                    ></textarea>
-
-                                                    <button type="submit" class="btn-verify">
-                                                        <i class="bi bi-check-circle"></i>
-                                                        Verifikasi Dokumen
-                                                    </button>
-
-                                                </form>
-
-                                                <form
-                                                    action="{{ route('training-documents.request-revision', $document) }}"
-                                                    method="POST"
-                                                >
-                                                    @csrf
-                                                    @method('PATCH')
-
-                                                    <label class="form-label">
-                                                        Catatan permintaan revisi
-                                                    </label>
-
-                                                    <textarea
-                                                        name="verification_notes"
-                                                        class="form-control"
-                                                        rows="2"
-                                                        placeholder="Jelaskan bagian dokumen yang perlu diperbaiki"
-                                                        required
-                                                    ></textarea>
-
-                                                    <button type="submit" class="btn-revision">
-                                                        <i class="bi bi-arrow-repeat"></i>
-                                                        Minta Revisi
-                                                    </button>
-
-                                                </form>
-
-                                            </div>
-
-                                        @endif
-
-                                    </article>
-
-                                @endforeach
-
+                                            @endif
+                                        </article>
+                                    @endforeach
+                                </div>
                             </div>
-
-                        </div>
-
-                    </section>
-
-                @endforeach
-
-            </div>
-
-            <div class="no-search-result mt-3" id="noSearchResult">
-                <i class="bi bi-search"></i>
-                <strong>Kegiatan Tidak Ditemukan</strong>
-                Coba gunakan nama atau penyelenggara kegiatan yang berbeda.
-            </div>
-
-        @else
-
-            <section class="activity-card">
-                <div class="empty-state">
-
-                    <div class="empty-icon">
-                        <i class="bi bi-clipboard-check"></i>
-                    </div>
-
-                    <h5 class="empty-title">
-                        Belum Ada Kegiatan yang Selesai
-                    </h5>
-
-                    <p class="empty-description">
-                        Kegiatan akan muncul di halaman ini setelah statusnya berubah menjadi
-                        Selesai. Pengunggahan Laporan Penyelenggara dan Evaluasi
-                        Penyelenggaraan dapat dilakukan setelah tahap tersebut.
-                    </p>
-
+                        </section>
+                    @endforeach
                 </div>
-            </section>
 
-        @endif
+                <div class="no-search-result" id="noSearchResult">
+                    <div class="app-empty-icon">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <h6 class="fw-bold" style="color: var(--purple-dark);">Kegiatan Tidak Ditemukan</h6>
+                    <p class="mb-0" style="font-size: 13px;">Coba gunakan kata kunci nama atau penyelenggara kegiatan yang berbeda.</p>
+                </div>
+            @else
+                <section class="app-card mb-0">
+                    <div class="app-empty-state">
+                        <div class="app-empty-icon">
+                            <i class="bi bi-clipboard-check"></i>
+                        </div>
+                        <h6>Belum Ada Kegiatan yang Selesai</h6>
+                        <p>
+                            Kegiatan akan tampil di halaman ini setelah status pelaksanaannya ditandai Selesai. Pengunggahan Laporan Penyelenggara dan Evaluasi Penyelenggaraan dapat dilakukan pada tahap tersebut.
+                        </p>
+                    </div>
+                </section>
+            @endif
 
-        <footer class="footer-text">
-            © {{ date('Y') }} Ruang Pengendalian Mutu Bapelkes
-            <span class="mx-1">·</span>
-            Sistem Informasi Internal
+        </main>
+
+        <footer class="app-footer">
+            © {{ date('Y') }} Ruang Pengendalian Mutu Bapelkes · Sistem Informasi Internal
         </footer>
 
-    </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -1482,8 +750,7 @@
                 });
 
                 if (noSearchResult) {
-                    noSearchResult.style.display =
-                        visibleCount === 0 ? 'block' : 'none';
+                    noSearchResult.style.display = visibleCount === 0 ? 'block' : 'none';
                 }
             });
         }

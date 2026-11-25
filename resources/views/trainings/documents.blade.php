@@ -7,557 +7,117 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/bapelkes-theme.css') }}" rel="stylesheet">
 
     <style>
-        :root {
-            --purple-dark: #523F77;
-            --purple-medium: #67538A;
-            --berry: #B35A8A;
-            --pink: #F6B7C7;
-            --lavender: #B6A5CE;
-            --periwinkle: #7880AE;
-            --powder-blue: #A3BBD7;
-            --background: #F8F6FA;
-            --surface: #FFFFFF;
-            --border: #E9E3EF;
-            --text-primary: #352D40;
-            --text-secondary: #71697B;
-            --success: #356B4B;
-            --warning: #805A16;
-            --danger: #963F5A;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: var(--background);
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-        }
-
-        .main-content {
-            margin-left: 260px;
-            min-height: 100vh;
-            padding: 32px 35px 45px;
-        }
-
-        .breadcrumb {
-            margin-bottom: 22px;
-            font-size: 13px;
-        }
-
-        .breadcrumb a {
-            color: var(--purple-medium);
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--berry);
-        }
-
-        .breadcrumb-item.active {
-            color: var(--text-secondary);
-        }
-
-        .page-header {
+        .training-context-bar {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: 18px;
-            margin-bottom: 26px;
-        }
-
-        .page-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 9px;
-            color: var(--berry);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: .5px;
-        }
-
-        .page-title {
-            margin-bottom: 8px;
-            color: var(--purple-dark);
-            font-size: 28px;
-            font-weight: 700;
-        }
-
-        .page-description {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-height: 44px;
-            padding: 10px 16px;
-            border: 1px solid #D9CDE6;
-            border-radius: 9px;
-            background: #fff;
-            color: var(--purple-dark);
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: .2s ease;
-        }
-
-        .btn-back:hover {
-            background: #F3EEF8;
-            border-color: var(--purple-medium);
-            color: var(--purple-dark);
-        }
-
-        .training-banner {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 24px;
-            padding: 27px 30px;
-            border-radius: 16px;
-            background:
-                radial-gradient(circle at 100% 0%, rgba(255,255,255,.19), transparent 37%),
-                linear-gradient(115deg, #523F77, #67538A 65%, #7880AE);
-            color: #fff;
-            box-shadow: 0 7px 22px rgba(82,63,119,.12);
-        }
-
-        .training-banner-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .training-banner-decoration {
-            position: absolute;
-            right: 40px;
-            bottom: -48px;
-            color: #fff;
-            font-size: 175px;
-            opacity: .09;
-        }
-
-        .banner-label {
-            margin-bottom: 10px;
-            color: #F6DCE7;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .8px;
-        }
-
-        .banner-title {
-            margin-bottom: 13px;
-            color: #fff;
-            font-size: 23px;
-            font-weight: 700;
-            line-height: 1.6;
-            overflow-wrap: anywhere;
-        }
-
-        .banner-date {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            color: #F1EAF6;
-            font-size: 14px;
-        }
-
-        .banner-date i {
-            color: var(--pink);
-        }
-
-        .document-card {
-            overflow: hidden;
-            margin-bottom: 25px;
-            padding: 26px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 17px;
-            box-shadow: 0 5px 20px rgba(82, 63, 119, .045);
-        }
-
-        .card-heading {
-            display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
+            padding: 18px 22px;
+            border: 1px solid #DFD5EB;
+            border-left: 4px solid var(--purple-dark);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: var(--shadow-xs);
         }
 
-        .section-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 49px;
-            height: 49px;
-            flex-shrink: 0;
-            border-radius: 13px;
-            background: linear-gradient(135deg, #F9DCE9, #E9C9DC);
-            border: 1px solid #EDD5E3;
-            color: var(--berry);
-            font-size: 22px;
-        }
-
-        .section-icon.lavender {
-            background: linear-gradient(135deg, #E9DDF5, #C9B5E1);
-            border-color: #D8CBE8;
-            color: var(--purple-medium);
-        }
-
-        .section-title {
-            margin-bottom: 5px;
+        .training-context-title {
+            margin: 0 0 4px;
             color: var(--purple-dark);
-            font-size: 19px;
+            font-size: 16.5px;
             font-weight: 700;
+            overflow-wrap: anywhere;
         }
 
-        .section-description {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        .upload-area {
-            padding: 24px;
-            background:
-                radial-gradient(circle at 100% 0%, rgba(246,183,199,.17), transparent 35%),
-                linear-gradient(120deg, #F3EEF8, #F9EDF3);
-            border: 1px solid #E7DDED;
-            border-radius: 13px;
-        }
-
-        .form-label {
-            margin-bottom: 9px;
-            color: var(--text-primary);
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .form-control,
-        .form-select {
-            min-height: 49px;
-            padding: 11px 14px;
-            border: 1px solid #DCD2E7;
-            border-radius: 10px;
-            background-color: #fff;
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            border-color: var(--berry);
-            box-shadow: 0 0 0 .2rem rgba(179,90,138,.12);
-        }
-
-        input[type="file"].form-control {
-            padding: 8px 11px;
-        }
-
-        input[type="file"]::file-selector-button {
-            margin: -3px 10px -3px -6px;
-            padding: 8px 12px;
-            background: #F1EAF7;
-            border: 0;
-            border-radius: 7px;
-            color: var(--purple-dark);
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .file-hint {
-            display: block;
-            margin-top: 8px;
+        .training-context-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 16px;
             color: var(--text-secondary);
             font-size: 13px;
-            line-height: 1.7;
         }
 
-        .btn-upload {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-height: 46px;
-            padding: 11px 20px;
-            border: 1px solid var(--purple-dark);
-            border-radius: 9px;
-            background: linear-gradient(120deg, #523F77, #67538A);
-            color: #fff;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 600;
-            transition: .2s ease;
+        .training-context-meta i {
+            color: var(--berry);
+            margin-right: 5px;
         }
 
-        .btn-upload:hover {
-            background: linear-gradient(120deg, #67538A, #7880AE);
-            border-color: var(--purple-medium);
-            color: #fff;
-            transform: translateY(-2px);
+        .upload-panel {
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--surface-subtle);
         }
 
-        .upload-info {
+        .doc-row-revision {
+            background: #FFF7FA !important;
+        }
+
+        .doc-row-revision td:first-child {
+            box-shadow: inset 3.5px 0 0 var(--berry);
+        }
+
+        .doc-file-cell {
             display: flex;
             align-items: flex-start;
-            gap: 11px;
-            margin-top: 19px;
-            padding: 15px;
-            background: rgba(255,255,255,.7);
-            border: 1px solid rgba(217,205,230,.8);
-            border-radius: 10px;
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .upload-info i {
-            margin-top: 2px;
-            color: var(--berry);
-            font-size: 18px;
-        }
-
-        .alert {
-            border-radius: 11px;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .alert-success {
-            background: #EAF3ED;
-            border-color: #CFE3D5;
-            color: #356B4B;
-        }
-
-        .alert-danger {
-            background: #FCEBF0;
-            border-color: #EECAD6;
-            color: #963F5A;
-        }
-
-        .document-list-heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 23px;
-        }
-
-        .document-count {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 14px;
-            border: 1px solid #DCD2E7;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #F0EAF7, #F9EDF3);
-            color: var(--purple-dark);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .document-table {
-            min-width: 1450px;
-            width: 100%;
-            margin-bottom: 0;
-            vertical-align: middle;
-        }
-
-        .document-table th {
-            padding: 17px 15px;
-            background: linear-gradient(110deg, #F0EAF7, #F8EAF0);
-            border-bottom: 1px solid #E3D9ED;
-            color: var(--purple-dark);
-            font-size: 14px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .document-table th:first-child {
-            border-radius: 9px 0 0 0;
-        }
-
-        .document-table th:last-child {
-            border-radius: 0 9px 0 0;
-        }
-
-        .document-table td {
-            padding: 18px 15px;
-            border-bottom: 1px solid #F0EBF3;
-            color: var(--text-primary);
-            font-size: 14px;
-            line-height: 1.8;
-            vertical-align: middle;
-        }
-
-        .document-table tbody tr {
-            transition: background .2s ease;
-        }
-
-        .document-table tbody tr:hover {
-            background: #FCF9FD;
-        }
-
-        .document-table tbody tr.row-revision {
-            background: #FFF7FA;
-        }
-
-        .document-table tbody tr.row-revision:hover {
-            background: #FDF1F6;
-        }
-
-        .document-table tbody tr.row-revision td:first-child {
-            box-shadow: inset 4px 0 0 var(--berry);
-        }
-
-        .document-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 33px;
-            height: 33px;
-            border-radius: 9px;
-            background: #F1ECF7;
-            color: var(--purple-dark);
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .document-type {
-            min-width: 155px;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .document-file {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 260px;
-        }
-
-        .document-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 47px;
-            height: 47px;
-            background: linear-gradient(135deg, #F9DCE9, #E9DDF5);
-            border: 1px solid #E9D9EA;
-            border-radius: 11px;
-            color: var(--purple-dark);
-            font-size: 21px;
-        }
-
-        .document-name {
-            max-width: 290px;
-            overflow-wrap: anywhere;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.7;
-        }
-
-        .document-size {
-            margin-top: 5px;
-            color: var(--text-secondary);
-            font-size: 13px;
-        }
-
-        .uploader-name {
-            min-width: 155px;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .uploader-time {
-            margin-top: 4px;
-            color: var(--text-secondary);
-            font-size: 12px;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 9px 12px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .status-pending {
-            background: #F9EED8;
-            color: #805A16;
-        }
-
-        .status-verified {
-            background: #E6F2EA;
-            color: #356B4B;
-        }
-
-        .status-revision {
-            background: #FCEBF0;
-            color: #963F5A;
-        }
-
-        .verification-note {
-            min-width: 195px;
+            gap: 10px;
+            min-width: 210px;
             max-width: 280px;
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.8;
-            white-space: pre-line;
+        }
+
+        .doc-file-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface-tint);
+            color: var(--purple-dark);
+            font-size: 16px;
+        }
+
+        .doc-file-name {
+            color: var(--text-primary);
+            font-size: 13.5px;
+            font-weight: 600;
+            line-height: 1.45;
             overflow-wrap: anywhere;
         }
 
-        .revision-note-box {
-            min-width: 220px;
-            max-width: 300px;
-            padding: 12px 14px;
-            border: 1px solid #EECAD6;
-            border-left: 4px solid var(--berry);
-            border-radius: 10px;
-            background: #FFF3F7;
-            color: #7D334D;
-            font-size: 13px;
-            line-height: 1.7;
+        .doc-file-size {
+            margin-top: 2px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .revision-note-card {
+            min-width: 200px;
+            max-width: 280px;
+            padding: 9px 12px;
+            border: 1px solid #F1C9D8;
+            border-left: 3px solid var(--berry);
+            border-radius: var(--radius-sm);
+            background: #FDF2F6;
+            color: #7D2F4C;
+            font-size: 12.5px;
+            line-height: 1.55;
             overflow-wrap: anywhere;
         }
 
-        .revision-note-header {
+        .revision-note-title {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 5px;
-            color: #963F5A;
+            gap: 5px;
+            margin-bottom: 3px;
+            color: #9A3B62;
             font-size: 12px;
             font-weight: 700;
         }
@@ -567,376 +127,17 @@
         }
 
         .revision-note-meta {
-            margin-top: 6px;
+            margin-top: 5px;
             color: #9B6478;
-            font-size: 11px;
+            font-size: 11.5px;
         }
 
-        .action-reupload {
-            background: linear-gradient(120deg, #B35A8A, #8E4474);
-            border-color: #9E497A;
-            color: #fff;
-        }
-
-        .action-reupload:hover {
-            background: linear-gradient(120deg, #523F77, #67538A);
-            border-color: var(--purple-dark);
-            color: #fff;
-        }
-
-        .modal-revision-box {
-            padding: 14px;
-            background: #FFF3F7;
-            border: 1px solid #EECAD6;
-            border-left: 4px solid var(--berry);
-            border-radius: 10px;
-            color: #7D334D;
-            font-size: 13px;
-            line-height: 1.75;
-            overflow-wrap: anywhere;
-        }
-
-        .modal-revision-text {
-            white-space: pre-line;
-        }
-
-        .action-group {
+        .doc-actions {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 7px;
-            min-width: max-content;
-        }
-
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-height: 38px;
-            padding: 8px 11px;
-            border: 1px solid transparent;
-            border-radius: 9px;
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: .2s ease;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(82,63,119,.08);
-        }
-
-        .action-btn i {
-            font-size: 15px;
-        }
-
-        .action-download {
-            background: #E6F2EA;
-            border-color: #CFE4D6;
-            color: #356B4B;
-            text-decoration: none;
-        }
-
-        .action-download:hover {
-            background: #356B4B;
-            color: #fff;
-        }
-
-        .action-edit {
-            background: #F0EAF7;
-            border-color: #DED1EB;
-            color: var(--purple-dark);
-        }
-
-        .action-edit:hover {
-            background: var(--purple-dark);
-            color: #fff;
-        }
-
-        .action-delete {
-            background: #FCEBF0;
-            border-color: #EECAD6;
-            color: var(--danger);
-        }
-
-        .action-delete:hover {
-            background: var(--danger);
-            color: #fff;
-        }
-
-        .action-verify {
-            background: #E6F2EA;
-            border-color: #CFE4D6;
-            color: #356B4B;
-        }
-
-        .action-verify:hover {
-            background: #356B4B;
-            color: #fff;
-        }
-
-        .action-revision {
-            background: #F9EED8;
-            border-color: #EED9AA;
-            color: #805A16;
-        }
-
-        .action-revision:hover {
-            background: #805A16;
-            color: #fff;
-        }
-
-        .empty-state {
-            padding: 55px 20px;
-            color: var(--text-secondary);
-            text-align: center;
-        }
-
-        .empty-state i {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 75px;
-            height: 75px;
-            margin-bottom: 18px;
-            background: linear-gradient(135deg, #F0EAF7, #F8EAF0);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            color: var(--purple-medium);
-            font-size: 31px;
-        }
-
-        .empty-state h6 {
-            margin-bottom: 9px;
-            color: var(--purple-dark);
-            font-size: 17px;
-            font-weight: 700;
-        }
-
-        .empty-state p {
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .modal-content {
-            overflow: hidden;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(82,63,119,.14);
-        }
-
-        .modal-header {
-            padding: 19px 23px;
-            background: linear-gradient(110deg, #F3EEF8, #F9EDF3);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .modal-title {
-            color: var(--purple-dark);
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .modal-body {
-            padding: 24px;
-        }
-
-        .modal-body p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .modal-footer {
-            padding: 16px 23px 21px;
-            border-top: 1px solid var(--border);
-        }
-
-        .modal .form-label {
-            margin-bottom: 9px;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .modal .form-control,
-        .modal .form-select {
-            min-height: 46px;
-            border-color: #DCD2E7;
-            border-radius: 9px;
-            font-size: 14px;
-        }
-
-        .modal textarea.form-control {
-            min-height: 100px;
-            line-height: 1.8;
-        }
-
-        .modal-footer .btn {
-            min-height: 42px;
-            padding: 9px 16px;
-            border-radius: 9px;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .btn-modal-cancel {
-            border: 1px solid var(--border);
-            background: #fff;
-            color: var(--text-secondary);
-        }
-
-        .btn-modal-cancel:hover {
-            background: #F3EEF8;
-            color: var(--purple-dark);
-        }
-
-        .btn-modal-primary {
-            border: 1px solid var(--purple-dark);
-            background: linear-gradient(120deg, #523F77, #67538A);
-            color: #fff;
-        }
-
-        .btn-modal-primary:hover {
-            background: var(--berry);
-            border-color: var(--berry);
-            color: #fff;
-        }
-
-        .btn-modal-delete {
-            border: 1px solid #A34258;
-            background: #A34258;
-            color: #fff;
-        }
-
-        .btn-modal-delete:hover {
-            background: #873449;
-            color: #fff;
-        }
-
-        .btn-modal-warning {
-            border: 1px solid #A77828;
-            background: #A77828;
-            color: #fff;
-        }
-
-        .btn-modal-warning:hover {
-            background: #805A16;
-            color: #fff;
-        }
-
-        .delete-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 19px;
-            background: linear-gradient(135deg, #FCEBF0, #F4D7E1);
-            border-radius: 20px;
-            color: #A34258;
-            font-size: 30px;
-        }
-
-        .modal-file-box {
-            padding: 14px;
-            background: linear-gradient(135deg, #F3EEF8, #F9EDF3);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--purple-dark);
-            font-size: 14px;
-            line-height: 1.7;
-            overflow-wrap: anywhere;
-        }
-
-        .file-label {
-            margin-bottom: 5px;
-            color: var(--text-secondary);
-            font-size: 13px;
-        }
-
-        @media (max-width: 991px) {
-            .main-content {
-                padding: 27px 23px 35px;
-            }
-
-            .document-card {
-                padding: 22px;
-            }
-
-            .training-banner {
-                padding: 24px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .main-content {
-                margin-left: 0;
-                padding: 22px 15px 32px;
-            }
-
-            .page-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .page-title {
-                font-size: 24px;
-            }
-
-            .page-description {
-                font-size: 14px;
-            }
-
-            .btn-back {
-                align-self: flex-start;
-            }
-
-            .training-banner {
-                padding: 22px 19px;
-            }
-
-            .banner-title {
-                font-size: 20px;
-            }
-
-            .training-banner-decoration {
-                right: -10px;
-                font-size: 120px;
-            }
-
-            .document-card {
-                padding: 19px 16px;
-                border-radius: 14px;
-            }
-
-            .upload-area {
-                padding: 18px;
-            }
-
-            .section-title {
-                font-size: 17px;
-            }
-
-            .document-table {
-                min-width: 1450px;
-            }
-
-            .modal-body {
-                padding: 19px;
-            }
-
-            .modal-header {
-                padding: 16px 19px;
-            }
-
-            .modal-footer {
-                padding: 13px 19px 18px;
-            }
+            gap: 5px;
+            min-width: 190px;
         }
     </style>
 </head>
@@ -965,451 +166,382 @@
     @endphp
 
     @include('layouts.sidebar', [
-        'active' => 'trainings',
-        'pendingUsersCount' => auth()->user()->role?->slug === 'admin'
-            ? \App\Models\User::where('account_status', 'pending')->count()
-            : 0
+        'active' => 'trainings'
     ])
 
-    <main class="main-content">
+    <div class="app-shell">
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="{{ route('dashboard') }}">Dashboard</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ route('trainings.index') }}">Data Kegiatan Pelatihan</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ route('trainings.show', $training) }}">Detail Kegiatan</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    Dokumen Kegiatan
-                </li>
-            </ol>
-        </nav>
+        @include('layouts.topbar', [
+            'breadcrumbs' => [
+                ['label' => 'Dashboard', 'url' => route('dashboard')],
+                ['label' => 'Data Kegiatan Pelatihan', 'url' => route('trainings.index')],
+                ['label' => 'Detail Kegiatan', 'url' => route('trainings.show', $training)],
+                ['label' => 'Dokumen Kegiatan']
+            ]
+        ])
 
-        <div class="page-header">
-            <div>
-                <div class="page-eyebrow">
-                    <i class="bi bi-folder2-open"></i>
-                    PENGELOLAAN DOKUMEN BAPELKES
-                </div>
+        <main class="app-page">
 
-                <h1 class="page-title">Dokumen Kegiatan</h1>
-
-                <p class="page-description">
-                    Kelola tiga dokumen persyaratan yang diperlukan sebelum kegiatan dilaksanakan.
-                </p>
-            </div>
-
-            <a href="{{ route('trainings.show', $training) }}" class="btn-back">
-                <i class="bi bi-arrow-left"></i>
-                Kembali ke Detail
-            </a>
-        </div>
-
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-                <i class="bi bi-check-circle-fill me-2"></i>
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-                <i class="bi bi-exclamation-circle-fill me-2"></i>
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-                <div class="fw-semibold mb-2">
-                    <i class="bi bi-exclamation-circle-fill me-2"></i>
-                    Dokumen belum dapat diproses.
-                </div>
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        <section class="training-banner">
-            <i class="bi bi-folder2-open training-banner-decoration"></i>
-
-            <div class="training-banner-content">
-                <div class="banner-label">
-                    INFORMASI KEGIATAN
-                </div>
-
-                <h2 class="banner-title">
-                    {{ $training->training_name }}
-                </h2>
-
-                <div class="banner-date">
-                    <i class="bi bi-calendar-event"></i>
-
-                    {{ $training->start_date?->format('d/m/Y') ?? '-' }}
-
-                    @if ($training->end_date)
-                        <span>s.d.</span>
-                        {{ $training->end_date->format('d/m/Y') }}
-                    @endif
-                </div>
-            </div>
-        </section>
-
-        <section class="document-card">
-
-            <div class="card-heading">
-                <div class="section-icon">
-                    <i class="bi bi-cloud-arrow-up"></i>
-                </div>
-
+            <div class="app-page-header">
                 <div>
-                    <h5 class="section-title">Upload Dokumen Persyaratan</h5>
-                    <p class="section-description">
-                        Unggah tiga dokumen yang diperlukan untuk proses persetujuan kegiatan.
+                    <div class="app-eyebrow">
+                        <i class="bi bi-folder2-open"></i>
+                        Dokumen Persyaratan Pelatihan
+                    </div>
+                    <h1 class="app-page-title">Dokumen Kegiatan</h1>
+                    <p class="app-page-subtitle">
+                        Kelola dokumen persyaratan (KAK, SK Penyelenggaraan, dan Jadwal Pelatihan) untuk persetujuan Dalmut.
                     </p>
                 </div>
+
+                <a href="{{ route('trainings.show', $training) }}" class="app-btn app-btn-outline">
+                    <i class="bi bi-arrow-left"></i>
+                    Kembali ke Detail
+                </a>
             </div>
 
-            @if ($canUploadDocuments)
-                <div class="upload-area">
-                    <form
-                        action="{{ route('trainings.documents.store', $training) }}"
-                        method="POST"
-                        enctype="multipart/form-data"
-                    >
-                        @csrf
-
-                        <div class="row g-4">
-                            <div class="col-md-5">
-                                <label for="document_type" class="form-label">
-                                    Jenis Dokumen
-                                </label>
-
-                                <select name="document_type" id="document_type" class="form-select" required>
-                                    <option value="">Pilih jenis dokumen</option>
-                                    @foreach ($documentLabels as $typeKey => $typeLabel)
-                                        @php
-                                            $isVerifiedType = in_array($typeKey, $verifiedDocumentTypes, true);
-                                            $isRevisionType = in_array($typeKey, $revisionDocumentTypes, true);
-                                        @endphp
-                                        <option
-                                            value="{{ $typeKey }}"
-                                            @selected(old('document_type') === $typeKey && !$isVerifiedType && !$isRevisionType)
-                                            @disabled($isVerifiedType || $isRevisionType)
-                                        >
-                                            {{ $typeLabel }}@if ($isVerifiedType) (Sudah Terverifikasi)@elseif ($isRevisionType) (Perlu Revisi - gunakan tombol Unggah Ulang)@endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-md-7">
-                                <label for="document_file" class="form-label">
-                                    Pilih File Dokumen
-                                </label>
-
-                                <input
-                                    type="file"
-                                    name="document_file"
-                                    id="document_file"
-                                    class="form-control"
-                                    accept=".pdf,.doc,.docx"
-                                    required
-                                >
-
-                                <small class="file-hint">
-                                    Format yang diperbolehkan: PDF, DOC, atau DOCX. Ukuran maksimal 10 MB.
-                                </small>
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="btn-upload">
-                                    <i class="bi bi-cloud-arrow-up"></i>
-                                    Upload Dokumen
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div class="upload-info">
-                        <i class="bi bi-info-circle-fill"></i>
-                        <div>
-                            Pastikan dokumen yang diunggah adalah KAK, SK Penyelenggara, atau Jadwal Pelatihan.
-                            Dokumen akan diperiksa oleh Admin atau Dalmut. Laporan Penyelenggara dan Evaluasi
-                            diunggah secara terpisah melalui menu Laporan Kegiatan setelah kegiatan selesai.
-                        </div>
-                    </div>
-                </div>
-            @else
-                <div class="upload-info">
-                    <i class="bi bi-info-circle-fill"></i>
-                    <div>
-                        Kamu dapat melihat, mengunduh, dan memeriksa dokumen persyaratan kegiatan.
-                    </div>
+            @if (session('success'))
+                <div class="alert app-alert app-alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle-fill mt-1"></i>
+                    <div>{{ session('success') }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
                 </div>
             @endif
 
-        </section>
+            @if (session('error'))
+                <div class="alert app-alert app-alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-circle-fill mt-1"></i>
+                    <div>{{ session('error') }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
+                </div>
+            @endif
 
-        <section class="document-card">
-
-            <div class="document-list-heading">
-                <div class="card-heading mb-0">
-                    <div class="section-icon lavender">
-                        <i class="bi bi-files"></i>
-                    </div>
-
+            @if ($errors->any())
+                <div class="alert app-alert app-alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-circle-fill mt-1"></i>
                     <div>
-                        <h5 class="section-title">Daftar Dokumen</h5>
-                        <p class="section-description">
-                            Daftar KAK, SK Penyelenggara, dan Jadwal Pelatihan beserta status pemeriksaannya.
-                        </p>
+                        <strong>Dokumen belum dapat diproses.</strong>
+                        <ul class="mb-0 mt-1 ps-3">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
+                </div>
+            @endif
+
+            <section class="training-context-bar">
+                <div class="min-w-0">
+                    <h2 class="training-context-title">{{ $training->training_name }}</h2>
+                    <div class="training-context-meta">
+                        <span>
+                            <i class="bi bi-calendar-event"></i>
+                            {{ $training->start_date?->format('d/m/Y') ?? '-' }}
+                            @if ($training->end_date)
+                                s.d. {{ $training->end_date->format('d/m/Y') }}
+                            @endif
+                        </span>
+                        <span>
+                            <i class="bi bi-building"></i>
+                            {{ $training->organizer ?: '-' }}
+                        </span>
                     </div>
                 </div>
 
-                <span class="document-count">
-                    <i class="bi bi-folder-check"></i>
-                    {{ $preparationDocuments->count() }} dari 3 dokumen
+                <span class="app-badge app-badge-neutral">
+                    <i class="bi bi-files"></i>
+                    {{ $preparationDocuments->count() }} dari 3 dokumen diunggah
                 </span>
-            </div>
+            </section>
 
-            <div class="table-responsive">
-                <table class="table table-hover document-table">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Jenis Dokumen</th>
-                            <th>Nama File</th>
-                            <th>Diunggah Oleh</th>
-                            <th>Status Pemeriksaan</th>
-                            <th>Catatan Pemeriksaan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
+            @if ($canUploadDocuments)
+                <section class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-header-left">
+                            <span class="app-icon-box berry">
+                                <i class="bi bi-cloud-arrow-up"></i>
+                            </span>
+                            <div>
+                                <h5 class="app-card-title">Unggah Dokumen Persyaratan</h5>
+                                <p class="app-card-subtitle">Unggah KAK, SK Penyelenggaraan, atau Jadwal Pelatihan sebelum kegiatan disetujui.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <tbody>
-                        @forelse ($preparationDocuments as $document)
-                            @php
-                                $documentTypeLabel = $documentLabels[$document->document_type] ?? $document->document_type;
-                                $uploadedAt = $document->updated_at ?? $document->created_at;
-                            @endphp
-                            <tr class="{{ $document->verification_status === 'revision' ? 'row-revision' : '' }}">
-                                <td>
-                                    <span class="document-number">
-                                        {{ $loop->iteration }}
-                                    </span>
-                                </td>
+                    <div class="app-card-body">
+                        <div class="upload-panel">
+                            <form
+                                action="{{ route('trainings.documents.store', $training) }}"
+                                method="POST"
+                                enctype="multipart/form-data"
+                            >
+                                @csrf
 
-                                <td>
-                                    <div class="document-type">
-                                        {{ $documentTypeLabel }}
+                                <div class="row g-3 align-items-end">
+                                    <div class="col-12 col-md-4">
+                                        <label for="document_type" class="app-form-label">
+                                            Jenis Dokumen <span class="app-required">*</span>
+                                        </label>
+
+                                        <select name="document_type" id="document_type" class="form-select" required>
+                                            <option value="">Pilih jenis dokumen</option>
+                                            @foreach ($documentLabels as $typeKey => $typeLabel)
+                                                @php
+                                                    $isVerifiedType = in_array($typeKey, $verifiedDocumentTypes, true);
+                                                    $isRevisionType = in_array($typeKey, $revisionDocumentTypes, true);
+                                                @endphp
+                                                <option
+                                                    value="{{ $typeKey }}"
+                                                    @selected(old('document_type') === $typeKey && !$isVerifiedType && !$isRevisionType)
+                                                    @disabled($isVerifiedType || $isRevisionType)
+                                                >
+                                                    {{ $typeLabel }}@if ($isVerifiedType) (Sudah Terverifikasi)@elseif ($isRevisionType) (Perlu Revisi — gunakan tombol Unggah Ulang)@endif
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                </td>
 
-                                <td>
-                                    <div class="document-file">
-                                        <div class="document-icon">
-                                            <i class="bi bi-file-earmark-text"></i>
-                                        </div>
+                                    <div class="col-12 col-md-5">
+                                        <label for="document_file" class="app-form-label">
+                                            Pilih File Dokumen <span class="app-required">*</span>
+                                        </label>
 
-                                        <div>
-                                            <div class="document-name">
-                                                {{ $document->original_name }}
+                                        <input
+                                            type="file"
+                                            name="document_file"
+                                            id="document_file"
+                                            class="form-control"
+                                            accept=".pdf,.doc,.docx"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="col-12 col-md-3">
+                                        <button type="submit" class="app-btn app-btn-primary w-100" style="min-height: 42px;">
+                                            <i class="bi bi-cloud-arrow-up"></i>
+                                            Unggah Dokumen
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <small class="app-field-hint mt-2">
+                                    Format yang diperbolehkan: PDF, DOC, atau DOCX (maksimal 10 MB). Laporan Penyelenggara dan Evaluasi diunggah melalui menu Laporan Kegiatan setelah kegiatan selesai.
+                                </small>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            @endif
+
+            <section class="app-card mb-0">
+                <div class="app-card-header">
+                    <div class="app-card-header-left">
+                        <span class="app-icon-box">
+                            <i class="bi bi-files"></i>
+                        </span>
+                        <div>
+                            <h5 class="app-card-title">Daftar Dokumen Persyaratan</h5>
+                            <p class="app-card-subtitle">Status pemeriksaan dan catatan verifikasi untuk setiap dokumen yang diunggah.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card-body">
+                    <div class="app-table-wrap">
+                        <table class="table app-table" style="min-width: 1020px;">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Jenis Dokumen</th>
+                                    <th>Nama File</th>
+                                    <th>Pengunggah</th>
+                                    <th>Status</th>
+                                    <th>Catatan Pemeriksaan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @forelse ($preparationDocuments as $document)
+                                    @php
+                                        $documentTypeLabel = $documentLabels[$document->document_type] ?? $document->document_type;
+                                        $uploadedAt = $document->updated_at ?? $document->created_at;
+                                    @endphp
+                                    <tr class="{{ $document->verification_status === 'revision' ? 'doc-row-revision' : '' }}">
+                                        <td>
+                                            <span class="app-row-number">{{ $loop->iteration }}</span>
+                                        </td>
+
+                                        <td class="fw-semibold" style="color: var(--purple-dark); white-space: nowrap;">
+                                            {{ $documentTypeLabel }}
+                                        </td>
+
+                                        <td>
+                                            <div class="doc-file-cell">
+                                                <span class="doc-file-icon">
+                                                    <i class="bi bi-file-earmark-text"></i>
+                                                </span>
+                                                <div class="min-w-0">
+                                                    <div class="doc-file-name">{{ $document->original_name }}</div>
+                                                    <div class="doc-file-size">
+                                                        {{ $document->file_size ? number_format($document->file_size / 1024, 0, ',', '.') . ' KB' : '-' }}
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </td>
 
-                                            <div class="document-size">
-                                                {{ $document->file_size ? number_format($document->file_size / 1024, 0, ',', '.') . ' KB' : '-' }}
+                                        <td class="text-nowrap">
+                                            <div class="fw-medium" style="font-size: 13px;">{{ $document->uploader?->name ?? '-' }}</div>
+                                            <div class="doc-file-size">
+                                                <i class="bi bi-clock me-1"></i>{{ $uploadedAt?->format('d/m/Y H:i') ?? '-' }}
                                             </div>
-                                        </div>
-                                    </div>
-                                </td>
+                                        </td>
 
-                                <td>
-                                    <div class="uploader-name">
-                                        <i class="bi bi-person-circle me-1" style="color: var(--purple-medium);"></i>
-                                        {{ $document->uploader?->name ?? '-' }}
-                                    </div>
-                                    <div class="uploader-time">
-                                        <i class="bi bi-clock me-1"></i>
-                                        {{ $uploadedAt?->format('d/m/Y H:i') ?? '-' }}
-                                    </div>
-                                </td>
+                                        <td>
+                                            @if ($document->verification_status === 'verified')
+                                                <span class="app-badge app-badge-success">
+                                                    <i class="bi bi-check-circle-fill"></i>
+                                                    Terverifikasi
+                                                </span>
+                                            @elseif ($document->verification_status === 'revision')
+                                                <span class="app-badge app-badge-revision">
+                                                    <i class="bi bi-arrow-repeat"></i>
+                                                    Perlu Revisi
+                                                </span>
+                                            @else
+                                                <span class="app-badge app-badge-warning">
+                                                    <i class="bi bi-clock-fill"></i>
+                                                    Menunggu Pemeriksaan
+                                                </span>
+                                            @endif
+                                        </td>
 
-                                <td>
-                                    @if ($document->verification_status === 'verified')
-                                        <span class="status-badge status-verified">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                            Terverifikasi
-                                        </span>
-                                    @elseif ($document->verification_status === 'revision')
-                                        <span class="status-badge status-revision">
-                                            <i class="bi bi-arrow-repeat"></i>
-                                            Perlu Revisi
-                                        </span>
-                                    @else
-                                        <span class="status-badge status-pending">
-                                            <i class="bi bi-clock-fill"></i>
-                                            Menunggu Pemeriksaan
-                                        </span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    @if ($document->verification_status === 'revision')
-                                        <div class="revision-note-box">
-                                            <div class="revision-note-header">
-                                                <i class="bi bi-exclamation-circle-fill"></i>
-                                                Catatan Revisi Dalmut
-                                            </div>
-                                            <div class="revision-note-text">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
-                                            @if ($document->verifier || $document->verified_at)
-                                                <div class="revision-note-meta">
-                                                    {{ $document->verifier?->name ?? 'Dalmut' }}@if ($document->verified_at) · {{ $document->verified_at->format('d/m/Y H:i') }}@endif
+                                        <td>
+                                            @if ($document->verification_status === 'revision')
+                                                <div class="revision-note-card">
+                                                    <div class="revision-note-title">
+                                                        <i class="bi bi-exclamation-circle-fill"></i>
+                                                        Catatan Revisi Dalmut
+                                                    </div>
+                                                    <div class="revision-note-text">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
+                                                    @if ($document->verifier || $document->verified_at)
+                                                        <div class="revision-note-meta">
+                                                            {{ $document->verifier?->name ?? 'Dalmut' }}@if ($document->verified_at) · {{ $document->verified_at->format('d/m/Y H:i') }}@endif
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @else
+                                                <div class="text-secondary" style="font-size: 13px; max-width: 260px; white-space: pre-line; overflow-wrap: anywhere;">
+                                                    {{ $document->verification_notes ?: '-' }}
                                                 </div>
                                             @endif
-                                        </div>
-                                    @else
-                                        <div class="verification-note">
-                                            {{ $document->verification_notes ?: '-' }}
-                                        </div>
-                                    @endif
-                                </td>
+                                        </td>
 
-                                <td>
-                                    <div class="action-group">
+                                        <td>
+                                            <div class="doc-actions">
+                                                <a
+                                                    href="{{ route('training-documents.download', $document) }}"
+                                                    class="app-btn app-btn-soft-blue app-btn-sm"
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                >
+                                                    <i class="bi bi-download"></i>
+                                                    Unduh
+                                                </a>
 
-                                        <a
-                                            href="{{ route('training-documents.download', $document) }}"
-                                            class="action-btn action-download"
-                                            target="_blank"
-                                            rel="noopener"
-                                        >
-                                            <i class="bi bi-download"></i>
-                                            Download
-                                        </a>
+                                                @if ($canUploadDocuments && $document->verification_status === 'revision')
+                                                    <button
+                                                        type="button"
+                                                        class="app-btn app-btn-berry app-btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#reuploadDocument{{ $document->id }}"
+                                                    >
+                                                        <i class="bi bi-cloud-arrow-up"></i>
+                                                        Unggah Ulang
+                                                    </button>
+                                                @endif
 
-                                        @if (
-                                            $canUploadDocuments
-                                            && $document->verification_status === 'revision'
-                                        )
-                                            <button
-                                                type="button"
-                                                class="action-btn action-reupload"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#reuploadDocument{{ $document->id }}"
-                                            >
-                                                <i class="bi bi-cloud-arrow-up"></i>
-                                                Unggah Ulang
-                                            </button>
-                                        @endif
+                                                @if ($canUploadDocuments && $document->verification_status === 'pending')
+                                                    <button
+                                                        type="button"
+                                                        class="app-btn app-btn-outline app-btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#editDocument{{ $document->id }}"
+                                                        title="Ganti file"
+                                                    >
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
 
-                                        @if (
-                                            $canUploadDocuments
-                                            && $document->verification_status === 'pending'
-                                        )
-                                            <button
-                                                type="button"
-                                                class="action-btn action-edit"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editDocument{{ $document->id }}"
-                                            >
-                                                <i class="bi bi-pencil"></i>
-                                                Edit
-                                            </button>
+                                                    <button
+                                                        type="button"
+                                                        class="app-btn app-btn-soft-danger app-btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteDocument{{ $document->id }}"
+                                                        title="Hapus dokumen"
+                                                    >
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                @endif
 
-                                            <button
-                                                type="button"
-                                                class="action-btn action-delete"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteDocument{{ $document->id }}"
-                                            >
-                                                <i class="bi bi-trash"></i>
-                                                Hapus
-                                            </button>
-                                        @endif
+                                                @if ($canReviewDocuments && $document->verification_status === 'pending')
+                                                    <button
+                                                        type="button"
+                                                        class="app-btn app-btn-soft-success app-btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#verifyDocument{{ $document->id }}"
+                                                    >
+                                                        <i class="bi bi-check-circle"></i>
+                                                        Verifikasi
+                                                    </button>
 
-                                        @if (
-                                            $canReviewDocuments
-                                            && $document->verification_status === 'pending'
-                                        )
-                                            <button
-                                                type="button"
-                                                class="action-btn action-verify"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#verifyDocument{{ $document->id }}"
-                                            >
-                                                <i class="bi bi-check-circle"></i>
-                                                Verifikasi
-                                            </button>
+                                                    <button
+                                                        type="button"
+                                                        class="app-btn app-btn-soft-warning app-btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#revisionDocument{{ $document->id }}"
+                                                    >
+                                                        <i class="bi bi-arrow-repeat"></i>
+                                                        Minta Revisi
+                                                    </button>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="app-empty-state">
+                                                <div class="app-empty-icon">
+                                                    <i class="bi bi-folder2-open"></i>
+                                                </div>
+                                                <h6>Belum Ada Dokumen Persyaratan</h6>
+                                                <p>Dokumen KAK, SK Penyelenggaraan, dan Jadwal Pelatihan yang diunggah akan tampil di tabel ini.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
 
-                                            <button
-                                                type="button"
-                                                class="action-btn action-revision"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#revisionDocument{{ $document->id }}"
-                                            >
-                                                <i class="bi bi-arrow-repeat"></i>
-                                                Minta Revisi
-                                            </button>
-                                        @endif
+        </main>
 
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7">
-                                    <div class="empty-state">
-                                        <i class="bi bi-folder2-open"></i>
-                                        <h6>Belum Ada Dokumen</h6>
-                                        <p class="mb-0">
-                                            Dokumen yang diunggah untuk kegiatan ini akan muncul di sini.
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-
-        </section>
-
-        <footer class="text-center py-3" style="color: var(--text-secondary); font-size: 13px;">
-            © {{ date('Y') }} Ruang Pengendalian Mutu Bapelkes
-            <span class="mx-1">·</span>
-            Sistem Informasi Internal
+        <footer class="app-footer">
+            © {{ date('Y') }} Ruang Pengendalian Mutu Bapelkes · Sistem Informasi Internal
         </footer>
 
-    </main>
+    </div>
 
     @foreach ($preparationDocuments as $document)
         @php
             $documentTypeLabel = $documentLabels[$document->document_type] ?? $document->document_type;
         @endphp
 
-        @if (
-            $canUploadDocuments
-            && $document->verification_status === 'revision'
-        )
-            <div
-                class="modal fade"
-                id="reuploadDocument{{ $document->id }}"
-                tabindex="-1"
-                aria-labelledby="reuploadDocumentLabel{{ $document->id }}"
-                aria-hidden="true"
-            >
+        @if ($canUploadDocuments && $document->verification_status === 'revision')
+            <div class="modal fade" id="reuploadDocument{{ $document->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <form
@@ -1421,8 +553,8 @@
                             @method('PATCH')
 
                             <div class="modal-header">
-                                <h5 class="modal-title" id="reuploadDocumentLabel{{ $document->id }}">
-                                    <i class="bi bi-cloud-arrow-up me-2"></i>
+                                <h5 class="modal-title">
+                                    <i class="bi bi-cloud-arrow-up me-2" style="color: var(--berry);"></i>
                                     Unggah Ulang Dokumen
                                 </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
@@ -1430,32 +562,27 @@
 
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label class="form-label">Jenis Dokumen</label>
-                                    <div class="modal-file-box fw-semibold">
-                                        {{ $documentTypeLabel }}
-                                    </div>
+                                    <div class="app-form-label">Jenis Dokumen</div>
+                                    <div class="modal-highlight-box">{{ $documentTypeLabel }}</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">File Sebelumnya</label>
-                                    <div class="modal-file-box">
-                                        <i class="bi bi-file-earmark-text me-2"></i>
+                                    <div class="app-form-label">File Sebelumnya</div>
+                                    <div class="modal-highlight-box fw-normal">
+                                        <i class="bi bi-file-earmark-text me-1"></i>
                                         {{ $document->original_name }}
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Catatan Revisi dari Dalmut</label>
-                                    <div class="modal-revision-box">
-                                        <div class="modal-revision-text">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
-                                    </div>
+                                    <div class="app-form-label">Catatan Revisi dari Dalmut</div>
+                                    <div class="modal-revision-box">{{ $document->verification_notes ?: 'Dokumen diminta untuk diperbaiki.' }}</div>
                                 </div>
 
-                                <div class="mb-2">
-                                    <label for="reupload_file_{{ $document->id }}" class="form-label">
-                                        Pilih File Pengganti <span class="text-danger">*</span>
+                                <div>
+                                    <label for="reupload_file_{{ $document->id }}" class="app-form-label">
+                                        Pilih File Pengganti <span class="app-required">*</span>
                                     </label>
-
                                     <input
                                         type="file"
                                         name="document_file"
@@ -1464,20 +591,16 @@
                                         accept=".pdf,.doc,.docx"
                                         required
                                     >
-
-                                    <small class="file-hint">
-                                        File baru akan menggantikan dokumen lama dan status otomatis kembali menjadi Menunggu Pemeriksaan. Format: PDF, DOC, atau DOCX (maksimal 10 MB).
+                                    <small class="app-field-hint">
+                                        File baru menggantikan dokumen lama dan status otomatis kembali menjadi Menunggu Pemeriksaan. Format: PDF, DOC, DOCX (maks. 10 MB).
                                     </small>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-modal-cancel" data-bs-dismiss="modal">
-                                    Batal
-                                </button>
-
-                                <button type="submit" class="btn btn-modal-primary">
-                                    <i class="bi bi-cloud-arrow-up me-1"></i>
+                                <button type="button" class="app-btn app-btn-outline" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="app-btn app-btn-berry">
+                                    <i class="bi bi-cloud-arrow-up"></i>
                                     Unggah Ulang
                                 </button>
                             </div>
@@ -1487,17 +610,8 @@
             </div>
         @endif
 
-        @if (
-            $canUploadDocuments
-            && $document->verification_status === 'pending'
-        )
-            <div
-                class="modal fade"
-                id="editDocument{{ $document->id }}"
-                tabindex="-1"
-                aria-labelledby="editDocumentLabel{{ $document->id }}"
-                aria-hidden="true"
-            >
+        @if ($canUploadDocuments && $document->verification_status === 'pending')
+            <div class="modal fade" id="editDocument{{ $document->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <form
@@ -1509,34 +623,31 @@
                             @method('PUT')
 
                             <div class="modal-header">
-                                <h5 class="modal-title" id="editDocumentLabel{{ $document->id }}">
+                                <h5 class="modal-title">
                                     <i class="bi bi-pencil-square me-2"></i>
-                                    Edit Dokumen
+                                    Perbarui File Dokumen
                                 </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                             </div>
 
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label class="form-label">Jenis Dokumen</label>
-                                    <div class="modal-file-box fw-semibold">
-                                        {{ $documentTypeLabel }}
-                                    </div>
+                                    <div class="app-form-label">Jenis Dokumen</div>
+                                    <div class="modal-highlight-box">{{ $documentTypeLabel }}</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">File Saat Ini</label>
-                                    <div class="modal-file-box">
-                                        <i class="bi bi-file-earmark-text me-2"></i>
+                                    <div class="app-form-label">File Saat Ini</div>
+                                    <div class="modal-highlight-box fw-normal">
+                                        <i class="bi bi-file-earmark-text me-1"></i>
                                         {{ $document->original_name }}
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="document_file_{{ $document->id }}" class="form-label">
-                                        Ganti File <span class="text-danger">*</span>
+                                <div>
+                                    <label for="document_file_{{ $document->id }}" class="app-form-label">
+                                        Pilih File Pengganti <span class="app-required">*</span>
                                     </label>
-
                                     <input
                                         type="file"
                                         name="document_file"
@@ -1545,20 +656,14 @@
                                         accept=".pdf,.doc,.docx"
                                         required
                                     >
-
-                                    <small class="file-hint">
-                                        Format yang diperbolehkan: PDF, DOC, atau DOCX. Maksimal 10 MB.
-                                    </small>
+                                    <small class="app-field-hint">Format: PDF, DOC, atau DOCX (maksimal 10 MB).</small>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-modal-cancel" data-bs-dismiss="modal">
-                                    Batal
-                                </button>
-
-                                <button type="submit" class="btn btn-modal-primary">
-                                    <i class="bi bi-save me-1"></i>
+                                <button type="button" class="app-btn app-btn-outline" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="app-btn app-btn-primary">
+                                    <i class="bi bi-save"></i>
                                     Simpan Perubahan
                                 </button>
                             </div>
@@ -1567,206 +672,141 @@
                 </div>
             </div>
 
-            <div
-                class="modal fade"
-                id="deleteDocument{{ $document->id }}"
-                tabindex="-1"
-                aria-labelledby="deleteDocumentLabel{{ $document->id }}"
-                aria-hidden="true"
-            >
+            <div class="modal fade" id="deleteDocument{{ $document->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteDocumentLabel{{ $document->id }}">
-                                <i class="bi bi-shield-exclamation me-2"></i>
-                                Konfirmasi Hapus
+                            <h5 class="modal-title">
+                                <i class="bi bi-trash3 me-2" style="color: #A33753;"></i>
+                                Konfirmasi Hapus Dokumen
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                         </div>
 
-                        <div class="modal-body text-center">
-                            <div class="delete-icon">
-                                <i class="bi bi-trash3"></i>
+                        <div class="modal-body">
+                            <p class="text-secondary mb-3">Apakah Anda yakin ingin menghapus dokumen berikut?</p>
+                            <div class="modal-highlight-box mb-3">
+                                <i class="bi bi-file-earmark-text me-1"></i>
+                                {{ $document->original_name }}
                             </div>
-
-                            <h5 class="fw-bold mb-3" style="color: var(--purple-dark);">
-                                Yakin ingin menghapus dokumen ini?
-                            </h5>
-
-                            <p>Dokumen yang akan dihapus:</p>
-
-                            <div class="modal-file-box mb-3 text-start">
-                                <i class="bi bi-file-earmark-text me-2"></i>
-                                <span class="fw-semibold">{{ $document->original_name }}</span>
-                            </div>
-
-                            <p class="mb-0">
-                                Dokumen yang sudah dihapus tidak dapat dikembalikan.
+                            <p class="text-secondary mb-0" style="font-size: 12.5px;">
+                                Dokumen yang telah dihapus tidak dapat dikembalikan.
                             </p>
                         </div>
 
-                        <div class="modal-footer justify-content-center">
-                            <button
-                                type="button"
-                                class="btn btn-modal-cancel"
-                                data-bs-dismiss="modal"
-                            >
-                                Batal
-                            </button>
-
-                            <form
-                                action="{{ route('training-documents.destroy', $document) }}"
-                                method="POST"
-                            >
+                        <div class="modal-footer">
+                            <button type="button" class="app-btn app-btn-outline" data-bs-dismiss="modal">Batal</button>
+                            <form action="{{ route('training-documents.destroy', $document) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-
-                                <button type="submit" class="btn btn-modal-delete">
-                                    <i class="bi bi-trash me-1"></i>
+                                <button type="submit" class="app-btn app-btn-danger">
+                                    <i class="bi bi-trash3"></i>
                                     Ya, Hapus
                                 </button>
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
+        @if ($canReviewDocuments && $document->verification_status === 'pending')
+            <div class="modal fade" id="verifyDocument{{ $document->id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <form action="{{ route('training-documents.verify', $document) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="bi bi-check-circle me-2" style="color: #256041;"></i>
+                                    Verifikasi Dokumen
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p class="text-secondary mb-3">Pastikan isi dokumen telah diperiksa sebelum memberikan status terverifikasi.</p>
+                                <div class="modal-highlight-box mb-3">
+                                    <div class="text-secondary fw-normal" style="font-size: 12px;">{{ $documentTypeLabel }}</div>
+                                    {{ $document->original_name }}
+                                </div>
+
+                                <label for="verification_notes_{{ $document->id }}" class="app-form-label">
+                                    Catatan Pemeriksaan (Opsional)
+                                </label>
+                                <textarea
+                                    name="verification_notes"
+                                    id="verification_notes_{{ $document->id }}"
+                                    class="form-control"
+                                    rows="3"
+                                    maxlength="2000"
+                                    placeholder="Tuliskan catatan pemeriksaan jika diperlukan..."
+                                ></textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="app-btn app-btn-outline" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="app-btn app-btn-success">
+                                    <i class="bi bi-check-circle"></i>
+                                    Ya, Verifikasi
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="revisionDocument{{ $document->id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <form action="{{ route('training-documents.request-revision', $document) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="bi bi-arrow-repeat me-2" style="color: var(--berry);"></i>
+                                    Permintaan Revisi Dokumen
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p class="text-secondary mb-3">Jelaskan bagian dokumen yang perlu diperbaiki oleh Penglat.</p>
+                                <div class="modal-highlight-box mb-3">
+                                    <div class="text-secondary fw-normal" style="font-size: 12px;">{{ $documentTypeLabel }}</div>
+                                    {{ $document->original_name }}
+                                </div>
+
+                                <label for="revision_notes_{{ $document->id }}" class="app-form-label">
+                                    Catatan Revisi <span class="app-required">*</span>
+                                </label>
+                                <textarea
+                                    name="verification_notes"
+                                    id="revision_notes_{{ $document->id }}"
+                                    class="form-control"
+                                    rows="4"
+                                    maxlength="2000"
+                                    required
+                                    placeholder="Tuliskan poin perbaikan yang dibutuhkan..."
+                                ></textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="app-btn app-btn-outline" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="app-btn app-btn-warning">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                    Kirim Permintaan Revisi
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         @endif
     @endforeach
-
-    @if ($canReviewDocuments)
-        @foreach ($preparationDocuments as $document)
-            @if ($document->verification_status === 'pending')
-                <div
-                    class="modal fade"
-                    id="verifyDocument{{ $document->id }}"
-                    tabindex="-1"
-                    aria-labelledby="verifyDocumentLabel{{ $document->id }}"
-                    aria-hidden="true"
-                >
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <form
-                                action="{{ route('training-documents.verify', $document) }}"
-                                method="POST"
-                            >
-                                @csrf
-                                @method('PATCH')
-
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="verifyDocumentLabel{{ $document->id }}">
-                                        <i class="bi bi-check-circle me-2"></i>
-                                        Verifikasi Dokumen
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <p>
-                                        Pastikan dokumen sudah diperiksa sebelum diverifikasi.
-                                    </p>
-
-                                    <div class="modal-file-box mb-3">
-                                        <div class="file-label">Nama File</div>
-                                        <div class="fw-semibold">{{ $document->original_name }}</div>
-                                    </div>
-
-                                    <label for="verification_notes_{{ $document->id }}" class="form-label">
-                                        Catatan Pemeriksaan (Opsional)
-                                    </label>
-
-                                    <textarea
-                                        name="verification_notes"
-                                        id="verification_notes_{{ $document->id }}"
-                                        class="form-control"
-                                        rows="3"
-                                        maxlength="2000"
-                                        placeholder="Tuliskan catatan pemeriksaan jika diperlukan"
-                                    ></textarea>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-modal-cancel" data-bs-dismiss="modal">
-                                        Batal
-                                    </button>
-
-                                    <button type="submit" class="btn btn-modal-primary">
-                                        <i class="bi bi-check-circle me-1"></i>
-                                        Ya, Verifikasi
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="modal fade"
-                    id="revisionDocument{{ $document->id }}"
-                    tabindex="-1"
-                    aria-labelledby="revisionDocumentLabel{{ $document->id }}"
-                    aria-hidden="true"
-                >
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <form
-                                action="{{ route('training-documents.request-revision', $document) }}"
-                                method="POST"
-                            >
-                                @csrf
-                                @method('PATCH')
-
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="revisionDocumentLabel{{ $document->id }}">
-                                        <i class="bi bi-arrow-repeat me-2"></i>
-                                        Permintaan Revisi
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <p>
-                                        Tuliskan bagian yang perlu diperbaiki oleh Penglat.
-                                    </p>
-
-                                    <div class="modal-file-box mb-3">
-                                        <div class="file-label">Nama File</div>
-                                        <div class="fw-semibold">{{ $document->original_name }}</div>
-                                    </div>
-
-                                    <label for="revision_notes_{{ $document->id }}" class="form-label">
-                                        Catatan Revisi <span class="text-danger">*</span>
-                                    </label>
-
-                                    <textarea
-                                        name="verification_notes"
-                                        id="revision_notes_{{ $document->id }}"
-                                        class="form-control"
-                                        rows="4"
-                                        maxlength="2000"
-                                        required
-                                        placeholder="Jelaskan bagian dokumen yang harus diperbaiki"
-                                    ></textarea>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-modal-cancel" data-bs-dismiss="modal">
-                                        Batal
-                                    </button>
-
-                                    <button type="submit" class="btn btn-modal-warning">
-                                        <i class="bi bi-arrow-repeat me-1"></i>
-                                        Kirim Revisi
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            @endif
-        @endforeach
-    @endif
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

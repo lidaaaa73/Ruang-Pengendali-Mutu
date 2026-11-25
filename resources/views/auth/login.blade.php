@@ -3,240 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Ruang Pengendalian Mutu Bapelkes</title>
+    <title>Masuk | Ruang Pengendalian Mutu Bapelkes</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/bapelkes-theme.css') }}" rel="stylesheet">
 
     <style>
-        :root {
-            --purple-dark: #523F77;
-            --purple-medium: #67538A;
-            --berry: #B35A8A;
-            --pink: #F6B7C7;
-            --lavender: #B6A5CE;
-            --periwinkle: #7880AE;
-            --powder-blue: #A3BBD7;
-            --background: #F8F6FA;
-            --surface: #FFFFFF;
-            --border: #E9E3EF;
-            --text-primary: #352D40;
-            --text-secondary: #71697B;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
+        .auth-wrapper {
             min-height: 100vh;
-            background:
-                radial-gradient(circle at 5% 10%, rgba(182,165,206,.19), transparent 30%),
-                radial-gradient(circle at 95% 90%, rgba(246,183,199,.2), transparent 30%),
-                var(--background);
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .login-wrapper {
-            min-height: 100vh;
-        }
-
-        .login-panel {
-            width: 100%;
-            max-width: 1000px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,.8);
-            border-radius: 22px;
-            background: #fff;
-            box-shadow: 0 18px 55px rgba(82,63,119,.12);
-        }
-
-        .login-brand {
-            position: relative;
-            isolation: isolate;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100%;
-            padding: 48px 38px;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 100% 0%, rgba(246,183,199,.3), transparent 38%),
-                linear-gradient(145deg, #523F77 0%, #67538A 62%, #B35A8A 115%);
-            color: #fff;
-        }
-
-        .login-brand::before {
-            position: absolute;
-            z-index: -1;
-            right: -85px;
-            bottom: -105px;
-            width: 290px;
-            height: 290px;
-            border: 1px solid rgba(255,255,255,.15);
-            border-radius: 50%;
-            content: "";
-        }
-
-        .login-brand::after {
-            position: absolute;
-            z-index: -1;
-            right: -45px;
-            bottom: -65px;
-            width: 210px;
-            height: 210px;
-            border: 1px solid rgba(255,255,255,.13);
-            border-radius: 50%;
-            content: "";
-        }
-
-        .brand-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 90px;
-            height: 90px;
-            margin-bottom: 28px;
-            overflow: hidden;
-            border: 2px solid rgba(255,255,255,.65);
-            border-radius: 18px;
-            background: rgba(255,255,255,.15);
-            box-shadow: 0 7px 20px rgba(36,22,59,.18);
+            padding: 24px 16px;
+            background: var(--bg-canvas);
         }
 
-        .profil-bapelkes {
+        .auth-panel {
+            width: 100%;
+            max-width: 940px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--surface);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .auth-brand {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding: 40px 34px;
+            background: linear-gradient(160deg, #523F77 0%, #443365 100%);
+            border-top: 4px solid var(--berry);
+            color: #FFFFFF;
+        }
+
+        .auth-logo {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.45);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .auth-logo img {
             display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .brand-label {
-            margin-bottom: 12px;
-            color: #F6DCE7;
-            font-size: 13px;
+        .auth-brand-eyebrow {
+            margin: 0 0 8px;
+            color: var(--pink);
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .login-brand h2 {
-            max-width: 350px;
-            margin-bottom: 17px;
-            color: #fff;
-            font-size: 28px;
+        .auth-brand h2 {
+            margin: 0 0 12px;
+            color: #FFFFFF;
+            font-size: 24px;
             font-weight: 700;
-            line-height: 1.4;
+            line-height: 1.35;
         }
 
-        .brand-description {
-            margin-bottom: 24px;
-            color: #EFE5F2;
-            font-size: 14px;
-            line-height: 1.9;
+        .auth-brand p {
+            margin: 0;
+            color: #E3DAF0;
+            font-size: 13.5px;
+            line-height: 1.75;
         }
 
-        .brand-footer {
+        .auth-brand-footer {
+            margin-top: 32px;
             padding-top: 16px;
-            border-top: 1px solid rgba(255,255,255,.25);
-            color: #E5D9EB;
+            border-top: 1px solid rgba(255, 255, 255, 0.16);
+            color: #D2C6E5;
             font-size: 12px;
         }
 
-        .brand-decoration {
-            position: absolute;
-            top: 45px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            opacity: .13;
+        .auth-form-pane {
+            padding: 40px 38px;
         }
 
-        .login-form {
-            padding: 48px 42px;
+        .auth-form-heading {
+            margin-bottom: 24px;
         }
 
-        .form-heading {
-            margin-bottom: 29px;
-        }
-
-        .form-heading h3 {
-            margin-bottom: 9px;
+        .auth-form-heading h1 {
+            margin: 0 0 6px;
             color: var(--purple-dark);
-            font-size: 27px;
+            font-size: 22px;
             font-weight: 700;
         }
 
-        .form-heading p {
+        .auth-form-heading p {
             margin: 0;
             color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.8;
+            font-size: 13.5px;
         }
 
-        .form-label {
-            margin-bottom: 9px;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 600;
+        .password-toggle-btn {
+            border: 1px solid var(--border-strong);
+            border-left: 0;
+            background: var(--surface-subtle);
+            color: var(--purple-medium);
+            min-width: 44px;
         }
 
-        .form-control {
-            min-height: 49px;
-            padding: 12px 14px;
-            border: 1px solid #DCD2E7;
-            border-radius: 10px;
-            background: #FCFAFD;
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 14px;
+        .password-toggle-btn:hover {
+            background: var(--surface-tint);
+            color: var(--purple-dark);
         }
 
-        .form-control::placeholder {
-            color: #A096AC;
-        }
-
-        .form-control:focus {
-            border-color: var(--berry);
-            background: #fff;
-            box-shadow: 0 0 0 .2rem rgba(179,90,138,.12);
-        }
-
-        .password-input {
-            border-radius: 10px 0 0 10px !important;
-        }
-
-        .toggle-password {
+        .auth-divider {
             display: flex;
             align-items: center;
-            justify-content: center;
-            min-width: 50px;
-            border: 1px solid #DCD2E7;
-            border-radius: 0 10px 10px 0 !important;
-            background: #fff;
-            color: var(--purple-medium);
-            transition: .2s ease;
+            gap: 12px;
+            margin: 22px 0 16px;
+            color: var(--text-muted);
+            font-size: 12px;
         }
 
-        .toggle-password:hover {
-            background: #F3EEF8;
-            color: var(--berry);
+        .auth-divider::before,
+        .auth-divider::after {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            content: "";
         }
 
-        .toggle-password:focus {
-            border-color: var(--berry);
-            box-shadow: 0 0 0 .2rem rgba(179,90,138,.12);
-            z-index: 3;
+        .auth-register-box {
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--surface-subtle);
+            text-align: center;
         }
 
-        .form-check-input {
-            width: 17px;
-            height: 17px;
-            margin-top: .2rem;
-            border-color: #CBBED9;
-            cursor: pointer;
+        .auth-register-box p {
+            margin: 0 0 10px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .auth-register-note {
+            margin-top: 10px;
+            color: var(--text-muted);
+            font-size: 12px;
         }
 
         .form-check-input:checked {
@@ -244,179 +166,10 @@
             background-color: var(--purple-dark);
         }
 
-        .form-check-input:focus {
-            border-color: var(--berry);
-            box-shadow: 0 0 0 .2rem rgba(179,90,138,.12);
-        }
-
-        .form-check-label {
-            padding-left: 4px;
-            color: var(--text-secondary);
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .btn-login {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            width: 100%;
-            min-height: 49px;
-            padding: 12px;
-            border: 1px solid var(--purple-dark);
-            border-radius: 10px;
-            background: linear-gradient(110deg, #523F77, #67538A);
-            color: #fff;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 600;
-            transition: .2s ease;
-        }
-
-        .btn-login:hover {
-            border-color: var(--berry);
-            background: linear-gradient(110deg, #67538A, #B35A8A);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 17px rgba(82,63,119,.17);
-        }
-
-        .btn-login:focus {
-            box-shadow: 0 0 0 .2rem rgba(179,90,138,.2);
-        }
-
-        .register-divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 25px 0 19px;
-            color: #A096AC;
-            font-size: 12px;
-        }
-
-        .register-divider::before,
-        .register-divider::after {
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-            content: "";
-        }
-
-        .register-section {
-            padding: 18px;
-            border: 1px solid #E8DDED;
-            border-radius: 12px;
-            background:
-                radial-gradient(circle at 100% 0%, rgba(246,183,199,.15), transparent 40%),
-                linear-gradient(135deg, #F6F1FA, #FCF1F5);
-            text-align: center;
-        }
-
-        .register-section p {
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.7;
-        }
-
-        .btn-register {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            min-height: 44px;
-            padding: 10px 16px;
-            border: 1px solid var(--berry);
-            border-radius: 9px;
-            background: #fff;
-            color: var(--berry);
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: .2s ease;
-        }
-
-        .btn-register:hover {
-            border-color: var(--berry);
-            background: linear-gradient(110deg, #B35A8A, #923D70);
-            color: #fff;
-            transform: translateY(-1px);
-            box-shadow: 0 5px 13px rgba(179,90,138,.13);
-        }
-
-        .register-note {
-            margin-top: 15px;
-            color: var(--text-secondary);
-            font-size: 11px;
-            line-height: 1.7;
-        }
-
-        .alert {
-            border-radius: 10px;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .alert-success {
-            border-color: #CFE3D5;
-            background: #EAF3ED;
-            color: #356B4B;
-        }
-
-        .alert-danger {
-            border-color: #EECAD6;
-            background: #FCEBF0;
-            color: #963F5A;
-        }
-
-        @media (max-width: 767px) {
-            .login-wrapper {
-                padding: 16px 12px !important;
-            }
-
-            .login-panel {
-                border-radius: 16px;
-            }
-
-            .login-brand {
-                padding: 29px 25px;
-            }
-
-            .brand-icon {
-                width: 72px;
-                height: 72px;
-                margin-bottom: 19px;
-            }
-
-            .login-brand h2 {
-                max-width: 100%;
-                font-size: 23px;
-            }
-
-            .brand-description {
-                margin-bottom: 19px;
-                font-size: 13px;
-            }
-
-            .login-form {
-                padding: 30px 23px;
-            }
-
-            .form-heading {
-                margin-bottom: 24px;
-            }
-
-            .form-heading h3 {
-                font-size: 24px;
-            }
-
-            .brand-decoration {
-                top: 22px;
-                right: 22px;
-                font-size: 30px;
+        @media (max-width: 767.98px) {
+            .auth-brand,
+            .auth-form-pane {
+                padding: 26px 22px;
             }
         }
     </style>
@@ -424,59 +177,46 @@
 
 <body>
 
-    <div class="container login-wrapper d-flex align-items-center justify-content-center py-4">
-        <div class="login-panel row g-0">
-
+    <div class="auth-wrapper">
+        <div class="auth-panel row g-0">
             <div class="col-md-5">
-                <div class="login-brand">
+                <div class="auth-brand">
+                    <div>
+                        <div class="auth-logo">
+                            <img src="{{ asset('images/profil-bapelkes.jpeg') }}" alt="Gedung Bapelkes">
+                        </div>
 
-                    <i class="bi bi-buildings brand-decoration"></i>
-
-                    <div class="brand-icon">
-                        <img
-                            src="{{ asset('images/profil-bapelkes.jpeg') }}"
-                            alt="Gedung Bapelkes"
-                            class="profil-bapelkes"
-                        >
+                        <p class="auth-brand-eyebrow">Bapelkes</p>
+                        <h2>Ruang Pengendalian Mutu</h2>
+                        <p>
+                            Sistem informasi internal untuk pengelolaan kegiatan pelatihan, pemeriksaan dokumen, pelaporan, dan pemantauan mutu secara terintegrasi.
+                        </p>
                     </div>
 
-                    <p class="brand-label">BAPELKES</p>
-
-                    <h2>Ruang Pengendalian Mutu</h2>
-
-                    <p class="brand-description">
-                        Sistem informasi untuk pengelolaan kegiatan pelatihan,
-                        pemeriksaan dokumen, dan pemantauan mutu secara terintegrasi.
-                    </p>
-
-                    <div class="brand-footer">
-                        Sistem Informasi Internal Bapelkes
+                    <div class="auth-brand-footer">
+                        © {{ date('Y') }} Sistem Informasi Internal Bapelkes
                     </div>
-
                 </div>
             </div>
 
             <div class="col-md-7">
-                <div class="login-form">
-
-                    <div class="form-heading">
-                        <h3>Selamat Datang!</h3>
-                        <p>
-                            Silakan masuk menggunakan akun yang sudah terdaftar.
-                        </p>
+                <div class="auth-form-pane">
+                    <div class="auth-form-heading">
+                        <h1>Masuk ke Sistem</h1>
+                        <p>Silakan masuk menggunakan akun internal Bapelkes yang telah disetujui.</p>
                     </div>
 
                     @if ($errors->any())
-                        <div class="alert alert-danger mb-4">
-                            <i class="bi bi-exclamation-circle-fill me-2"></i>
-                            {{ $errors->first() }}
+                        <div class="alert app-alert app-alert-danger">
+                            <i class="bi bi-exclamation-circle-fill mt-1"></i>
+                            <div>{{ $errors->first() }}</div>
                         </div>
                     @endif
 
                     @if (session('status'))
-                        <div class="alert alert-success mb-4">
-                            <i class="bi bi-check-circle-fill me-2"></i>
-                            {{ session('status') }}
+                        <div class="alert app-alert app-alert-success">
+                            <i class="bi bi-check-circle-fill mt-1"></i>
+                            <div>{{ session('status') }}</div>
                         </div>
                     @endif
 
@@ -484,17 +224,14 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">
-                                Email
-                            </label>
-
+                            <label for="email" class="app-form-label">Email</label>
                             <input
                                 type="email"
                                 class="form-control"
                                 id="email"
                                 name="email"
                                 value="{{ old('email') }}"
-                                placeholder="Masukkan email"
+                                placeholder="nama@instansi.go.id"
                                 autocomplete="username"
                                 required
                                 autofocus
@@ -502,26 +239,22 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">
-                                Password
-                            </label>
-
+                            <label for="password" class="app-form-label">Kata Sandi</label>
                             <div class="input-group">
                                 <input
                                     type="password"
-                                    class="form-control password-input"
+                                    class="form-control"
                                     id="password"
                                     name="password"
-                                    placeholder="Masukkan password"
+                                    placeholder="Masukkan kata sandi"
                                     autocomplete="current-password"
                                     required
                                 >
-
                                 <button
-                                    class="btn toggle-password"
+                                    class="btn password-toggle-btn"
                                     type="button"
                                     id="togglePassword"
-                                    aria-label="Tampilkan password"
+                                    aria-label="Tampilkan kata sandi"
                                     aria-pressed="false"
                                 >
                                     <i class="bi bi-eye" id="eyeIcon"></i>
@@ -537,41 +270,33 @@
                                 id="remember"
                                 value="1"
                             >
-
-                            <label class="form-check-label" for="remember">
-                                Ingat saya
+                            <label class="form-check-label text-secondary" for="remember" style="font-size: 13px;">
+                                Ingat sesi saya di perangkat ini
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-login">
+                        <button type="submit" class="app-btn app-btn-primary w-100" style="min-height: 44px;">
                             <i class="bi bi-box-arrow-in-right"></i>
                             Masuk ke Sistem
                         </button>
-
                     </form>
 
-                    <div class="register-divider">
-                        Belum punya akun?
-                    </div>
+                    <div class="auth-divider">Belum memiliki akun?</div>
 
-                    <div class="register-section">
-                        <p>
-                            Daftarkan akun untuk mendapatkan akses ke Ruang Pengendalian Mutu Bapelkes.
-                        </p>
+                    <div class="auth-register-box">
+                        <p>Ajukan pendaftaran akun untuk mendapatkan akses ke Ruang Pengendalian Mutu Bapelkes.</p>
 
-                        <a href="{{ route('register') }}" class="btn-register">
+                        <a href="{{ route('register') }}" class="app-btn app-btn-outline w-100">
                             <i class="bi bi-person-plus"></i>
-                            Daftar Akun Sekarang
+                            Daftar Akun Baru
                         </a>
 
-                        <div class="register-note">
-                            Pendaftaran akun akan melalui proses persetujuan Admin Bapelkes sebelum dapat digunakan.
+                        <div class="auth-register-note">
+                            Setiap pendaftaran akun memerlukan persetujuan Admin Bapelkes sebelum dapat digunakan.
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -582,17 +307,10 @@
 
         togglePassword.addEventListener('click', function () {
             const isHidden = passwordInput.type === 'password';
-
             passwordInput.type = isHidden ? 'text' : 'password';
-
             eyeIcon.classList.toggle('bi-eye', !isHidden);
             eyeIcon.classList.toggle('bi-eye-slash', isHidden);
-
-            togglePassword.setAttribute(
-                'aria-label',
-                isHidden ? 'Sembunyikan password' : 'Tampilkan password'
-            );
-
+            togglePassword.setAttribute('aria-label', isHidden ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi');
             togglePassword.setAttribute('aria-pressed', String(isHidden));
         });
     </script>
